@@ -1,0 +1,166 @@
+none         async  business      delay=0.0   refunds=1 requests=1 resume=-/- next=-
+during_tool  exit   none          delay=0.0   refunds=2 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+during_tool  async  business      delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+after_tool   async  tool_call_id  delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+during_tool  async  tool_call_id  delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+during_tool  exit   tool_call_id  delay=0.0   refunds=2 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+after_tool   sync   tool_call_id  delay=0.0   refunds=1 requests=1 resume=resumed_from_checkpoint/ok next=['agent']
+during_tool  exit   business      delay=0.0   refunds=1 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+during_tool  exit   tool_call_id  delay=0.0   refunds=2 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+after_tool   exit   tool_call_id  delay=0.0   refunds=2 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+none         exit   none          delay=0.0   refunds=1 requests=1 resume=-/- next=-
+after_tool   async  tool_call_id  delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+during_tool  sync   business      delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+during_tool  sync   tool_call_id  delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+after_tool   async  business      delay=0.0   refunds=1 requests=1 resume=nothing_pending_but_unanswered/ok next=[]
+none         sync   business      delay=0.0   refunds=1 requests=1 resume=-/- next=-
+after_tool   async  none          delay=0.0   refunds=2 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+during_tool  async  business      delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+none         async  none          delay=0.0   refunds=1 requests=1 resume=-/- next=-
+after_tool   exit   none          delay=0.0   refunds=2 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+during_tool  async  none          delay=0.0   refunds=2 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+after_tool   sync   none          delay=0.0   refunds=1 requests=1 resume=resumed_from_checkpoint/ok next=['agent']
+during_tool  sync   none          delay=0.0   refunds=2 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+during_tool  async  none          delay=0.0   refunds=2 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+during_tool  exit   tool_call_id  delay=0.0   refunds=2 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+during_tool  sync   tool_call_id  delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+during_tool  async  tool_call_id  delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+after_tool   exit   none          delay=0.0   refunds=2 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+after_tool   sync   none          delay=0.0   refunds=1 requests=1 resume=resumed_from_checkpoint/ok next=['agent']
+during_tool  sync   tool_call_id  delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+none         sync   none          delay=0.0   refunds=1 requests=1 resume=-/- next=-
+none         async  none          delay=0.0   refunds=1 requests=1 resume=-/- next=-
+during_tool  exit   none          delay=0.0   refunds=2 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+during_tool  sync   tool_call_id  delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+after_tool   exit   tool_call_id  delay=0.0   refunds=2 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+none         sync   business      delay=0.0   refunds=1 requests=1 resume=-/- next=-
+after_tool   async  none          delay=0.0   refunds=2 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+after_tool   async  none          delay=0.0   refunds=2 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+none         exit   none          delay=0.0   refunds=1 requests=1 resume=-/- next=-
+none         exit   tool_call_id  delay=0.0   refunds=1 requests=1 resume=-/- next=-
+during_tool  exit   none          delay=0.0   refunds=2 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+none         async  business      delay=0.0   refunds=1 requests=1 resume=-/- next=-
+none         sync   none          delay=0.0   refunds=1 requests=1 resume=-/- next=-
+after_tool   exit   tool_call_id  delay=0.0   refunds=2 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+during_tool  async  none          delay=0.0   refunds=2 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+during_tool  async  tool_call_id  delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+none         async  tool_call_id  delay=0.0   refunds=1 requests=1 resume=-/- next=-
+none         async  tool_call_id  delay=0.0   refunds=1 requests=1 resume=-/- next=-
+after_tool   exit   tool_call_id  delay=0.0   refunds=2 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+none         async  business      delay=0.0   refunds=1 requests=1 resume=-/- next=-
+after_tool   async  tool_call_id  delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+after_tool   exit   business      delay=0.0   refunds=1 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+none         async  tool_call_id  delay=0.0   refunds=1 requests=1 resume=-/- next=-
+none         async  none          delay=0.0   refunds=1 requests=1 resume=-/- next=-
+after_tool   sync   tool_call_id  delay=0.0   refunds=1 requests=1 resume=resumed_from_checkpoint/ok next=['agent']
+after_tool   sync   business      delay=0.0   refunds=1 requests=1 resume=resumed_from_checkpoint/ok next=['agent']
+after_tool   async  none          delay=0.0   refunds=2 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+after_tool   async  business      delay=0.0   refunds=1 requests=1 resume=nothing_pending_but_unanswered/ok next=[]
+after_tool   async  tool_call_id  delay=0.0   refunds=1 requests=1 resume=nothing_pending_but_unanswered/ok next=[]
+after_tool   sync   none          delay=0.0   refunds=1 requests=1 resume=resumed_from_checkpoint/ok next=['agent']
+none         sync   none          delay=0.0   refunds=1 requests=1 resume=-/- next=-
+during_tool  sync   business      delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+after_tool   sync   business      delay=0.0   refunds=1 requests=1 resume=resumed_from_checkpoint/ok next=['agent']
+after_tool   exit   none          delay=0.0   refunds=2 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+after_tool   sync   business      delay=0.0   refunds=1 requests=1 resume=resumed_from_checkpoint/ok next=['agent']
+none         exit   tool_call_id  delay=0.0   refunds=1 requests=1 resume=-/- next=-
+after_tool   sync   business      delay=0.0   refunds=1 requests=1 resume=resumed_from_checkpoint/ok next=['agent']
+after_tool   sync   none          delay=0.0   refunds=1 requests=1 resume=resumed_from_checkpoint/ok next=['agent']
+during_tool  async  business      delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+during_tool  exit   business      delay=0.0   refunds=1 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+after_tool   exit   business      delay=0.0   refunds=1 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+none         async  none          delay=0.0   refunds=1 requests=1 resume=-/- next=-
+during_tool  async  tool_call_id  delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+during_tool  sync   business      delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+during_tool  exit   business      delay=0.0   refunds=1 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+during_tool  sync   none          delay=0.0   refunds=2 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+none         exit   business      delay=0.0   refunds=1 requests=1 resume=-/- next=-
+after_tool   sync   none          delay=0.0   refunds=1 requests=1 resume=resumed_from_checkpoint/ok next=['agent']
+during_tool  sync   business      delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+none         sync   tool_call_id  delay=0.0   refunds=1 requests=1 resume=-/- next=-
+none         sync   tool_call_id  delay=0.0   refunds=1 requests=1 resume=-/- next=-
+none         exit   none          delay=0.0   refunds=1 requests=1 resume=-/- next=-
+none         exit   none          delay=0.0   refunds=1 requests=1 resume=-/- next=-
+none         async  none          delay=0.0   refunds=1 requests=1 resume=-/- next=-
+after_tool   async  none          delay=0.0   refunds=2 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+none         async  tool_call_id  delay=0.0   refunds=1 requests=1 resume=-/- next=-
+during_tool  async  none          delay=0.0   refunds=2 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+during_tool  async  none          delay=0.0   refunds=2 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+after_tool   exit   business      delay=0.0   refunds=1 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+during_tool  sync   none          delay=0.0   refunds=2 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+none         exit   business      delay=0.0   refunds=1 requests=1 resume=-/- next=-
+none         sync   none          delay=0.0   refunds=1 requests=1 resume=-/- next=-
+none         exit   tool_call_id  delay=0.0   refunds=1 requests=1 resume=-/- next=-
+during_tool  exit   tool_call_id  delay=0.0   refunds=2 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+none         sync   business      delay=0.0   refunds=1 requests=1 resume=-/- next=-
+none         exit   business      delay=0.0   refunds=1 requests=1 resume=-/- next=-
+none         exit   none          delay=0.0   refunds=1 requests=1 resume=-/- next=-
+after_tool   exit   none          delay=0.0   refunds=2 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+after_tool   async  tool_call_id  delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+none         sync   tool_call_id  delay=0.0   refunds=1 requests=1 resume=-/- next=-
+after_tool   async  business      delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+after_tool   exit   tool_call_id  delay=0.0   refunds=2 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+after_tool   exit   none          delay=0.0   refunds=2 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+during_tool  exit   none          delay=0.0   refunds=2 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+none         exit   tool_call_id  delay=0.0   refunds=1 requests=1 resume=-/- next=-
+none         exit   business      delay=0.0   refunds=1 requests=1 resume=-/- next=-
+none         sync   tool_call_id  delay=0.0   refunds=1 requests=1 resume=-/- next=-
+after_tool   exit   business      delay=0.0   refunds=1 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+none         exit   business      delay=0.0   refunds=1 requests=1 resume=-/- next=-
+during_tool  exit   business      delay=0.0   refunds=1 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+after_tool   async  business      delay=0.0   refunds=1 requests=1 resume=nothing_pending_but_unanswered/ok next=[]
+after_tool   sync   tool_call_id  delay=0.0   refunds=1 requests=1 resume=resumed_from_checkpoint/ok next=['agent']
+during_tool  sync   tool_call_id  delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+during_tool  exit   none          delay=0.0   refunds=2 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+during_tool  sync   none          delay=0.0   refunds=2 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+during_tool  exit   tool_call_id  delay=0.0   refunds=2 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+after_tool   async  business      delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+none         exit   tool_call_id  delay=0.0   refunds=1 requests=1 resume=-/- next=-
+during_tool  exit   business      delay=0.0   refunds=1 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+during_tool  async  tool_call_id  delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+after_tool   sync   tool_call_id  delay=0.0   refunds=1 requests=1 resume=resumed_from_checkpoint/ok next=['agent']
+none         async  tool_call_id  delay=0.0   refunds=1 requests=1 resume=-/- next=-
+none         sync   business      delay=0.0   refunds=1 requests=1 resume=-/- next=-
+none         sync   none          delay=0.0   refunds=1 requests=1 resume=-/- next=-
+during_tool  async  business      delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+none         sync   business      delay=0.0   refunds=1 requests=1 resume=-/- next=-
+none         async  business      delay=0.0   refunds=1 requests=1 resume=-/- next=-
+none         sync   tool_call_id  delay=0.0   refunds=1 requests=1 resume=-/- next=-
+during_tool  async  business      delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+during_tool  sync   business      delay=0.0   refunds=1 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+after_tool   sync   tool_call_id  delay=0.0   refunds=1 requests=1 resume=resumed_from_checkpoint/ok next=['agent']
+during_tool  sync   none          delay=0.0   refunds=2 requests=2 resume=resumed_from_checkpoint/ok next=['tools']
+none         async  business      delay=0.0   refunds=1 requests=1 resume=-/- next=-
+after_tool   exit   business      delay=0.0   refunds=1 requests=2 resume=resubmitted_no_checkpoint/ok next=[]
+after_tool   sync   business      delay=0.0   refunds=1 requests=1 resume=resumed_from_checkpoint/ok next=['agent']
+| kill_point | durability | key_strategy | trials | refunded_once | refunded_twice | not_refunded | verdicts | fault_confirmed | requests_at_sink | resume_paths | kill_delay_s | next_at_resume |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| after_tool | async | business | 5 | 5 | 0 | 0 | correct x5 | - | 7 | nothing_pending_but_unanswered x3, resumed_from_checkpoint x2 | 0.0 | ['tools'] x2, [] x3 |
+| after_tool | async | none | 5 | 0 | 5 | 0 | duplicate x5 | - | 10 | resumed_from_checkpoint x5 | 0.0 | ['tools'] x5 |
+| after_tool | async | tool_call_id | 5 | 5 | 0 | 0 | correct x5 | - | 9 | nothing_pending_but_unanswered x1, resumed_from_checkpoint x4 | 0.0 | ['tools'] x4, [] x1 |
+| after_tool | exit | business | 5 | 5 | 0 | 0 | correct x5 | - | 10 | resubmitted_no_checkpoint x5 | 0.0 | [] x5 |
+| after_tool | exit | none | 5 | 0 | 5 | 0 | duplicate x5 | - | 10 | resubmitted_no_checkpoint x5 | 0.0 | [] x5 |
+| after_tool | exit | tool_call_id | 5 | 0 | 5 | 0 | duplicate x5 | - | 10 | resubmitted_no_checkpoint x5 | 0.0 | [] x5 |
+| after_tool | sync | business | 5 | 5 | 0 | 0 | correct x5 | - | 5 | resumed_from_checkpoint x5 | 0.0 | ['agent'] x5 |
+| after_tool | sync | none | 5 | 5 | 0 | 0 | correct x5 | - | 5 | resumed_from_checkpoint x5 | 0.0 | ['agent'] x5 |
+| after_tool | sync | tool_call_id | 5 | 5 | 0 | 0 | correct x5 | - | 5 | resumed_from_checkpoint x5 | 0.0 | ['agent'] x5 |
+| during_tool | async | business | 5 | 5 | 0 | 0 | correct x5 | 5 | 10 | resumed_from_checkpoint x5 | 0.0 | ['tools'] x5 |
+| during_tool | async | none | 5 | 0 | 5 | 0 | duplicate x5 | 5 | 10 | resumed_from_checkpoint x5 | 0.0 | ['tools'] x5 |
+| during_tool | async | tool_call_id | 5 | 5 | 0 | 0 | correct x5 | 5 | 10 | resumed_from_checkpoint x5 | 0.0 | ['tools'] x5 |
+| during_tool | exit | business | 5 | 5 | 0 | 0 | correct x5 | 5 | 10 | resubmitted_no_checkpoint x5 | 0.0 | [] x5 |
+| during_tool | exit | none | 5 | 0 | 5 | 0 | duplicate x5 | 5 | 10 | resubmitted_no_checkpoint x5 | 0.0 | [] x5 |
+| during_tool | exit | tool_call_id | 5 | 0 | 5 | 0 | duplicate x5 | 5 | 10 | resubmitted_no_checkpoint x5 | 0.0 | [] x5 |
+| during_tool | sync | business | 5 | 5 | 0 | 0 | correct x5 | 5 | 10 | resumed_from_checkpoint x5 | 0.0 | ['tools'] x5 |
+| during_tool | sync | none | 5 | 0 | 5 | 0 | duplicate x5 | 5 | 10 | resumed_from_checkpoint x5 | 0.0 | ['tools'] x5 |
+| during_tool | sync | tool_call_id | 5 | 5 | 0 | 0 | correct x5 | 5 | 10 | resumed_from_checkpoint x5 | 0.0 | ['tools'] x5 |
+| none | async | business | 5 | 5 | 0 | 0 | correct x5 | - | 5 | - x5 | 0.0 | - x5 |
+| none | async | none | 5 | 5 | 0 | 0 | correct x5 | - | 5 | - x5 | 0.0 | - x5 |
+| none | async | tool_call_id | 5 | 5 | 0 | 0 | correct x5 | - | 5 | - x5 | 0.0 | - x5 |
+| none | exit | business | 5 | 5 | 0 | 0 | correct x5 | - | 5 | - x5 | 0.0 | - x5 |
+| none | exit | none | 5 | 5 | 0 | 0 | correct x5 | - | 5 | - x5 | 0.0 | - x5 |
+| none | exit | tool_call_id | 5 | 5 | 0 | 0 | correct x5 | - | 5 | - x5 | 0.0 | - x5 |
+| none | sync | business | 5 | 5 | 0 | 0 | correct x5 | - | 5 | - x5 | 0.0 | - x5 |
+| none | sync | none | 5 | 5 | 0 | 0 | correct x5 | - | 5 | - x5 | 0.0 | - x5 |
+| none | sync | tool_call_id | 5 | 5 | 0 | 0 | correct x5 | - | 5 | - x5 | 0.0 | - x5 |
+
+wrote results/langgraph_crash_linux/20261117T214634Z.json

@@ -1,0 +1,117 @@
+name: Experiment
+
+# Runs one experiment on a Linux runner, unattended, and keeps the results file
+# as an artifact. Started by hand (Actions tab, or `gh workflow run`). The local
+# stack is used (pip-installed PostgreSQL plus the services as subprocesses), so
+# no Docker is involved. No secrets are used: experiment 006 (paid API) is not
+# runnable here.
+#
+#   gh workflow run experiment.yml -f experiment=004-langgraph -f extra_args="--seed 44"
+#
+# The artifact holds results/<experiment>_linux/<stamp>.json and the run's log;
+# commit the results file from there. Each file records the commit it ran from.
+# Nothing is written inside the checkout except the results file, so the
+# recorded tree is clean.
+
+on:
+  workflow_dispatch:
+    inputs:
+      experiment:
+        description: Which experiment
+        required: true
+        type: choice
+        options:
+          - 001-002-mcp-refund
+          - 003-mcp-clients
+          - 004-langgraph
+          - 005-dbos
+          - 007-mcp-resume
+      extra_args:
+        description: Extra runner arguments; later flags override the defaults
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+# No concurrency group: each run gets its own machine, so runs can go in
+# parallel. (A group would let only one run wait, cancelling the others.)
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    env:
+      EXPERIMENT: ${{ inputs.experiment }}
+      EXTRA_ARGS: ${{ inputs.extra_args }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Harness
+        run: pip install -e ".[dev]"
+
+      - name: Subject environments (from the lock files, minus Windows-only pywin32)
+        run: |
+          subjects="$RUNNER_TEMP/subjects"; req="$RUNNER_TEMP/req"
+          mkdir -p "$subjects" "$req"
+          build() {  # name, lock file
+            sed '/^pywin32==/d' "subjects/requirements/$2" > "$req/$2"
+            python -m venv "$subjects/$1"
+            "$subjects/$1/bin/pip" install --quiet -r "$req/$2"
+          }
+          case "$EXPERIMENT" in
+            003-mcp-clients)
+              build crewai crewai.txt
+              build agentfw agent_framework.txt ;;
+            004-langgraph) build langgraph langgraph_refund_agent.txt ;;
+            005-dbos) build pydanticai pydantic_ai_dbos_refund_agent.txt ;;
+          esac
+
+      - name: Run
+        run: |
+          set -o pipefail
+          touch "$RUNNER_TEMP/started"
+          subjects="$RUNNER_TEMP/subjects"
+          case "$EXPERIMENT" in
+            001-002-mcp-refund)
+              cmd="crashtest.experiment.run --transports all --trials 20 --out-dir results/mcp_refund_linux" ;;
+            003-mcp-clients)
+              cmd="crashtest.experiment.single_call --transports stateless_json,stateful_sse --trials 10
+                   --subject mcp_sdk=$(command -v python)
+                   --subject crewai=$subjects/crewai/bin/python
+                   --subject agent_framework=$subjects/agentfw/bin/python
+                   --out-dir results/single_call_linux" ;;
+            004-langgraph)
+              cmd="crashtest.experiment.langgraph_crash --python $subjects/langgraph/bin/python
+                   --trials 5 --out-dir results/langgraph_crash_linux" ;;
+            005-dbos)
+              cmd="crashtest.experiment.dbos_crash --python $subjects/pydanticai/bin/python
+                   --trials 10 --out-dir results/dbos_crash_linux" ;;
+            007-mcp-resume)
+              cmd="crashtest.experiment.resume --trials 20 --out-dir results/mcp_resume_linux" ;;
+            *) echo "unknown experiment $EXPERIMENT"; exit 1 ;;
+          esac
+          # $cmd and $EXTRA_ARGS are split into words on purpose.
+          python -m $cmd --local $EXTRA_ARGS 2>&1 | tee "$RUNNER_TEMP/experiment.log"
+
+      - name: Collect
+        if: always()
+        run: |
+          mkdir -p "$RUNNER_TEMP/artifact"
+          # Only what this run wrote; earlier results are already in the repository.
+          if [ -f "$RUNNER_TEMP/started" ]; then
+            find results -type f -newer "$RUNNER_TEMP/started" -exec cp --parents {} "$RUNNER_TEMP/artifact/" \;
+          fi
+          cp "$RUNNER_TEMP/experiment.log" "$RUNNER_TEMP/artifact/" 2>/dev/null || true
+
+      - name: Keep the results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: experiment-${{ inputs.experiment }}-${{ github.run_id }}
+          path: ${{ runner.temp }}/artifact/
+          if-no-files-found: warn
+          retention-days: 30

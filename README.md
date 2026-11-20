@@ -1,0 +1,187 @@
+# agent-crashtest
+
+A crash-consistency testbench for AI-agent tool calls.
+
+Agents call tools that move money, send email and write records. When a response is lost or a process dies mid-call, something usually retries — and the effect can happen twice. `agent-crashtest` injects those failures and counts what actually reached the outside world.
+
+**Status: early.** Seven experiments run end to end: two on the reference MCP client, one on three MCP client libraries, one that kills and resumes a LangGraph agent, one that kills and recovers a pydantic-ai agent on DBOS, one on what real models do after a tool reports an unknown outcome, and one on whether the MCP client resumes a dropped stream. Known gaps are listed in [docs/audits/implementation-gap-report.md](docs/audits/implementation-gap-report.md).
+
+## First result
+
+A refund issued through an MCP tool, where the server commits the refund and the response is lost:
+
+| Client strategy on retry | Trials | Refunded once | Refunded twice |
+|---|---|---|---|
+| Retry with no key | 20 | 0 | 20 |
+| Retry with a stable idempotency key | 20 | 20 | 0 |
+| Retry with a new key each attempt | 20 | 0 | 20 |
+
+In every double-refund trial the client believed it had made one refund. Details, versions and limits: [docs/experiments/001-mcp-refund-lost-response.md](docs/experiments/001-mcp-refund-lost-response.md).
+
+This result is expected; it validates the harness. It was run locally without Docker, three times. The table is from one run; the other two gave the same counts in these cells, except for one unplanned triple refund in a different cell, explained in the write-up.
+
+## Second result
+
+The same test against four MCP server settings, with a second fault that cuts the connection instead of delaying the response: the `mcp` Python client resent nothing by itself in 720 trials, and the outcome depended only on the key strategy. A later check (experiment 007) showed that the client's default protocol, 2026-07-28, made the four server settings one transport on the wire, so this measured one transport four times. Details and limits: [docs/experiments/002-mcp-client-matrix.md](docs/experiments/002-mcp-client-matrix.md).
+
+## Try it: an unsafe client and a safe one
+
+The fault: the sink commits the refund, then holds its response past the client's timeout, so the client never hears back. Each command runs three trials on a local stack (no Docker needed) and prints a table:
+
+```powershell
+python -m crashtest.experiment.run --local --faults lost_response --arms no_dedup --trials 3 --out-dir demo-results
+```
+
+```powershell
+python -m crashtest.experiment.run --local --faults lost_response --arms stable_key --trials 3 --out-dir demo-results
+```
+
+The first client retries with no idempotency key: expect `duplicate` 3, `effects_committed` 6, and `report_mismatch` 3 (each time the client said one refund was made, and the sink holds two). The second retries with a key that stays the same across attempts: expect `correct` 3, `effects_committed` 3, `report_mismatch` 0. Checked on Windows on 20 November 2026, about 15 seconds each, and on Ubuntu (GitHub runner, 20 November UTC) with both arms in one run (`results/mcp_refund_linux/20261120T205010Z.json`, through `.github/workflows/experiment.yml`): the same counts. The JSON with every trial goes to `demo-results/`.
+
+To point your own MCP client at the same tool and fault, see [docs/connect-your-client.md](docs/connect-your-client.md).
+
+## Further results
+
+- **MCP client libraries (003).** crewAI 1.15.41's MCP client sends a timed-out tool call again by default, and refunded twice while reporting success (20 of 20). agent-framework and the reference client did not. This behaviour is already public as crewAI issue #8932. Only CrewAI's two transports really differed; the other two clients used one protocol on both. [Write-up](docs/experiments/003-mcp-client-libraries.md).
+- **LangGraph, killed and resumed (004).** A tool interrupted mid-call runs again on resume. Under LangGraph's default `async` mode, a tool that had already returned also ran again on Linux, because its result was not yet checkpointed (on Windows it was). A key taken from the model's tool-call ID held except under `exit` durability, where nothing had been saved and the model issued a new ID; a key derived from the order held everywhere. [Write-up](docs/experiments/004-langgraph-crash-resume.md).
+- **pydantic-ai on DBOS, killed and recovered (005).** A plain function tool ran again even after it had returned; a `@DBOS.step` or child-workflow tool ran again only when killed mid-call. Every key tested held. With step retries turned on, a late response alone, with no crash, refunded twice. All documented behaviour, not defects. [Write-up](docs/experiments/005-pydantic-ai-dbos.md).
+- **Real models after an unknown outcome (006).** Opus 5.5, Sonnet 5.5 and Haiku 5.5, 930 trials. After "internal server error" with no way to check, Sonnet 5.5 sent the refund again in 34 of 50 trials, refunding twice, and in 32 of those told the user only one refund was made; in every other faulted condition no model re-sent it (0 of 300 for Opus, 0 of 250 for Sonnet, 0 of 300 for Haiku). Given a tool to look up the order's refunds, every model looked them up, before the refund and again after the error, and none re-sent (150 of 150 per model). Every re-sent call repeated the arguments exactly, so an argument-hash key would have caught all of them. [Write-up](docs/experiments/006-model-retry.md); [validation against the sink](docs/experiments/006-validation.md).
+- **Resuming a dropped MCP stream (007).** The reference `mcp` client 2.3.0 resumed a dropped call from a server's event store, and refunded once even with a naive retry, only with the 2025-11-25 protocol (`mode="legacy"`), a stateful SSE server with an event store, and a drop after the stream's priming event (20 of 20 per strategy). With its default settings it negotiates 2026-07-28, which has no resumable streams, and a naive retry refunded twice in every trial. [Write-up](docs/experiments/007-mcp-resume.md).
+- **The two durable engines side by side:** [docs/comparison-langgraph-dbos.md](docs/comparison-langgraph-dbos.md).
+
+Across the first five, the one defence that held in every configuration was an idempotency key derived from the business operation and enforced by the database that performs the effect.
+
+## How it works
+
+```
+experiment runner ──> MCP client ──> refund MCP server ──> sink (FastAPI) ──> PostgreSQL
+        │                                                      ▲
+        └────────── arm fault / read ground truth ─────────────┘
+```
+
+- The **sink** plays the outside world. Each row in its `refunds` table is an effect that happened.
+- The **fault** makes the sink commit a refund and then withhold the response past the client's timeout.
+- The **verdict** for a trial is the number of refund rows. What the client believes is recorded but not trusted.
+
+More: [docs/architecture.md](docs/architecture.md), [docs/contract.md](docs/contract.md).
+
+## Run it on Windows (PowerShell)
+
+Requires Python 3.12. Keep the project at a short path such as `D:\agent-crashtest`; Windows path-length limits break virtual environments in deeply nested folders.
+
+Set up once:
+
+```powershell
+python -m venv .venv
+```
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+```powershell
+pip install -e ".[dev]"
+```
+
+Run the tests (starts PostgreSQL and both services automatically, about 20 seconds):
+
+```powershell
+pytest
+```
+
+Run the experiment:
+
+```powershell
+python -m crashtest.experiment.run --local --trials 20
+```
+
+Run it across all four MCP transport settings (about 13 minutes):
+
+```powershell
+python -m crashtest.experiment.run --local --transports all --trials 20
+```
+
+Results are written to `results\mcp_refund\`.
+
+In VS Code: open the folder, choose the interpreter at `.venv\Scripts\python.exe` (Ctrl+Shift+P → "Python: Select Interpreter"), and use the Testing panel to run the tests.
+
+If activation is blocked by execution policy, run this once in the same window:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
+
+### With Docker
+
+Verified on 16 November 2026 (Docker Desktop 4.29, PostgreSQL 16.16): the stack builds and the 19 tests pass against it.
+
+```powershell
+docker compose up --build -d
+```
+
+```powershell
+python -m crashtest.experiment.run --sink-url http://localhost:8101 --mcp-url http://localhost:8102/mcp
+```
+
+To run the tests against the Docker stack:
+
+```powershell
+$env:CRASHTEST_SINK_URL = "http://localhost:8101"; $env:CRASHTEST_MCP_URL = "http://localhost:8102/mcp"; pytest
+```
+
+```powershell
+docker compose down -v
+```
+
+### On Linux or macOS
+
+The same steps, in a POSIX shell. CI installs and runs the tests this way on Ubuntu (Python 3.12) on every push, and the experiment workflow (`.github/workflows/experiment.yml`) has run the experiments on Ubuntu; macOS has not been tested.
+
+```sh
+python3.12 -m venv .venv
+. .venv/bin/activate
+pip install -e ".[dev]"
+pytest
+python -m crashtest.experiment.run --local --trials 20
+```
+
+`--local` starts PostgreSQL from the pip-installed `pgserver` package, plus the sink and MCP server, so Docker is not needed.
+
+### Checks
+
+The same checks run in CI on every push: see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+```powershell
+ruff check src tests; ruff format --check src tests; mypy; pytest --cov
+```
+
+**Known timing-sensitive tests.** Five connection-drop tests in `tests/test_client_matrix.py` depend on the client's 1.5-second timeout (`FAST` in that file) racing the proxy's cut. On 21 November 2026 they failed once together in a full local run on a loaded Windows machine (the client timed out before the proxy cut the connection), then passed in two reruns and in CI. If they fail, rerun them alone before suspecting a regression:
+
+- `test_connection_drop_with_naive_retry_refunds_twice[stateless_json]`
+- `test_connection_drop_with_naive_retry_refunds_twice[stateless_sse]`
+- `test_connection_drop_with_naive_retry_refunds_twice[stateful_json]`
+- `test_connection_drop_with_naive_retry_refunds_twice[stateful_sse]`
+- `test_connection_drop_with_a_stable_key_refunds_once[stateful_sse]`
+
+## Layout
+
+| Path | Contents |
+|---|---|
+| `src/crashtest/sink/` | Sink service and its SQL schema |
+| `src/crashtest/refund_mcp/` | MCP server with the `issue_refund` tool |
+| `src/crashtest/faults/` | Fault proxy that cuts a connection after the effect has committed |
+| `src/crashtest/experiment/` | Trial logic, runners, local stack launcher |
+| `subjects/` | One script per system under test; each runs in its own Python environment |
+| `tests/` | Sink tests, end-to-end MCP tests, unit tests |
+| `results/` | Raw results files |
+| `docs/` | Contract, architecture, experiments, related work, evidence check, research gaps |
+
+## Related work
+
+This project builds on, and must be read alongside, "Resume Means Resume" (arXiv 2608.03836), UndoBench (arXiv 2610.05622) and ACRFence (arXiv 2603.20625). What each covers and what this project adds: [docs/related-work.md](docs/related-work.md).
+
+## Roadmap
+
+See [ROADMAP.md](ROADMAP.md). Results files record the commit they were run from; see [PROVENANCE.md](PROVENANCE.md).
+
+An adversarial review of the experiments' methods and conclusions is in [docs/audits/scientific-audit.md](docs/audits/scientific-audit.md).

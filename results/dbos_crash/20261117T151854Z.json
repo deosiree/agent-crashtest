@@ -1,0 +1,3673 @@
+{
+  "experiment": "dbos_crash",
+  "started_at": "2026-11-17T15:18:54.552238+00:00",
+  "parameters": {
+    "kill_points": [
+      "none",
+      "during_tool",
+      "after_tool"
+    ],
+    "tool_modes": [
+      "plain",
+      "step",
+      "child_workflow"
+    ],
+    "key_strategies": [
+      "none"
+    ],
+    "trials_per_cell": 10,
+    "seed": 8,
+    "system_database": "sqlite"
+  },
+  "environment": {
+    "python": "3.12.2",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "subject": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+  },
+  "provenance": {
+    "git_commit": "131e5bab4f90f7bf6b3b8772484ac3ce563e0abe",
+    "git_dirty": true,
+    "subject_packages": [
+      "PyYAML==6.0.3",
+      "SQLAlchemy==2.1.9",
+      "annotated-types==0.8.0",
+      "anyio==4.16.0",
+      "certifi==2026.10.23",
+      "click==8.5.1",
+      "croniter==7.0.0",
+      "dbos==3.5.0",
+      "genai-prices==0.2.3",
+      "greenlet==3.5.6",
+      "griffelib==2.4.1",
+      "h11==0.16.0",
+      "httpcore2==2.16.2",
+      "httpcore==1.0.9",
+      "httpx2==2.16.2",
+      "httpx==0.28.1",
+      "idna==3.20",
+      "logfire-api==5.6.0",
+      "opentelemetry-api==1.45.2",
+      "psycopg-binary==3.3.9",
+      "psycopg==3.3.9",
+      "pydantic-ai-slim==2.68.0",
+      "pydantic-graph==2.68.0",
+      "pydantic==2.14.3",
+      "pydantic_core==2.50.4",
+      "python-dateutil==4.0.0",
+      "truststore==0.10.5",
+      "typing-inspection==0.4.5",
+      "typing_extensions==4.16.0",
+      "tzdata==2026.6"
+    ]
+  },
+  "summary": [
+    {
+      "kill_point": "none",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "trials": 10,
+      "refunded_once": 10,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x10",
+      "fault_confirmed": "-",
+      "requests_at_sink": 10,
+      "tool_calls_on_recovery": "- x10",
+      "distinct_keys": 0
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "trials": 10,
+      "refunded_once": 10,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x10",
+      "fault_confirmed": "-",
+      "requests_at_sink": 10,
+      "tool_calls_on_recovery": "- x10",
+      "distinct_keys": 0
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "trials": 10,
+      "refunded_once": 10,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x10",
+      "fault_confirmed": "-",
+      "requests_at_sink": 10,
+      "tool_calls_on_recovery": "- x10",
+      "distinct_keys": 0
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "trials": 10,
+      "refunded_once": 0,
+      "refunded_twice": 10,
+      "not_refunded": 0,
+      "verdicts": "duplicate x10",
+      "fault_confirmed": 10,
+      "requests_at_sink": 20,
+      "tool_calls_on_recovery": "1 x10",
+      "distinct_keys": 0
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "trials": 10,
+      "refunded_once": 0,
+      "refunded_twice": 10,
+      "not_refunded": 0,
+      "verdicts": "duplicate x10",
+      "fault_confirmed": 10,
+      "requests_at_sink": 20,
+      "tool_calls_on_recovery": "1 x10",
+      "distinct_keys": 0
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "trials": 10,
+      "refunded_once": 0,
+      "refunded_twice": 10,
+      "not_refunded": 0,
+      "verdicts": "duplicate x10",
+      "fault_confirmed": 10,
+      "requests_at_sink": 20,
+      "tool_calls_on_recovery": "1 x10",
+      "distinct_keys": 0
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "trials": 10,
+      "refunded_once": 0,
+      "refunded_twice": 10,
+      "not_refunded": 0,
+      "verdicts": "duplicate x10",
+      "fault_confirmed": "-",
+      "requests_at_sink": 20,
+      "tool_calls_on_recovery": "1 x10",
+      "distinct_keys": 0
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "trials": 10,
+      "refunded_once": 10,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x10",
+      "fault_confirmed": "-",
+      "requests_at_sink": 10,
+      "tool_calls_on_recovery": "1 x10",
+      "distinct_keys": 0
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "trials": 10,
+      "refunded_once": 10,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x10",
+      "fault_confirmed": "-",
+      "requests_at_sink": 10,
+      "tool_calls_on_recovery": "0 x10",
+      "distinct_keys": 0
+    }
+  ],
+  "trials": [
+    {
+      "kill_point": "none",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 0,
+      "order_id": "ord-3bbd44ae-de67-4995-be2e-d924134ebc7e",
+      "workflow_id": "wf-b71bdba1-f48f-41da-ac5a-2789abfd6700",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-b71bdba1-f48f-41da-ac5a-2789abfd6700",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 1,
+      "order_id": "ord-a3140c0e-89c9-45da-a571-5b1fe3666bfa",
+      "workflow_id": "wf-9e1da3fb-aff2-4ba0-98f2-2dab6502fbcc",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-9e1da3fb-aff2-4ba0-98f2-2dab6502fbcc",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 2,
+      "order_id": "ord-eee46d1f-947f-4b6d-886b-77700687f7f6",
+      "workflow_id": "wf-a00dbd40-6ad2-45c7-b375-1fb2bde63f4b",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-a00dbd40-6ad2-45c7-b375-1fb2bde63f4b",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 3,
+      "order_id": "ord-a21db89d-2c54-4aaf-a091-46d616d63c8c",
+      "workflow_id": "wf-a02853c2-5962-44c1-b108-d501ff7d6277",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-a02853c2-5962-44c1-b108-d501ff7d6277",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 4,
+      "order_id": "ord-f36d2357-3605-420f-9db7-e02650a6284c",
+      "workflow_id": "wf-e01dd136-5a79-4930-a072-e4d86aeb48b0",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-e01dd136-5a79-4930-a072-e4d86aeb48b0",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 0,
+        "keys_sent": []
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 5,
+      "order_id": "ord-c8bdf623-2415-41f2-af31-f7648dbdd04d",
+      "workflow_id": "wf-79f3024b-2039-45d4-940c-5194c1e60ddd",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-79f3024b-2039-45d4-940c-5194c1e60ddd",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 6,
+      "order_id": "ord-bb21b3e9-3733-47ee-bc79-f2dfca240467",
+      "workflow_id": "wf-55b8f750-c6c4-4267-b47b-ae615b057ae5",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-55b8f750-c6c4-4267-b47b-ae615b057ae5",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 7,
+      "order_id": "ord-317def4c-9d85-443a-8512-7695e721f46a",
+      "workflow_id": "wf-1145a843-cb3c-4ca5-a588-527500e44a6e",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-1145a843-cb3c-4ca5-a588-527500e44a6e",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 8,
+      "order_id": "ord-fe6d9ce6-c13a-46ef-8e08-ac4ceb0407a8",
+      "workflow_id": "wf-5666c483-293f-4052-93fd-ffca2db35c21",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-5666c483-293f-4052-93fd-ffca2db35c21",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 9,
+      "order_id": "ord-2c1799d4-06dc-47d0-8628-14e929439bdc",
+      "workflow_id": "wf-fe87d6fb-a765-4d6c-9b30-ffb1e11db166",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-fe87d6fb-a765-4d6c-9b30-ffb1e11db166",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 10,
+      "order_id": "ord-c3e908c6-57b8-4e92-ad29-5a8c26f07e9d",
+      "workflow_id": "wf-5ad6f893-84e3-4a92-ac5c-66a2f560892a",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-5ad6f893-84e3-4a92-ac5c-66a2f560892a",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 0,
+        "keys_sent": []
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 11,
+      "order_id": "ord-164d8619-0ce4-4ae0-9855-09a90fc25426",
+      "workflow_id": "wf-999debf0-23d8-47c8-b98e-1a23eadca471",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-999debf0-23d8-47c8-b98e-1a23eadca471",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 12,
+      "order_id": "ord-f1b59e77-c584-4eec-bdbb-7b05faeb9fe0",
+      "workflow_id": "wf-3fd69e62-1336-42f8-8ab4-c25187a3e75b",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-3fd69e62-1336-42f8-8ab4-c25187a3e75b",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 13,
+      "order_id": "ord-f4e8b327-edb1-401e-b046-3bc71f420128",
+      "workflow_id": "wf-b9c3ca5c-005f-4611-9e29-3ada69c24796",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-b9c3ca5c-005f-4611-9e29-3ada69c24796",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 14,
+      "order_id": "ord-abb29647-9bed-488b-aa93-1273945a19b5",
+      "workflow_id": "wf-1b6cea1f-64a9-426f-84c5-40ad060c0811",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-1b6cea1f-64a9-426f-84c5-40ad060c0811",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 15,
+      "order_id": "ord-6d09ad55-0ab2-4451-96ae-b519557eacd3",
+      "workflow_id": "wf-7d172648-c172-48b1-a52a-56bbac6e321b",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-7d172648-c172-48b1-a52a-56bbac6e321b",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 16,
+      "order_id": "ord-0304ae3d-b8f0-4bef-a305-420c0672de15",
+      "workflow_id": "wf-41f7e99f-1aaf-4295-8bd7-30b022fadf48",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-41f7e99f-1aaf-4295-8bd7-30b022fadf48",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 0,
+        "sink_posts": 0,
+        "keys_sent": []
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 17,
+      "order_id": "ord-7e84f4ea-b252-4fec-856d-d602c7f433a0",
+      "workflow_id": "wf-2192be67-cbd2-46c7-af0e-b085ea924db1",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-2192be67-cbd2-46c7-af0e-b085ea924db1",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 0,
+        "sink_posts": 0,
+        "keys_sent": []
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 18,
+      "order_id": "ord-ae02e071-58f1-4b59-8df1-8af8557bb9b7",
+      "workflow_id": "wf-8860af4b-aa18-4c3e-a1b6-006179037565",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-8860af4b-aa18-4c3e-a1b6-006179037565",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 19,
+      "order_id": "ord-737e1f36-89c4-4754-9924-f42791c7853e",
+      "workflow_id": "wf-e5a3c4bc-1372-46d8-b768-5f7d5ad2d923",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-e5a3c4bc-1372-46d8-b768-5f7d5ad2d923",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 20,
+      "order_id": "ord-998323df-a59c-4077-aeae-bf596584e80e",
+      "workflow_id": "wf-5afb98b0-0f77-49fa-ac3e-2d9d1c9bb0ee",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-5afb98b0-0f77-49fa-ac3e-2d9d1c9bb0ee",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 0,
+        "keys_sent": []
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 21,
+      "order_id": "ord-ae2ab753-0fe9-4840-ab9a-f33ff757c4d7",
+      "workflow_id": "wf-c4edc96f-35d5-4cd1-84b5-e02cbe7d29d5",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-c4edc96f-35d5-4cd1-84b5-e02cbe7d29d5",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 22,
+      "order_id": "ord-adbe8b8b-d3e3-4a7c-b884-3a61274a86fa",
+      "workflow_id": "wf-7150fa71-95b9-4209-b1c1-55194d6b9290",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-7150fa71-95b9-4209-b1c1-55194d6b9290",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 0,
+        "sink_posts": 0,
+        "keys_sent": []
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 23,
+      "order_id": "ord-e5c98d06-fb2e-4b68-b9e8-aaa8874a26ac",
+      "workflow_id": "wf-88dba96e-1f18-4ae1-ae4e-cca7a621df28",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-88dba96e-1f18-4ae1-ae4e-cca7a621df28",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 24,
+      "order_id": "ord-f28d56c0-4d57-4a16-98d7-74ff2d6a37ac",
+      "workflow_id": "wf-4807a58b-c58b-45c2-be5c-689c52a98367",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-4807a58b-c58b-45c2-be5c-689c52a98367",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 25,
+      "order_id": "ord-bc2e447c-3677-4a25-8cc9-aecc9b273c68",
+      "workflow_id": "wf-b4ece1a7-5dd7-48c4-b0f3-8ea37a7587ce",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-b4ece1a7-5dd7-48c4-b0f3-8ea37a7587ce",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 26,
+      "order_id": "ord-f7629bf7-dd36-4587-bdbf-88a41425fd41",
+      "workflow_id": "wf-017e13ee-b48c-4e50-94f3-71c65e352b3b",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-017e13ee-b48c-4e50-94f3-71c65e352b3b",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 27,
+      "order_id": "ord-71a4248f-0457-465d-b7e3-c1ea882c6871",
+      "workflow_id": "wf-7cfb90cc-9459-43b0-bc92-f3fe69a61a39",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-7cfb90cc-9459-43b0-bc92-f3fe69a61a39",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 28,
+      "order_id": "ord-f81d49ac-fab5-482f-a385-755d323417fe",
+      "workflow_id": "wf-7afd17d1-4c39-4e7f-9bdb-c281b04f738e",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-7afd17d1-4c39-4e7f-9bdb-c281b04f738e",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 29,
+      "order_id": "ord-22b76be8-1d2d-482d-8a94-3726be33da89",
+      "workflow_id": "wf-cb183364-fce2-4bf1-9dfe-83b7cb3873f4",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-cb183364-fce2-4bf1-9dfe-83b7cb3873f4",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 30,
+      "order_id": "ord-903b3dec-7017-43ef-8b19-6e94662b16bc",
+      "workflow_id": "wf-90c9c683-b4ff-49f1-809c-a9108d7f7894",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-90c9c683-b4ff-49f1-809c-a9108d7f7894",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 31,
+      "order_id": "ord-bb9873cb-9bdf-46c6-b6c6-456bb87197b6",
+      "workflow_id": "wf-a9015750-20d7-4257-bd97-41e681379e79",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-a9015750-20d7-4257-bd97-41e681379e79",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 32,
+      "order_id": "ord-8a89d8a6-8acf-48dc-b907-45f55c6fa4a4",
+      "workflow_id": "wf-a42e1edf-56c5-4985-8b2d-bfb30bfd89f3",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-a42e1edf-56c5-4985-8b2d-bfb30bfd89f3",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 33,
+      "order_id": "ord-9d8dadcc-bbfd-4638-9ddd-072e5ca75a46",
+      "workflow_id": "wf-8b7f4f24-63d5-4ce4-b8d4-ffb33c6c571d",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-8b7f4f24-63d5-4ce4-b8d4-ffb33c6c571d",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 0,
+        "sink_posts": 0,
+        "keys_sent": []
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 34,
+      "order_id": "ord-f9a7225f-5a5c-4e1b-b94e-08746c65a4e3",
+      "workflow_id": "wf-5c904bbe-9f56-4c4f-a01a-532fbfa16a30",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-5c904bbe-9f56-4c4f-a01a-532fbfa16a30",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 35,
+      "order_id": "ord-88e50366-528a-4313-a8fb-6fb397a22df7",
+      "workflow_id": "wf-c5a83544-1ea2-44d6-9049-5d0aaf7f5ddd",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-c5a83544-1ea2-44d6-9049-5d0aaf7f5ddd",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 36,
+      "order_id": "ord-5afa4292-1143-4d2a-9aac-f79d016e8e23",
+      "workflow_id": "wf-ee6ab7ca-e543-4cd5-996f-ee2d3488e761",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-ee6ab7ca-e543-4cd5-996f-ee2d3488e761",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 37,
+      "order_id": "ord-8f67bd61-20d1-423f-a4b4-238e72ba2092",
+      "workflow_id": "wf-e06f890e-0fb8-499a-a8a8-aaa12317b008",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-e06f890e-0fb8-499a-a8a8-aaa12317b008",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 38,
+      "order_id": "ord-d647ad9d-5d2f-463a-bac9-df5798862e4f",
+      "workflow_id": "wf-c9ca1b4a-8346-409b-b436-1fc36f68a588",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-c9ca1b4a-8346-409b-b436-1fc36f68a588",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 39,
+      "order_id": "ord-4b6a0963-e99e-4cbd-802d-a7f3e6e82889",
+      "workflow_id": "wf-00911c5f-bc8e-48c2-b9d9-209df90105c2",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-00911c5f-bc8e-48c2-b9d9-209df90105c2",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 40,
+      "order_id": "ord-5dab0cfe-e27d-4f2e-b197-c62f770a58c6",
+      "workflow_id": "wf-6efea5bf-bd30-4d19-ad18-74b75a7f1712",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-6efea5bf-bd30-4d19-ad18-74b75a7f1712",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 41,
+      "order_id": "ord-47c70831-3061-48cf-b353-889c28f16f74",
+      "workflow_id": "wf-74ac14b9-1c2a-478a-8c6f-fff969174932",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-74ac14b9-1c2a-478a-8c6f-fff969174932",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 42,
+      "order_id": "ord-7ef47335-7578-41fc-b7c3-0063422e25ce",
+      "workflow_id": "wf-69b92685-5b0c-4f2e-9e3a-4332558623f0",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-69b92685-5b0c-4f2e-9e3a-4332558623f0",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 0,
+        "sink_posts": 0,
+        "keys_sent": []
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 43,
+      "order_id": "ord-0ccd50b4-d8a2-485e-b34b-a132c306b170",
+      "workflow_id": "wf-55f93a62-bb36-4d52-8a36-469446c95d3e",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-55f93a62-bb36-4d52-8a36-469446c95d3e",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 0,
+        "sink_posts": 0,
+        "keys_sent": []
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 44,
+      "order_id": "ord-13298ae1-ce29-40c3-9aad-92be6a86add9",
+      "workflow_id": "wf-ebc16baf-84bf-4cad-812d-b4e709f1c8cf",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-ebc16baf-84bf-4cad-812d-b4e709f1c8cf",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 45,
+      "order_id": "ord-cdaa7b2a-59b6-40d7-a7b0-1ca4d2a7d1d9",
+      "workflow_id": "wf-1ec15181-9837-4d09-b4de-3f5bdc7c4620",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-1ec15181-9837-4d09-b4de-3f5bdc7c4620",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 46,
+      "order_id": "ord-61feb79d-b2e9-4b34-9428-b64b48d90317",
+      "workflow_id": "wf-e8fc45e5-290a-4141-bcc9-ad90d52f9c4b",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-e8fc45e5-290a-4141-bcc9-ad90d52f9c4b",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 47,
+      "order_id": "ord-6f064927-2144-4027-b7c0-0311f9f590d3",
+      "workflow_id": "wf-f5c142fb-2c87-4756-be33-7472ceb97019",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-f5c142fb-2c87-4756-be33-7472ceb97019",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 0,
+        "keys_sent": []
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 48,
+      "order_id": "ord-209d60c3-4d64-40a4-bd86-f74b5cfa01be",
+      "workflow_id": "wf-673fb9f3-fd26-475f-8b13-fb70f1280c78",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-673fb9f3-fd26-475f-8b13-fb70f1280c78",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 49,
+      "order_id": "ord-63b50e67-b951-475f-8cd7-bb24e875b481",
+      "workflow_id": "wf-f90d4e00-0290-4cfa-9745-972f6707abeb",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-f90d4e00-0290-4cfa-9745-972f6707abeb",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 50,
+      "order_id": "ord-c0340b7e-6989-4bc8-b16b-299ef58adf6d",
+      "workflow_id": "wf-942ce717-8c2c-4c1b-a871-a9f2dbd45dd8",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-942ce717-8c2c-4c1b-a871-a9f2dbd45dd8",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 51,
+      "order_id": "ord-d9ca77f3-ea12-459d-9548-93c2d2df9722",
+      "workflow_id": "wf-45df5595-c1c1-450f-bf45-d3970f06c590",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-45df5595-c1c1-450f-bf45-d3970f06c590",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 52,
+      "order_id": "ord-e6b986de-e0a9-4140-afbc-5e3123d5a98f",
+      "workflow_id": "wf-e89fc832-3828-4481-a4af-852fea205c75",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-e89fc832-3828-4481-a4af-852fea205c75",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 0,
+        "keys_sent": []
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 53,
+      "order_id": "ord-467a9c41-a665-4327-8fd3-15fd41093a6b",
+      "workflow_id": "wf-8a73d10c-3a3c-4276-8e43-6dad1eed8bae",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-8a73d10c-3a3c-4276-8e43-6dad1eed8bae",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 54,
+      "order_id": "ord-6d83f5d5-92bd-48d2-9ca0-dce856899e35",
+      "workflow_id": "wf-8034f67b-9a98-4189-a94e-1c8596c6b937",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-8034f67b-9a98-4189-a94e-1c8596c6b937",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 0,
+        "sink_posts": 0,
+        "keys_sent": []
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 55,
+      "order_id": "ord-8caad2c0-2603-4c64-9f92-85f544100385",
+      "workflow_id": "wf-2975fe27-e048-45c8-be44-dbef55b52c50",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-2975fe27-e048-45c8-be44-dbef55b52c50",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 56,
+      "order_id": "ord-43901ef7-3aba-4989-91d0-f5ada11b8831",
+      "workflow_id": "wf-69b6e3cb-6eb5-4cdb-b2bb-0dbc7b7e0ef6",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-69b6e3cb-6eb5-4cdb-b2bb-0dbc7b7e0ef6",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 0,
+        "sink_posts": 0,
+        "keys_sent": []
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 57,
+      "order_id": "ord-e4a4a531-696e-4d93-97dd-4ee7b7e13346",
+      "workflow_id": "wf-05b5afc9-a046-4343-856a-59d12bb09ae9",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-05b5afc9-a046-4343-856a-59d12bb09ae9",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 58,
+      "order_id": "ord-4daabb89-8e44-45fa-b143-4c0c61d2a03c",
+      "workflow_id": "wf-3814ea92-5186-4f0b-8c81-d2107e1a7be9",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-3814ea92-5186-4f0b-8c81-d2107e1a7be9",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 59,
+      "order_id": "ord-35f9d579-adc1-4c38-9f47-bbd336580074",
+      "workflow_id": "wf-cf5ab3a1-2ca0-4532-9e9f-ff607813a9c0",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-cf5ab3a1-2ca0-4532-9e9f-ff607813a9c0",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 60,
+      "order_id": "ord-0dddeac1-611f-41e8-a127-c359e40b2b92",
+      "workflow_id": "wf-6665c064-1180-40db-ab58-85da543bf88f",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-6665c064-1180-40db-ab58-85da543bf88f",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 0,
+        "keys_sent": []
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 61,
+      "order_id": "ord-5e52f0a3-fbf6-4e58-90a7-c52caf1630d6",
+      "workflow_id": "wf-a255877f-8cdb-4c59-bc26-201d25f9a243",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-a255877f-8cdb-4c59-bc26-201d25f9a243",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 0,
+        "keys_sent": []
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 62,
+      "order_id": "ord-b224f435-2fce-458e-968f-0dcd50e3ef7e",
+      "workflow_id": "wf-eae4eefc-1ae1-4d36-84aa-0e53d7789e57",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-eae4eefc-1ae1-4d36-84aa-0e53d7789e57",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 63,
+      "order_id": "ord-c455dee3-ffcc-4694-80c9-367ff2715237",
+      "workflow_id": "wf-61d9a0fb-8125-424f-b141-ecf57f27ca4f",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-61d9a0fb-8125-424f-b141-ecf57f27ca4f",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 64,
+      "order_id": "ord-102f7114-2b63-4d67-9e5a-54dfde22d961",
+      "workflow_id": "wf-805fdbe7-e62f-4fdc-bb77-eb2812fa93b6",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-805fdbe7-e62f-4fdc-bb77-eb2812fa93b6",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 65,
+      "order_id": "ord-e317c408-9e32-4e4c-99c9-3cfe8026552a",
+      "workflow_id": "wf-4c6365f1-36f6-416e-8fc0-e69698c05a3e",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-4c6365f1-36f6-416e-8fc0-e69698c05a3e",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 66,
+      "order_id": "ord-27708d5e-cde1-4ebe-a18d-a11487b0cd46",
+      "workflow_id": "wf-80dd638a-1594-4d4a-a81d-92b0fa436474",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-80dd638a-1594-4d4a-a81d-92b0fa436474",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 67,
+      "order_id": "ord-d4355d2b-a87b-4733-ae1b-fd27420f6f71",
+      "workflow_id": "wf-c7a055a0-66a5-4a12-a406-2ea16ab7d309",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-c7a055a0-66a5-4a12-a406-2ea16ab7d309",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 0,
+        "sink_posts": 0,
+        "keys_sent": []
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 68,
+      "order_id": "ord-4bb194d3-d859-4c9b-b003-4fa3eb735e50",
+      "workflow_id": "wf-c7731926-d623-4952-9425-301315849d41",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-c7731926-d623-4952-9425-301315849d41",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 0,
+        "keys_sent": []
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 69,
+      "order_id": "ord-8b3e9a49-4982-4e5c-a3aa-8313f78cefaa",
+      "workflow_id": "wf-5fb8e86e-48a1-4277-a34a-c16439575213",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-5fb8e86e-48a1-4277-a34a-c16439575213",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 70,
+      "order_id": "ord-1f8586bd-a03c-41c8-a38a-d4130c57d545",
+      "workflow_id": "wf-dd2bf5f1-21aa-43a2-b702-6094145abf1a",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-dd2bf5f1-21aa-43a2-b702-6094145abf1a",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 0,
+        "keys_sent": []
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 71,
+      "order_id": "ord-f2d63368-5d48-4cb1-a419-cb4e56674502",
+      "workflow_id": "wf-2be49149-fe37-437a-ad3a-6abe4f9ff0a8",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-2be49149-fe37-437a-ad3a-6abe4f9ff0a8",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 0,
+        "sink_posts": 0,
+        "keys_sent": []
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 72,
+      "order_id": "ord-b5a96456-35f5-4976-9e46-c99771e0bc19",
+      "workflow_id": "wf-1e113b04-8d47-41dc-9cc4-82788f452903",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-1e113b04-8d47-41dc-9cc4-82788f452903",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 73,
+      "order_id": "ord-9d3ef0ac-0506-41ec-8115-29ac89b81e18",
+      "workflow_id": "wf-faf70623-124b-4ce5-9f7e-ff264252825e",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-faf70623-124b-4ce5-9f7e-ff264252825e",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 74,
+      "order_id": "ord-b2667c68-5313-44c4-9ae1-ecfd75b2b807",
+      "workflow_id": "wf-2746b696-e1b0-4a63-8dcb-09a3728b88fa",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-2746b696-e1b0-4a63-8dcb-09a3728b88fa",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 0,
+        "keys_sent": []
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 75,
+      "order_id": "ord-9120a73f-6d07-4c92-ac8e-97de3e69e9d1",
+      "workflow_id": "wf-27b1f980-98b0-4506-82f9-468ea28215af",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-27b1f980-98b0-4506-82f9-468ea28215af",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 76,
+      "order_id": "ord-7a6c648d-2e54-465c-a1fd-e2339d9306e6",
+      "workflow_id": "wf-2270a8ad-b267-4a77-a83a-845ed36bad7d",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-2270a8ad-b267-4a77-a83a-845ed36bad7d",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 77,
+      "order_id": "ord-7fedd5b9-f212-4d2b-b75a-17337378ca4b",
+      "workflow_id": "wf-af046e55-c7de-4e65-9bd3-6568cc33134d",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-af046e55-c7de-4e65-9bd3-6568cc33134d",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 78,
+      "order_id": "ord-8a32b4de-1a92-4491-b709-da8688cfb641",
+      "workflow_id": "wf-e8506fc4-4748-44c0-a95f-076610a63e96",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-e8506fc4-4748-44c0-a95f-076610a63e96",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 79,
+      "order_id": "ord-7ef1aaee-d38d-4b7c-9a90-1b8a776f2f05",
+      "workflow_id": "wf-f287aea2-ee16-421d-ba7b-4629852e0441",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-f287aea2-ee16-421d-ba7b-4629852e0441",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "after_tool",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 80,
+      "order_id": "ord-f32d5067-b37a-48bd-af30-2b80f542e77a",
+      "workflow_id": "wf-e591a5e1-fb6e-4c7c-b8e4-cd72aacfd385",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-e591a5e1-fb6e-4c7c-b8e4-cd72aacfd385",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 81,
+      "order_id": "ord-04f475c9-f2b7-4818-9783-a6ee7c914b1a",
+      "workflow_id": "wf-e925a47c-8f1b-4b40-a7b7-ad712d7fa998",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-e925a47c-8f1b-4b40-a7b7-ad712d7fa998",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 82,
+      "order_id": "ord-05541604-7e32-4aab-ae1d-b33ef24bd603",
+      "workflow_id": "wf-32a408d9-d598-483b-9f15-4eee238395d1",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-32a408d9-d598-483b-9f15-4eee238395d1",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 83,
+      "order_id": "ord-b66742ac-16a0-4f4f-8869-a2bbb12f8be4",
+      "workflow_id": "wf-ef8f25a3-3a62-4513-881b-e7fd9155c42d",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-ef8f25a3-3a62-4513-881b-e7fd9155c42d",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 84,
+      "order_id": "ord-b87d63b9-e517-4d00-8835-5ab462cec2f7",
+      "workflow_id": "wf-9acf55b2-cf28-4051-a785-3e62083f74aa",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-9acf55b2-cf28-4051-a785-3e62083f74aa",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 85,
+      "order_id": "ord-9e9a2b94-19aa-4a93-8744-a4478ed26ec5",
+      "workflow_id": "wf-b9e241cb-fde9-4c62-a21f-355b998720c8",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-b9e241cb-fde9-4c62-a21f-355b998720c8",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 86,
+      "order_id": "ord-3a5cc9e1-6057-4f04-a93c-fc416536a78c",
+      "workflow_id": "wf-ee8b8bd5-c3ec-4b88-acfb-05aa7b1f33d2",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-ee8b8bd5-c3ec-4b88-acfb-05aa7b1f33d2",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 87,
+      "order_id": "ord-8783a12f-8fbf-4362-badd-74eb72ebd539",
+      "workflow_id": "wf-45140809-c83b-40dd-9f81-872b374a0dcd",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-45140809-c83b-40dd-9f81-872b374a0dcd",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "during_tool",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 88,
+      "order_id": "ord-2d047f5d-b25e-4f66-adb1-85cca62c1f5a",
+      "workflow_id": "wf-6682e438-2b31-45fd-9dbd-aa7c828da160",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-6682e438-2b31-45fd-9dbd-aa7c828da160",
+        "path": "recovered_by_dbos",
+        "status_at_resume": "ENQUEUED",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 2,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "none",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 89,
+      "order_id": "ord-be44e5c5-c000-424a-84cf-5b845486441a",
+      "workflow_id": "wf-7ce97634-c73b-452f-9c58-0ad6949e9ffd",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "sqlite",
+        "executor_id": "exec-wf-7ce97634-c73b-452f-9c58-0ad6949e9ffd",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    }
+  ]
+}

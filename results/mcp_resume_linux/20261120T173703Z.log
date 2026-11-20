@@ -1,0 +1,40 @@
+| client_mode | transport | drop_point | arm | trials | correct | duplicate | in_doubt_surfaced | stuck | other_verdicts | first_attempt | protocol | resume_requests | trials_with_resume | event_ids_forwarded | effects_committed | requests_received | sdk_extra_requests | client_requests | fault_confirmed | report_mismatch | first_attempt_median_s | changed_after_first_read | changed_by_end_of_run |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| auto | stateful_sse | none | no_dedup | 20 | 20 | 0 | 0 | 0 | - | ok x20 | 2026-07-28 x20 | 0 | 0 | - | 20 | 20 | 0 | 20 | - | 0 | 0.021 | 0 | 0 |
+| auto | stateful_sse | none | stable_key | 20 | 20 | 0 | 0 | 0 | - | ok x20 | 2026-07-28 x20 | 0 | 0 | - | 20 | 20 | 0 | 20 | - | 0 | 0.022 | 0 | 0 |
+| auto | stateful_sse | none | fresh_key_per_attempt | 20 | 20 | 0 | 0 | 0 | - | ok x20 | 2026-07-28 x20 | 0 | 0 | - | 20 | 20 | 0 | 20 | - | 0 | 0.021 | 0 | 0 |
+| auto | stateful_sse | no_bytes | no_dedup | 20 | 0 | 20 | 0 | 0 | - | disconnect x20 | 2026-07-28 x40 | 0 | 0 | 0 | 40 | 40 | 0 | 40 | 20 | 20 | 0.026 | 0 | 0 |
+| auto | stateful_sse | no_bytes | stable_key | 20 | 20 | 0 | 0 | 0 | - | disconnect x20 | 2026-07-28 x40 | 0 | 0 | 0 | 20 | 40 | 0 | 40 | 20 | 0 | 0.024 | 0 | 0 |
+| auto | stateful_sse | no_bytes | fresh_key_per_attempt | 20 | 0 | 20 | 0 | 0 | - | disconnect x20 | 2026-07-28 x40 | 0 | 0 | 0 | 40 | 40 | 0 | 40 | 20 | 20 | 0.024 | 0 | 0 |
+| auto | stateful_sse | after_headers | no_dedup | 20 | 0 | 20 | 0 | 0 | - | disconnect x20 | 2026-07-28 x40 | 0 | 0 | 0 | 40 | 40 | 0 | 40 | 20 | 20 | 0.024 | 0 | 0 |
+| auto | stateful_sse | after_headers | stable_key | 20 | 20 | 0 | 0 | 0 | - | disconnect x20 | 2026-07-28 x40 | 0 | 0 | 0 | 20 | 40 | 0 | 40 | 20 | 0 | 0.025 | 0 | 0 |
+| auto | stateful_sse | after_headers | fresh_key_per_attempt | 20 | 0 | 20 | 0 | 0 | - | disconnect x20 | 2026-07-28 x40 | 0 | 0 | 0 | 40 | 40 | 0 | 40 | 20 | 20 | 0.026 | 0 | 0 |
+| auto | stateful_sse_store | none | no_dedup | 20 | 20 | 0 | 0 | 0 | - | ok x20 | 2026-07-28 x20 | 0 | 0 | - | 20 | 20 | 0 | 20 | - | 0 | 0.021 | 0 | 0 |
+| auto | stateful_sse_store | none | stable_key | 20 | 20 | 0 | 0 | 0 | - | ok x20 | 2026-07-28 x20 | 0 | 0 | - | 20 | 20 | 0 | 20 | - | 0 | 0.021 | 0 | 0 |
+| auto | stateful_sse_store | none | fresh_key_per_attempt | 20 | 20 | 0 | 0 | 0 | - | ok x20 | 2026-07-28 x20 | 0 | 0 | - | 20 | 20 | 0 | 20 | - | 0 | 0.021 | 0 | 0 |
+| auto | stateful_sse_store | no_bytes | no_dedup | 20 | 0 | 20 | 0 | 0 | - | disconnect x20 | 2026-07-28 x40 | 0 | 0 | 0 | 40 | 40 | 0 | 40 | 20 | 20 | 0.024 | 0 | 0 |
+| auto | stateful_sse_store | no_bytes | stable_key | 20 | 20 | 0 | 0 | 0 | - | disconnect x20 | 2026-07-28 x40 | 0 | 0 | 0 | 20 | 40 | 0 | 40 | 20 | 0 | 0.025 | 0 | 0 |
+| auto | stateful_sse_store | no_bytes | fresh_key_per_attempt | 20 | 0 | 20 | 0 | 0 | - | disconnect x20 | 2026-07-28 x40 | 0 | 0 | 0 | 40 | 40 | 0 | 40 | 20 | 20 | 0.024 | 0 | 0 |
+| auto | stateful_sse_store | after_headers | no_dedup | 20 | 0 | 20 | 0 | 0 | - | disconnect x20 | 2026-07-28 x40 | 0 | 0 | 0 | 40 | 40 | 0 | 40 | 20 | 20 | 0.024 | 0 | 0 |
+| auto | stateful_sse_store | after_headers | stable_key | 20 | 20 | 0 | 0 | 0 | - | disconnect x20 | 2026-07-28 x40 | 0 | 0 | 0 | 20 | 40 | 0 | 40 | 20 | 0 | 0.025 | 0 | 0 |
+| auto | stateful_sse_store | after_headers | fresh_key_per_attempt | 20 | 0 | 20 | 0 | 0 | - | disconnect x20 | 2026-07-28 x40 | 0 | 0 | 0 | 40 | 40 | 0 | 40 | 20 | 20 | 0.026 | 0 | 0 |
+| legacy | stateful_sse | none | no_dedup | 20 | 20 | 0 | 0 | 0 | - | ok x20 | 2025-11-25 x20 | 0 | 0 | - | 20 | 20 | 0 | 20 | - | 0 | 0.03 | 0 | 0 |
+| legacy | stateful_sse | none | stable_key | 20 | 20 | 0 | 0 | 0 | - | ok x20 | 2025-11-25 x20 | 0 | 0 | - | 20 | 20 | 0 | 20 | - | 0 | 0.031 | 0 | 0 |
+| legacy | stateful_sse | none | fresh_key_per_attempt | 20 | 20 | 0 | 0 | 0 | - | ok x20 | 2025-11-25 x20 | 0 | 0 | - | 20 | 20 | 0 | 20 | - | 0 | 0.03 | 0 | 0 |
+| legacy | stateful_sse | no_bytes | no_dedup | 20 | 0 | 20 | 0 | 0 | - | disconnect x20 | 2025-11-25 x40 | 0 | 0 | 0 | 40 | 40 | 0 | 40 | 20 | 20 | 0.05 | 0 | 0 |
+| legacy | stateful_sse | no_bytes | stable_key | 20 | 20 | 0 | 0 | 0 | - | disconnect x20 | 2025-11-25 x40 | 0 | 0 | 0 | 20 | 40 | 0 | 40 | 20 | 0 | 0.05 | 0 | 0 |
+| legacy | stateful_sse | no_bytes | fresh_key_per_attempt | 20 | 0 | 20 | 0 | 0 | - | disconnect x20 | 2025-11-25 x40 | 0 | 0 | 0 | 40 | 40 | 0 | 40 | 20 | 20 | 0.049 | 0 | 0 |
+| legacy | stateful_sse | after_headers | no_dedup | 20 | 0 | 20 | 0 | 0 | - | disconnect x20 | 2025-11-25 x40 | 0 | 0 | 0 | 40 | 40 | 0 | 40 | 20 | 20 | 0.031 | 0 | 0 |
+| legacy | stateful_sse | after_headers | stable_key | 20 | 20 | 0 | 0 | 0 | - | disconnect x20 | 2025-11-25 x40 | 0 | 0 | 0 | 20 | 40 | 0 | 40 | 20 | 0 | 0.032 | 0 | 0 |
+| legacy | stateful_sse | after_headers | fresh_key_per_attempt | 20 | 0 | 20 | 0 | 0 | - | disconnect x20 | 2025-11-25 x40 | 0 | 0 | 0 | 40 | 40 | 0 | 40 | 20 | 20 | 0.032 | 0 | 0 |
+| legacy | stateful_sse_store | none | no_dedup | 20 | 20 | 0 | 0 | 0 | - | ok x20 | 2025-11-25 x20 | 0 | 0 | - | 20 | 20 | 0 | 20 | - | 0 | 0.031 | 0 | 0 |
+| legacy | stateful_sse_store | none | stable_key | 20 | 20 | 0 | 0 | 0 | - | ok x20 | 2025-11-25 x20 | 0 | 0 | - | 20 | 20 | 0 | 20 | - | 0 | 0.032 | 0 | 0 |
+| legacy | stateful_sse_store | none | fresh_key_per_attempt | 20 | 20 | 0 | 0 | 0 | - | ok x20 | 2025-11-25 x20 | 0 | 0 | - | 20 | 20 | 0 | 20 | - | 0 | 0.031 | 0 | 0 |
+| legacy | stateful_sse_store | no_bytes | no_dedup | 20 | 0 | 20 | 0 | 0 | - | disconnect x20 | 2025-11-25 x40 | 0 | 0 | 0 | 40 | 40 | 0 | 40 | 20 | 20 | 0.05 | 0 | 0 |
+| legacy | stateful_sse_store | no_bytes | stable_key | 20 | 20 | 0 | 0 | 0 | - | disconnect x20 | 2025-11-25 x40 | 0 | 0 | 0 | 20 | 40 | 0 | 40 | 20 | 0 | 0.05 | 0 | 0 |
+| legacy | stateful_sse_store | no_bytes | fresh_key_per_attempt | 20 | 0 | 20 | 0 | 0 | - | disconnect x20 | 2025-11-25 x40 | 0 | 0 | 0 | 40 | 40 | 0 | 40 | 20 | 20 | 0.05 | 0 | 0 |
+| legacy | stateful_sse_store | after_headers | no_dedup | 20 | 20 | 0 | 0 | 0 | - | ok x20 | 2025-11-25 x20 | 20 | 20 | 20 | 20 | 20 | 0 | 20 | 20 | 0 | 1.042 | 0 | 0 |
+| legacy | stateful_sse_store | after_headers | stable_key | 20 | 20 | 0 | 0 | 0 | - | ok x20 | 2025-11-25 x20 | 20 | 20 | 20 | 20 | 20 | 0 | 20 | 20 | 0 | 1.043 | 0 | 0 |
+| legacy | stateful_sse_store | after_headers | fresh_key_per_attempt | 20 | 20 | 0 | 0 | 0 | - | ok x20 | 2025-11-25 x20 | 20 | 20 | 20 | 20 | 20 | 0 | 20 | 20 | 0 | 1.042 | 0 | 0 |
+
+wrote results/mcp_resume_linux/20261120T173703Z.json

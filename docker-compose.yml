@@ -1,0 +1,170 @@
+# Local stack: PostgreSQL, the sink, and one refund MCP server per transport.
+# refund-mcp (8102) is stateless JSON, the default; 8103-8105 serve the other three;
+# 8106 is the stateful SSE server with an event store (experiment 007).
+# Ports are bound to 127.0.0.1 only; the control endpoints are unauthenticated.
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: crashtest
+      POSTGRES_PASSWORD: crashtest   # local test database only
+      POSTGRES_DB: crashtest
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U crashtest -d crashtest"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  sink:
+    build: .
+    command: ["python", "-m", "crashtest.sink"]
+    environment:
+      DATABASE_URL: postgresql://crashtest:crashtest@postgres:5432/crashtest
+      SINK_HOST: 0.0.0.0
+      SINK_PORT: "8101"
+    ports:
+      - "127.0.0.1:8101:8101"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8101/health')"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  refund-mcp: &refund-mcp
+    build: .
+    command: ["python", "-m", "crashtest.refund_mcp.server"]
+    environment:
+      SINK_URL: http://sink:8101
+      MCP_HOST: 0.0.0.0
+      MCP_PORT: "8102"
+    ports:
+      - "127.0.0.1:8102:8102"
+    depends_on:
+      sink:
+        condition: service_healthy
+
+  refund-mcp-stateless-sse:
+    <<: *refund-mcp
+    environment:
+      SINK_URL: http://sink:8101
+      MCP_HOST: 0.0.0.0
+      MCP_PORT: "8103"
+      MCP_STATELESS: "true"
+      MCP_JSON_RESPONSE: "false"
+    ports:
+      - "127.0.0.1:8103:8103"
+
+  refund-mcp-stateful-json:
+    <<: *refund-mcp
+    environment:
+      SINK_URL: http://sink:8101
+      MCP_HOST: 0.0.0.0
+      MCP_PORT: "8104"
+      MCP_STATELESS: "false"
+      MCP_JSON_RESPONSE: "true"
+    ports:
+      - "127.0.0.1:8104:8104"
+
+  refund-mcp-stateful-sse:
+    <<: *refund-mcp
+    environment:
+      SINK_URL: http://sink:8101
+      MCP_HOST: 0.0.0.0
+      MCP_PORT: "8105"
+      MCP_STATELESS: "false"
+      MCP_JSON_RESPONSE: "false"
+    ports:
+      - "127.0.0.1:8105:8105"
+
+  refund-mcp-stateful-sse-store:
+    <<: *refund-mcp
+    environment:
+      SINK_URL: http://sink:8101
+      MCP_HOST: 0.0.0.0
+      MCP_PORT: "8106"
+      MCP_STATELESS: "false"
+      MCP_JSON_RESPONSE: "false"
+      MCP_EVENT_STORE: "true"
+    ports:
+      - "127.0.0.1:8106:8106"
+
+  # Experiment 005 on Linux. Not started by a plain `docker compose up`.
+  dbos-crash:
+    profiles: ["experiments"]
+    build:
+      context: .
+      dockerfile: Dockerfile.dbos
+    environment:
+      CRASHTEST_GIT_COMMIT: ${CRASHTEST_GIT_COMMIT:-}
+      CRASHTEST_GIT_DIRTY: ${CRASHTEST_GIT_DIRTY:-}
+    volumes:
+      - ./results/dbos_crash_linux:/out
+    depends_on:
+      sink:
+        condition: service_healthy
+
+  # Experiments 003 and 004 on Linux. Not started by a plain `docker compose up`.
+  crash-003:
+    profiles: ["experiments"]
+    build:
+      context: .
+      dockerfile: Dockerfile.experiments
+    entrypoint:
+      - python
+      - -m
+      - crashtest.experiment.single_call
+      - --sink-url
+      - http://sink:8101
+      - --mcp-url
+      - http://refund-mcp:8102/mcp
+      - --mcp-url-for
+      - stateful_sse=http://refund-mcp-stateful-sse:8105/mcp
+      - --subject
+      - mcp_sdk=/usr/local/bin/python
+      - --subject
+      - crewai=/subjects/crewai/bin/python
+      - --subject
+      - agent_framework=/subjects/agentfw/bin/python
+      - --out-dir
+      - /out
+    environment:
+      CRASHTEST_GIT_COMMIT: ${CRASHTEST_GIT_COMMIT:-}
+      CRASHTEST_GIT_DIRTY: ${CRASHTEST_GIT_DIRTY:-}
+    volumes:
+      - ./results/single_call_linux:/out
+    depends_on:
+      sink:
+        condition: service_healthy
+      refund-mcp:
+        condition: service_started
+      refund-mcp-stateful-sse:
+        condition: service_started
+
+  crash-004:
+    profiles: ["experiments"]
+    build:
+      context: .
+      dockerfile: Dockerfile.experiments
+    entrypoint:
+      - python
+      - -m
+      - crashtest.experiment.langgraph_crash
+      - --python
+      - /subjects/langgraph/bin/python
+      - --sink-url
+      - http://sink:8101
+      - --database-url
+      - postgresql://crashtest:crashtest@postgres:5432/crashtest
+      - --out-dir
+      - /out
+    environment:
+      CRASHTEST_GIT_COMMIT: ${CRASHTEST_GIT_COMMIT:-}
+      CRASHTEST_GIT_DIRTY: ${CRASHTEST_GIT_DIRTY:-}
+    volumes:
+      - ./results/langgraph_crash_linux:/out
+    depends_on:
+      sink:
+        condition: service_healthy

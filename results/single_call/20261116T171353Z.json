@@ -1,0 +1,80 @@
+{
+  "experiment": "mcp_single_call",
+  "started_at": "2026-11-16T17:13:53.796703+00:00",
+  "parameters": {
+    "subjects": [
+      "crewai"
+    ],
+    "transports": [
+      "stateless_json"
+    ],
+    "faults": [
+      "lost_response"
+    ],
+    "trials_per_cell": 3,
+    "subject_timeout_s": 0.0,
+    "fault_delay_s": 40.0,
+    "hang_limit_s": 200.0
+  },
+  "environment": {
+    "python": "3.12.2",
+    "platform": "Windows-11-10.0.26300-SP0"
+  },
+  "summary": [
+    {
+      "subject": "crewai",
+      "client": "crewai 1.15.41 (mcp 1.30.0)",
+      "transport": "stateless_json",
+      "fault": "lost_response",
+      "trials": 3,
+      "one_request": 0,
+      "resent": 3,
+      "max_requests": 2,
+      "refunded_once": 0,
+      "refunded_twice_or_more": 3,
+      "not_refunded": 0,
+      "subject_outcomes": "ok x3"
+    }
+  ],
+  "trials": [
+    {
+      "subject": "crewai",
+      "client": "crewai 1.15.41 (mcp 1.30.0)",
+      "transport": "stateless_json",
+      "fault": "lost_response",
+      "order_id": "ord-800ae8cc-b7c5-4362-ab25-be52e299dcdd",
+      "subject_outcome": "ok",
+      "detail": "{\n  \"refund_id\": 2182,\n  \"order_id\": \"ord-800ae8cc-b7c5-4362-ab25-be52e299dcdd\",\n  \"amount_cents\": 2500,\n  \"replayed\": false\n}",
+      "elapsed_s": 39.782,
+      "requests_received": 2,
+      "effects_committed": 2,
+      "stderr_tail": ""
+    },
+    {
+      "subject": "crewai",
+      "client": "crewai 1.15.41 (mcp 1.30.0)",
+      "transport": "stateless_json",
+      "fault": "lost_response",
+      "order_id": "ord-7dd6dffb-361e-41e4-afbc-f1cd9558e695",
+      "subject_outcome": "ok",
+      "detail": "{\n  \"refund_id\": 2184,\n  \"order_id\": \"ord-7dd6dffb-361e-41e4-afbc-f1cd9558e695\",\n  \"amount_cents\": 2500,\n  \"replayed\": false\n}",
+      "elapsed_s": 38.482,
+      "requests_received": 2,
+      "effects_committed": 2,
+      "stderr_tail": ""
+    },
+    {
+      "subject": "crewai",
+      "client": "crewai 1.15.41 (mcp 1.30.0)",
+      "transport": "stateless_json",
+      "fault": "lost_response",
+      "order_id": "ord-da11bacc-3bae-4744-a51f-36e3a88e23de",
+      "subject_outcome": "ok",
+      "detail": "{\n  \"refund_id\": 2186,\n  \"order_id\": \"ord-da11bacc-3bae-4744-a51f-36e3a88e23de\",\n  \"amount_cents\": 2500,\n  \"replayed\": false\n}",
+      "elapsed_s": 38.491,
+      "requests_received": 2,
+      "effects_committed": 2,
+      "stderr_tail": ""
+    }
+  ]
+}

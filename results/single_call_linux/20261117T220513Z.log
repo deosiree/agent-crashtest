@@ -1,0 +1,37 @@
+mcp_sdk          stateless_json  lost_response    requests=1 refunds=1 ok
+mcp_sdk          stateless_json  lost_response    requests=1 refunds=1 ok
+mcp_sdk          stateless_json  lost_response    requests=1 refunds=1 ok
+mcp_sdk          stateless_json  lost_response    requests=1 refunds=1 ok
+mcp_sdk          stateless_json  lost_response    requests=1 refunds=1 ok
+mcp_sdk          stateless_json  lost_response    requests=1 refunds=1 ok
+mcp_sdk          stateless_json  lost_response    requests=1 refunds=1 ok
+mcp_sdk          stateless_json  lost_response    requests=1 refunds=1 ok
+mcp_sdk          stateless_json  lost_response    requests=1 refunds=1 ok
+mcp_sdk          stateless_json  lost_response    requests=1 refunds=1 ok
+crewai           stateless_json  lost_response    requests=1 refunds=1 ok
+crewai           stateless_json  lost_response    requests=1 refunds=1 ok
+crewai           stateless_json  lost_response    requests=1 refunds=1 ok
+crewai           stateless_json  lost_response    requests=1 refunds=1 ok
+crewai           stateless_json  lost_response    requests=1 refunds=1 ok
+crewai           stateless_json  lost_response    requests=1 refunds=1 ok
+crewai           stateless_json  lost_response    requests=1 refunds=1 ok
+crewai           stateless_json  lost_response    requests=1 refunds=1 ok
+crewai           stateless_json  lost_response    requests=1 refunds=1 ok
+crewai           stateless_json  lost_response    requests=1 refunds=1 ok
+agent_framework  stateless_json  lost_response    requests=1 refunds=1 ok
+agent_framework  stateless_json  lost_response    requests=1 refunds=1 ok
+agent_framework  stateless_json  lost_response    requests=1 refunds=1 ok
+agent_framework  stateless_json  lost_response    requests=1 refunds=1 ok
+agent_framework  stateless_json  lost_response    requests=1 refunds=1 ok
+agent_framework  stateless_json  lost_response    requests=1 refunds=1 ok
+agent_framework  stateless_json  lost_response    requests=1 refunds=1 ok
+agent_framework  stateless_json  lost_response    requests=1 refunds=1 ok
+agent_framework  stateless_json  lost_response    requests=1 refunds=1 ok
+agent_framework  stateless_json  lost_response    requests=1 refunds=1 ok
+| subject | client | transport | fault | trials | one_request | resent | max_requests | refunded_once | refunded_twice_or_more | not_refunded | subject_outcomes | verdicts | client_requests | fault_confirmed |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| mcp_sdk | mcp 2.3.0 | stateless_json | lost_response | 10 | 10 | 0 | 1 | 10 | 0 | 0 | ok x10 | correct x10 | 10 | 10 |
+| crewai | crewai 1.15.41 (mcp 1.30.0) | stateless_json | lost_response | 10 | 10 | 0 | 1 | 10 | 0 | 0 | ok x10 | correct x10 | 10 | 10 |
+| agent_framework | agent-framework-core 1.26.0 (mcp 2.3.0) | stateless_json | lost_response | 10 | 10 | 0 | 1 | 10 | 0 | 0 | ok x10 | correct x10 | 10 | 10 |
+
+wrote results/single_call_linux/20261117T220513Z.json

@@ -1,0 +1,5705 @@
+{
+  "experiment": "langgraph_crash",
+  "started_at": "2026-11-17T21:46:34.121542+00:00",
+  "parameters": {
+    "kill_points": [
+      "none",
+      "during_tool",
+      "after_tool"
+    ],
+    "durabilities": [
+      "sync",
+      "async",
+      "exit"
+    ],
+    "key_strategies": [
+      "none",
+      "tool_call_id",
+      "business"
+    ],
+    "trials_per_cell": 5,
+    "kill_delays_s": [
+      0.0
+    ],
+    "seed": 44
+  },
+  "environment": {
+    "python": "3.12.16",
+    "platform": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43",
+    "subject": "langgraph 1.2.22, checkpoint-postgres 3.2.1"
+  },
+  "provenance": {
+    "git_commit": "ddf45676aa0e597b30bdb3b3fedb3c8b5c3f25a0",
+    "git_dirty": false,
+    "subject_packages": [
+      "PyYAML==6.0.3",
+      "annotated-types==0.8.0",
+      "anyio==4.16.0",
+      "certifi==2026.10.23",
+      "charset-normalizer==3.5.2",
+      "distro==1.9.0",
+      "h11==0.16.0",
+      "httpcore2==2.16.2",
+      "httpcore==1.0.9",
+      "httpx2==2.16.2",
+      "httpx==0.28.1",
+      "idna==3.20",
+      "jsonpatch==1.47",
+      "jsonpointer==3.12",
+      "langchain-core==1.8.1",
+      "langchain-protocol==0.0.21",
+      "langgraph-checkpoint-postgres==3.2.1",
+      "langgraph-checkpoint==4.3.2",
+      "langgraph-prebuilt==1.1.2",
+      "langgraph-sdk==0.4.14",
+      "langgraph==1.2.22",
+      "langsmith==0.14.17",
+      "orjson==3.13.0",
+      "ormsgpack==1.13.1",
+      "packaging==26.3",
+      "psycopg-binary==3.3.9",
+      "psycopg-pool==3.3.3",
+      "psycopg==3.3.9",
+      "pydantic==2.14.3",
+      "pydantic_core==2.50.4",
+      "requests-toolbelt==1.0.0",
+      "requests==2.34.2",
+      "sniffio==1.3.1",
+      "tenacity==9.2.1",
+      "truststore==0.10.5",
+      "typing-inspection==0.4.5",
+      "typing_extensions==4.16.0",
+      "tzdata==2026.6",
+      "urllib3==2.8.0",
+      "uuid_utils==0.19.0",
+      "websockets==17.4",
+      "xxhash==4.1.0",
+      "zstandard==0.25.0"
+    ]
+  },
+  "summary": [
+    {
+      "kill_point": "after_tool",
+      "durability": "async",
+      "key_strategy": "business",
+      "trials": 5,
+      "refunded_once": 5,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x5",
+      "fault_confirmed": "-",
+      "requests_at_sink": 7,
+      "resume_paths": "nothing_pending_but_unanswered x3, resumed_from_checkpoint x2",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "['tools'] x2, [] x3"
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "async",
+      "key_strategy": "none",
+      "trials": 5,
+      "refunded_once": 0,
+      "refunded_twice": 5,
+      "not_refunded": 0,
+      "verdicts": "duplicate x5",
+      "fault_confirmed": "-",
+      "requests_at_sink": 10,
+      "resume_paths": "resumed_from_checkpoint x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "['tools'] x5"
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "async",
+      "key_strategy": "tool_call_id",
+      "trials": 5,
+      "refunded_once": 5,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x5",
+      "fault_confirmed": "-",
+      "requests_at_sink": 9,
+      "resume_paths": "nothing_pending_but_unanswered x1, resumed_from_checkpoint x4",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "['tools'] x4, [] x1"
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "exit",
+      "key_strategy": "business",
+      "trials": 5,
+      "refunded_once": 5,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x5",
+      "fault_confirmed": "-",
+      "requests_at_sink": 10,
+      "resume_paths": "resubmitted_no_checkpoint x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "[] x5"
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "exit",
+      "key_strategy": "none",
+      "trials": 5,
+      "refunded_once": 0,
+      "refunded_twice": 5,
+      "not_refunded": 0,
+      "verdicts": "duplicate x5",
+      "fault_confirmed": "-",
+      "requests_at_sink": 10,
+      "resume_paths": "resubmitted_no_checkpoint x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "[] x5"
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "exit",
+      "key_strategy": "tool_call_id",
+      "trials": 5,
+      "refunded_once": 0,
+      "refunded_twice": 5,
+      "not_refunded": 0,
+      "verdicts": "duplicate x5",
+      "fault_confirmed": "-",
+      "requests_at_sink": 10,
+      "resume_paths": "resubmitted_no_checkpoint x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "[] x5"
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "sync",
+      "key_strategy": "business",
+      "trials": 5,
+      "refunded_once": 5,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x5",
+      "fault_confirmed": "-",
+      "requests_at_sink": 5,
+      "resume_paths": "resumed_from_checkpoint x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "['agent'] x5"
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "sync",
+      "key_strategy": "none",
+      "trials": 5,
+      "refunded_once": 5,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x5",
+      "fault_confirmed": "-",
+      "requests_at_sink": 5,
+      "resume_paths": "resumed_from_checkpoint x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "['agent'] x5"
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "sync",
+      "key_strategy": "tool_call_id",
+      "trials": 5,
+      "refunded_once": 5,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x5",
+      "fault_confirmed": "-",
+      "requests_at_sink": 5,
+      "resume_paths": "resumed_from_checkpoint x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "['agent'] x5"
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "async",
+      "key_strategy": "business",
+      "trials": 5,
+      "refunded_once": 5,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x5",
+      "fault_confirmed": 5,
+      "requests_at_sink": 10,
+      "resume_paths": "resumed_from_checkpoint x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "['tools'] x5"
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "async",
+      "key_strategy": "none",
+      "trials": 5,
+      "refunded_once": 0,
+      "refunded_twice": 5,
+      "not_refunded": 0,
+      "verdicts": "duplicate x5",
+      "fault_confirmed": 5,
+      "requests_at_sink": 10,
+      "resume_paths": "resumed_from_checkpoint x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "['tools'] x5"
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "async",
+      "key_strategy": "tool_call_id",
+      "trials": 5,
+      "refunded_once": 5,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x5",
+      "fault_confirmed": 5,
+      "requests_at_sink": 10,
+      "resume_paths": "resumed_from_checkpoint x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "['tools'] x5"
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "exit",
+      "key_strategy": "business",
+      "trials": 5,
+      "refunded_once": 5,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x5",
+      "fault_confirmed": 5,
+      "requests_at_sink": 10,
+      "resume_paths": "resubmitted_no_checkpoint x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "[] x5"
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "exit",
+      "key_strategy": "none",
+      "trials": 5,
+      "refunded_once": 0,
+      "refunded_twice": 5,
+      "not_refunded": 0,
+      "verdicts": "duplicate x5",
+      "fault_confirmed": 5,
+      "requests_at_sink": 10,
+      "resume_paths": "resubmitted_no_checkpoint x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "[] x5"
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "exit",
+      "key_strategy": "tool_call_id",
+      "trials": 5,
+      "refunded_once": 0,
+      "refunded_twice": 5,
+      "not_refunded": 0,
+      "verdicts": "duplicate x5",
+      "fault_confirmed": 5,
+      "requests_at_sink": 10,
+      "resume_paths": "resubmitted_no_checkpoint x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "[] x5"
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "sync",
+      "key_strategy": "business",
+      "trials": 5,
+      "refunded_once": 5,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x5",
+      "fault_confirmed": 5,
+      "requests_at_sink": 10,
+      "resume_paths": "resumed_from_checkpoint x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "['tools'] x5"
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "sync",
+      "key_strategy": "none",
+      "trials": 5,
+      "refunded_once": 0,
+      "refunded_twice": 5,
+      "not_refunded": 0,
+      "verdicts": "duplicate x5",
+      "fault_confirmed": 5,
+      "requests_at_sink": 10,
+      "resume_paths": "resumed_from_checkpoint x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "['tools'] x5"
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "sync",
+      "key_strategy": "tool_call_id",
+      "trials": 5,
+      "refunded_once": 5,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x5",
+      "fault_confirmed": 5,
+      "requests_at_sink": 10,
+      "resume_paths": "resumed_from_checkpoint x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "['tools'] x5"
+    },
+    {
+      "kill_point": "none",
+      "durability": "async",
+      "key_strategy": "business",
+      "trials": 5,
+      "refunded_once": 5,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x5",
+      "fault_confirmed": "-",
+      "requests_at_sink": 5,
+      "resume_paths": "- x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "- x5"
+    },
+    {
+      "kill_point": "none",
+      "durability": "async",
+      "key_strategy": "none",
+      "trials": 5,
+      "refunded_once": 5,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x5",
+      "fault_confirmed": "-",
+      "requests_at_sink": 5,
+      "resume_paths": "- x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "- x5"
+    },
+    {
+      "kill_point": "none",
+      "durability": "async",
+      "key_strategy": "tool_call_id",
+      "trials": 5,
+      "refunded_once": 5,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x5",
+      "fault_confirmed": "-",
+      "requests_at_sink": 5,
+      "resume_paths": "- x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "- x5"
+    },
+    {
+      "kill_point": "none",
+      "durability": "exit",
+      "key_strategy": "business",
+      "trials": 5,
+      "refunded_once": 5,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x5",
+      "fault_confirmed": "-",
+      "requests_at_sink": 5,
+      "resume_paths": "- x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "- x5"
+    },
+    {
+      "kill_point": "none",
+      "durability": "exit",
+      "key_strategy": "none",
+      "trials": 5,
+      "refunded_once": 5,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x5",
+      "fault_confirmed": "-",
+      "requests_at_sink": 5,
+      "resume_paths": "- x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "- x5"
+    },
+    {
+      "kill_point": "none",
+      "durability": "exit",
+      "key_strategy": "tool_call_id",
+      "trials": 5,
+      "refunded_once": 5,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x5",
+      "fault_confirmed": "-",
+      "requests_at_sink": 5,
+      "resume_paths": "- x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "- x5"
+    },
+    {
+      "kill_point": "none",
+      "durability": "sync",
+      "key_strategy": "business",
+      "trials": 5,
+      "refunded_once": 5,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x5",
+      "fault_confirmed": "-",
+      "requests_at_sink": 5,
+      "resume_paths": "- x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "- x5"
+    },
+    {
+      "kill_point": "none",
+      "durability": "sync",
+      "key_strategy": "none",
+      "trials": 5,
+      "refunded_once": 5,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x5",
+      "fault_confirmed": "-",
+      "requests_at_sink": 5,
+      "resume_paths": "- x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "- x5"
+    },
+    {
+      "kill_point": "none",
+      "durability": "sync",
+      "key_strategy": "tool_call_id",
+      "trials": 5,
+      "refunded_once": 5,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x5",
+      "fault_confirmed": "-",
+      "requests_at_sink": 5,
+      "resume_paths": "- x5",
+      "kill_delay_s": 0.0,
+      "next_at_resume": "- x5"
+    }
+  ],
+  "trials": [
+    {
+      "kill_point": "none",
+      "durability": "async",
+      "key_strategy": "business",
+      "order_id": "ord-096a40b8-e9ec-4b5f-a135-b5412e33b430",
+      "thread_id": "thread-0fe34d6d-5c66-477e-aa54-9c620097e1f0",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "exit",
+      "key_strategy": "none",
+      "order_id": "ord-73b679a1-a92f-4b8e-9ca2-4b503a6e5ac1",
+      "thread_id": "thread-b60527dd-00b5-453e-b55a-2188895c715c",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "async",
+      "key_strategy": "business",
+      "order_id": "ord-a8d121a5-b70e-4307-bd6a-e054c9f373c8",
+      "thread_id": "thread-1acb8b75-e437-4222-b585-c6de3878b612",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "async",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-7cae07d5-fd4e-4dce-8490-aa334b0d291d",
+      "thread_id": "thread-0c7ef73e-a594-4431-ad5f-bdde17cc7b67",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "async",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-c818c63a-14d6-4b6e-8d07-4bdc6e36d70a",
+      "thread_id": "thread-27fa28d3-8244-4a34-88cd-44f83689c8f4",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "exit",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-57f6d7fd-b313-4b9d-86cb-fe53714f7607",
+      "thread_id": "thread-0478b1ee-a908-4e3a-9a5e-71bad29d85b9",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "sync",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-266a1ca4-69ff-40c8-a7bc-9542ae1df3a6",
+      "thread_id": "thread-6f9db937-4c3e-4d9b-85f7-7550daffe159",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "agent"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage",
+            "ToolMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 0
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "exit",
+      "key_strategy": "business",
+      "order_id": "ord-20179b14-b404-4e5c-bef2-c28839f746fe",
+      "thread_id": "thread-970550ad-2084-45cd-976c-71756d8f67d6",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "exit",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-c575cb2a-c696-4e18-b917-fb9e2cd0b4d3",
+      "thread_id": "thread-9b96de0a-a069-4e43-af64-de6f1a35acfa",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "exit",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-70b1cc9a-fa4e-4301-b1e2-6582f1ee8585",
+      "thread_id": "thread-6e1861e5-fdfe-41e2-aae4-7ddf9faa0c86",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "exit",
+      "key_strategy": "none",
+      "order_id": "ord-6d8c6a74-b523-49c4-8fb4-e19ed16a46f3",
+      "thread_id": "thread-5cb79d7c-8cab-4ba1-bcbc-063fb3791d24",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "async",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-61ea56bc-30e3-48bb-b552-9b87c2982e2a",
+      "thread_id": "thread-2db0a5b2-1bbe-41d5-8cc0-a9174e63e62f",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "sync",
+      "key_strategy": "business",
+      "order_id": "ord-406fcc1c-c676-4315-a2f9-1b7238cc51d3",
+      "thread_id": "thread-f898debd-4d9c-4efb-978e-b32925058646",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "sync",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-adb9fb5f-ef6d-42e6-8a44-302c4b209118",
+      "thread_id": "thread-19ec0ded-ce65-48cc-a230-2dddde413556",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "async",
+      "key_strategy": "business",
+      "order_id": "ord-dbb5723a-08c8-4ecf-9a43-6752de872d7f",
+      "thread_id": "thread-97bff4ed-76d0-4493-bd7f-1bc924d9c039",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [],
+          "messages": [
+            "HumanMessage",
+            "AIMessage",
+            "ToolMessage"
+          ]
+        },
+        "path": "nothing_pending_but_unanswered",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 0
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "sync",
+      "key_strategy": "business",
+      "order_id": "ord-d13185de-587e-4ff0-8cdb-b58eb042661c",
+      "thread_id": "thread-81b91e3b-8a65-49e5-a579-c17bbaac345f",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "async",
+      "key_strategy": "none",
+      "order_id": "ord-25d1d396-a6db-4d8e-aab0-c72ef490112e",
+      "thread_id": "thread-e7ae7dcb-956c-4d7a-9c03-e1b70603996c",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "async",
+      "key_strategy": "business",
+      "order_id": "ord-efe15379-0ad5-445d-a1d4-32b042ae077a",
+      "thread_id": "thread-9890d8a7-b5cf-4e93-b671-16f8e1517baf",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "async",
+      "key_strategy": "none",
+      "order_id": "ord-adffcf19-5c09-45d6-a395-43c9d67cb728",
+      "thread_id": "thread-77734a1f-3213-4490-90fc-c393a03cdffa",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "exit",
+      "key_strategy": "none",
+      "order_id": "ord-ce088b3b-f8a0-4688-a5b6-45690603b558",
+      "thread_id": "thread-af6270e7-0e4f-4fbb-93e7-ca9d4bb8d925",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "async",
+      "key_strategy": "none",
+      "order_id": "ord-a291d55b-6467-43d7-8850-6e7a9b4a6d39",
+      "thread_id": "thread-aef33579-5ca5-4577-adeb-c41c353564dd",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "sync",
+      "key_strategy": "none",
+      "order_id": "ord-1fff7f86-b6c9-4b8b-a60b-7e57475c8941",
+      "thread_id": "thread-6f323856-9ee5-4f7d-a61d-7534b353e209",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "agent"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage",
+            "ToolMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 0
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "sync",
+      "key_strategy": "none",
+      "order_id": "ord-5188bdf0-1ff4-4b92-9b8d-76c537f4e3cf",
+      "thread_id": "thread-8e4df403-3c11-44c1-8cd3-e81414045354",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "async",
+      "key_strategy": "none",
+      "order_id": "ord-95164b62-004d-42ac-8849-5ff233979e20",
+      "thread_id": "thread-18ef6540-c5a8-4fa9-a76f-b2cfc2150de8",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "exit",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-e3d78aa3-ba32-4c6a-9af1-4feae5dfe560",
+      "thread_id": "thread-1cf2ee59-0adf-4a0b-96b9-5daf52d4e57c",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "sync",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-0e7bc09f-8508-4ee6-be8b-a6f48754d45a",
+      "thread_id": "thread-e589fc2e-e145-4573-b83a-1b2bcbd16b6a",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "async",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-a0ffbdbe-98a9-4291-aede-cd5140fc8e07",
+      "thread_id": "thread-354449e9-b293-4457-8e7b-5584786b4795",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "exit",
+      "key_strategy": "none",
+      "order_id": "ord-64143369-6b33-4295-aa93-918033ac44ca",
+      "thread_id": "thread-cc988a8b-cf8f-45f0-a53b-a2b3f183337a",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "sync",
+      "key_strategy": "none",
+      "order_id": "ord-b3d0a78c-a30b-4339-b880-047a3548c180",
+      "thread_id": "thread-ce53f92f-444a-4d98-b52b-15b70f67cd40",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "agent"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage",
+            "ToolMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 0
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "sync",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-2a5d6321-93ee-49a1-ac71-9022c26ff05e",
+      "thread_id": "thread-6e2c8a9d-8178-4257-b311-220b0b6e4de6",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "sync",
+      "key_strategy": "none",
+      "order_id": "ord-38fda4b3-6844-422c-9412-5be0637baee4",
+      "thread_id": "thread-4dcd893b-356a-4fc0-ab4c-50ff8c062bc5",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "async",
+      "key_strategy": "none",
+      "order_id": "ord-26adc666-47f1-4eaf-a732-026c043ceda7",
+      "thread_id": "thread-0539d089-2599-4ab3-8cec-130f5fa56097",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "exit",
+      "key_strategy": "none",
+      "order_id": "ord-db862448-17f0-4891-a8c0-770d501d3659",
+      "thread_id": "thread-3065a8b1-c643-4d3e-a1c9-9f81dad59ab0",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "sync",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-7c09d3b4-6078-4d15-ab63-6a148677dde7",
+      "thread_id": "thread-39fd5e80-f869-4602-97c3-7b81a5ed8b83",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "exit",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-130f2116-cda8-4a66-9ca4-edc5abe91df3",
+      "thread_id": "thread-9ce48eae-17dc-4fad-bf4b-de046ca8306a",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "sync",
+      "key_strategy": "business",
+      "order_id": "ord-cd26b909-fdc8-4311-856d-2623511aaad8",
+      "thread_id": "thread-5740bec8-9bcb-4e81-83ec-dd0b4750efbb",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "async",
+      "key_strategy": "none",
+      "order_id": "ord-047268cb-d720-455e-b1d1-0aa4589257c5",
+      "thread_id": "thread-2b0b5b2e-c5c3-414c-b3f8-9ab41d6730e0",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "async",
+      "key_strategy": "none",
+      "order_id": "ord-c6e827b0-841e-4551-b34c-51b225e26233",
+      "thread_id": "thread-d8bbf5ed-e016-46b0-ad51-2735ffab064e",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "exit",
+      "key_strategy": "none",
+      "order_id": "ord-603b0f08-4822-4a3f-8d0f-202f6d999a57",
+      "thread_id": "thread-7f0f61e5-2652-493d-82b5-f4b4a0b40313",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "exit",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-ba858c9b-44a3-4d35-aa6d-55b925f516d9",
+      "thread_id": "thread-ef0b4124-2e1f-4496-9b1e-1b7b8ddc470b",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "exit",
+      "key_strategy": "none",
+      "order_id": "ord-aadbc61a-f2c7-477b-9b64-c12fcbe2eb1e",
+      "thread_id": "thread-a4f86c41-7f11-4a0e-9b3d-ee25fa27916f",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "async",
+      "key_strategy": "business",
+      "order_id": "ord-da97eecd-b16d-43c8-b0d1-67cde34f288b",
+      "thread_id": "thread-f162f108-8205-4c08-a2ba-717b72a9ea9e",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "sync",
+      "key_strategy": "none",
+      "order_id": "ord-3e780706-a8f7-4a08-9c9e-0c03aae5a0fe",
+      "thread_id": "thread-68318f7f-02ea-403d-895e-71878598308f",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "exit",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-311d5741-2ff9-4edd-9ab4-a41d39c131c9",
+      "thread_id": "thread-f7d5a192-6235-415e-8335-65bd35787e57",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "async",
+      "key_strategy": "none",
+      "order_id": "ord-9de4e560-73b8-4238-a7fa-0dca7034a1f2",
+      "thread_id": "thread-2d85f269-700f-4887-a4c2-0dd33510592e",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "async",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-c76a97aa-2b5d-4d46-8e86-83ada8cbd583",
+      "thread_id": "thread-ec13e6bc-b55a-4686-af81-3dcdd3aaafd8",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "async",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-cb662832-dbd1-4766-8562-cb8f65a7193a",
+      "thread_id": "thread-244cf1a6-b64e-4d3d-b923-c28a08b67065",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "async",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-dd9710f8-59d6-4ce6-8430-11382998087a",
+      "thread_id": "thread-eacb8e74-c53b-45a8-bc1c-341f776259d5",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "exit",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-cc56d398-6012-43dc-9766-227c57428698",
+      "thread_id": "thread-b2dce4d0-af7e-423c-ac4f-855e6240b38e",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "async",
+      "key_strategy": "business",
+      "order_id": "ord-b6f7ed43-c749-48b1-9e5c-7042bc8a7aff",
+      "thread_id": "thread-af0a6194-8ba6-4e55-9bd6-c4caea8b98f7",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "async",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-854915fc-edcd-4f8d-9068-1bbbe7f7303b",
+      "thread_id": "thread-5fc9a691-26ba-424a-8d06-1d34264f29cb",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "exit",
+      "key_strategy": "business",
+      "order_id": "ord-35615d7a-497d-4d78-b9c7-be370322ab9d",
+      "thread_id": "thread-4cf8ee86-1d2d-43d0-abcd-5b38214f646c",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "async",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-887cf436-e4c8-4e7e-bc53-c4ef2cd9eb2f",
+      "thread_id": "thread-48549782-50c1-4990-aa90-45d2b19f0592",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "async",
+      "key_strategy": "none",
+      "order_id": "ord-db1b8aa5-5355-4c9c-8c19-fa9d533e4834",
+      "thread_id": "thread-744c3efd-9618-49f3-a080-d9463557e629",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "sync",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-75aec0e2-1378-47d1-8352-ac2469435b9c",
+      "thread_id": "thread-5d03ce05-7c20-4186-a73d-ea169a69a152",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "agent"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage",
+            "ToolMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 0
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "sync",
+      "key_strategy": "business",
+      "order_id": "ord-ac1a6a8c-b415-4f60-a6be-3d318b5a7a01",
+      "thread_id": "thread-b7d1a820-3f97-4ab2-a1b3-1dac406a6605",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "agent"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage",
+            "ToolMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 0
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "async",
+      "key_strategy": "none",
+      "order_id": "ord-053961ee-b006-41ef-904d-cedf535b2841",
+      "thread_id": "thread-f0cd7671-78fc-489e-91d9-67b19877a879",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "async",
+      "key_strategy": "business",
+      "order_id": "ord-14d829cd-e04b-4def-84c6-7420ede79b80",
+      "thread_id": "thread-96c6f709-99a2-4e0d-83c8-90129d8eba7e",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [],
+          "messages": [
+            "HumanMessage",
+            "AIMessage",
+            "ToolMessage"
+          ]
+        },
+        "path": "nothing_pending_but_unanswered",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 0
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "async",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-f4a75217-4c9b-4f9d-8019-553a837ab9c1",
+      "thread_id": "thread-0693e93e-4914-46b9-b950-9d4174881580",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [],
+          "messages": [
+            "HumanMessage",
+            "AIMessage",
+            "ToolMessage"
+          ]
+        },
+        "path": "nothing_pending_but_unanswered",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 0
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "sync",
+      "key_strategy": "none",
+      "order_id": "ord-fcd4acb0-ff50-4ce8-a493-40e8794eaeac",
+      "thread_id": "thread-39ea95f7-ebe8-4758-8d86-e21d308a8bb2",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "agent"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage",
+            "ToolMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 0
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "sync",
+      "key_strategy": "none",
+      "order_id": "ord-4bcf0518-1b60-48cb-9dd2-30fd106a24f3",
+      "thread_id": "thread-b8d31391-8e51-48d8-ac37-8cdd9c86ecf5",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "sync",
+      "key_strategy": "business",
+      "order_id": "ord-52e862d9-800e-4b18-836e-73946adf6b49",
+      "thread_id": "thread-040b4b8a-f45c-4915-a5de-6244868ccb2a",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "sync",
+      "key_strategy": "business",
+      "order_id": "ord-ee786544-3e93-435f-8e5c-704f9773b960",
+      "thread_id": "thread-6683b078-104d-4805-b892-ac4c19c56911",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "agent"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage",
+            "ToolMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 0
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "exit",
+      "key_strategy": "none",
+      "order_id": "ord-f92219ca-bd9e-43f0-ac9a-080c753697f7",
+      "thread_id": "thread-1d95f09c-8e85-469a-afef-77cb303ff20d",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "sync",
+      "key_strategy": "business",
+      "order_id": "ord-700c6f6d-a298-4eb2-b4c2-b02ff253a7f5",
+      "thread_id": "thread-092bf843-68d4-4a1e-9178-72481e14135d",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "agent"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage",
+            "ToolMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 0
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "exit",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-063a85f0-05ad-493d-af0f-8f1f690c2184",
+      "thread_id": "thread-fa523d3a-b733-496b-82ae-5d5d6cfb3bf9",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "sync",
+      "key_strategy": "business",
+      "order_id": "ord-7b063f9e-a97e-471e-b733-dce924684d3c",
+      "thread_id": "thread-412f9f9b-d2e5-419d-b4b5-e478b23fc443",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "agent"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage",
+            "ToolMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 0
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "sync",
+      "key_strategy": "none",
+      "order_id": "ord-83ace7dd-08dd-4cac-a1df-5be820a34715",
+      "thread_id": "thread-e44fcfcd-dba2-4428-9fc1-d33a7f8be3e0",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "agent"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage",
+            "ToolMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 0
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "async",
+      "key_strategy": "business",
+      "order_id": "ord-dba77ade-bdfd-49d7-99cf-04d008907f9f",
+      "thread_id": "thread-ef4cf8fc-569a-4ed3-a93d-de8fc3ba720b",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "exit",
+      "key_strategy": "business",
+      "order_id": "ord-e67e4b7a-6b04-4d84-ac2b-a1338f4c6432",
+      "thread_id": "thread-280541ea-df3d-4788-8fb3-84d77fd2f696",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "exit",
+      "key_strategy": "business",
+      "order_id": "ord-8be9db38-610e-4919-9207-168cde034f56",
+      "thread_id": "thread-3f5b812d-e13c-4eff-9453-c86a4e325e9a",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "async",
+      "key_strategy": "none",
+      "order_id": "ord-bc66b519-8376-4824-9bf2-94247a5a8826",
+      "thread_id": "thread-89eefb4c-25be-4781-a673-f08bddc4a4bb",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "async",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-d85ece33-8245-4357-a8c2-4550c9b95a6a",
+      "thread_id": "thread-8c75f4d8-9f01-4f81-9f25-c7e27c2236b3",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "sync",
+      "key_strategy": "business",
+      "order_id": "ord-8864d884-a6df-4163-9e22-9a43e0ca31ea",
+      "thread_id": "thread-9f79e5ba-e233-41f3-a05d-e08d21c20208",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "exit",
+      "key_strategy": "business",
+      "order_id": "ord-d24f4bd0-b750-47ba-aa28-f186b9096edb",
+      "thread_id": "thread-46ed42aa-a93c-49b0-baa1-0c7b039cf637",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "sync",
+      "key_strategy": "none",
+      "order_id": "ord-e7bfe5e1-0ba9-406b-9158-5b4b971ee09b",
+      "thread_id": "thread-52d9d782-aa1b-49ee-80a1-f143bf231188",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "exit",
+      "key_strategy": "business",
+      "order_id": "ord-7d0009b1-2e91-43e2-869e-43098ea6f751",
+      "thread_id": "thread-d746b404-5d6e-4262-8bce-97bcf90ff1bf",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "sync",
+      "key_strategy": "none",
+      "order_id": "ord-379783c3-c619-45ae-ac8b-e9412e87bbfb",
+      "thread_id": "thread-d0fd2d2d-c38a-4fab-9635-85ceda5c9c30",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "agent"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage",
+            "ToolMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 0
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "sync",
+      "key_strategy": "business",
+      "order_id": "ord-826cfd55-a31b-4af7-940f-dac9c5663f60",
+      "thread_id": "thread-3749bab5-9318-4c85-80c5-05493605120d",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "sync",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-aef4c959-5bab-40a8-af2d-77485e2a552f",
+      "thread_id": "thread-b9826e77-337f-4cd2-b89f-dce53cdde9c3",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "sync",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-5a94badf-e016-439f-b521-8ecac19e3a3a",
+      "thread_id": "thread-79d603dd-b16d-4229-ba5f-24a078d85012",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "exit",
+      "key_strategy": "none",
+      "order_id": "ord-ea87d307-c3ff-4aab-b8de-9d08ea30885f",
+      "thread_id": "thread-66a6da4e-f7ab-4ec2-9eb1-e31fa44d06fd",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "exit",
+      "key_strategy": "none",
+      "order_id": "ord-2d5c14f1-364c-41e6-b5e3-edc8eb7a4053",
+      "thread_id": "thread-21c93315-88bc-4899-bcfd-3a5386fcd633",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "async",
+      "key_strategy": "none",
+      "order_id": "ord-f82f7b56-5856-49c7-979f-a09e0b1ea65f",
+      "thread_id": "thread-40490699-19f6-43c8-a736-001f3c7174ae",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "async",
+      "key_strategy": "none",
+      "order_id": "ord-97ac63e7-4ea9-438b-80cf-8336cb85c205",
+      "thread_id": "thread-99d511f9-952a-411c-970f-41e9b24b670f",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "async",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-4f0caa86-5b30-467c-b91e-fe3afe6a2175",
+      "thread_id": "thread-2523d605-0d2a-4e89-be47-13f9abff311a",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "async",
+      "key_strategy": "none",
+      "order_id": "ord-bd03d9cd-3bed-403b-ae93-5729c4630820",
+      "thread_id": "thread-dffa184a-64a7-492b-ad79-91e471a7d3f8",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "async",
+      "key_strategy": "none",
+      "order_id": "ord-78107217-d5b5-4240-8a73-accb1b1ffb2a",
+      "thread_id": "thread-cb9d9bad-f0a0-457f-b6df-433f397b4206",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "exit",
+      "key_strategy": "business",
+      "order_id": "ord-b045b08a-bdad-4241-b628-509248a17019",
+      "thread_id": "thread-598e1553-d124-4fb6-b0e2-3b719bad70d2",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "sync",
+      "key_strategy": "none",
+      "order_id": "ord-3105bf33-b6c9-4f29-a118-58f658283151",
+      "thread_id": "thread-9bf19013-0731-4484-878e-62b4f5a40227",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "exit",
+      "key_strategy": "business",
+      "order_id": "ord-3b8af2f9-1df8-45f7-86c2-68fe9db6d860",
+      "thread_id": "thread-0527dc42-84f5-4e50-b347-ae2f818c08ac",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "sync",
+      "key_strategy": "none",
+      "order_id": "ord-82abfeb5-33a4-4ab5-adac-b3071c544026",
+      "thread_id": "thread-8cb9d8e8-0751-4bb1-aa23-5c81440d84d9",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "exit",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-59ea00eb-50be-4415-a6ca-e4a0351c414a",
+      "thread_id": "thread-8ecf6ad5-ec3d-4a09-a871-c1f5ba32d9d3",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "exit",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-fffae4ec-f2e8-46de-8f89-a825dea42744",
+      "thread_id": "thread-b82182f7-0d8f-421a-867e-97b87a922fd0",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "sync",
+      "key_strategy": "business",
+      "order_id": "ord-e312642a-e5dc-4660-8e1e-de8220b27c05",
+      "thread_id": "thread-668a5bef-00ee-4d13-b7fa-50d3c2f445b8",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "exit",
+      "key_strategy": "business",
+      "order_id": "ord-1a17f17c-fda8-462c-9e1a-01c54212f14d",
+      "thread_id": "thread-2d964bf7-2f13-4402-9627-3c511b22777f",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "exit",
+      "key_strategy": "none",
+      "order_id": "ord-5165530a-7155-4651-a945-04513feb6672",
+      "thread_id": "thread-94a6ee79-4005-4d46-822c-220eeed793b1",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "exit",
+      "key_strategy": "none",
+      "order_id": "ord-388f5c3e-d92a-4660-ab50-dc9a1c0d39f1",
+      "thread_id": "thread-c488e533-7aee-466d-935c-3844699a71f7",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "async",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-ff137ac5-88a2-4a7e-9dcc-33b45557b5b5",
+      "thread_id": "thread-5dbe1a24-3d30-477d-9782-79dbea8faaaa",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "sync",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-4386303e-b934-46ce-9c24-3b217e2a64b2",
+      "thread_id": "thread-06e25524-a441-469b-a001-12b1372da8ac",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "async",
+      "key_strategy": "business",
+      "order_id": "ord-ca3655a6-1a79-48e7-8ffb-5404bde15ca0",
+      "thread_id": "thread-d4e1afa1-48e7-4711-9109-753dc30d1611",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "exit",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-82a250bd-98be-40d8-b4ce-aaf177a76f16",
+      "thread_id": "thread-b162ed0b-265e-4a6b-af56-428695be4f59",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "exit",
+      "key_strategy": "none",
+      "order_id": "ord-ad8180ce-05a4-4bdf-8cca-c3deb65b137d",
+      "thread_id": "thread-a8bafff4-cbfc-41d9-bc29-2448d3e2a0a4",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "exit",
+      "key_strategy": "none",
+      "order_id": "ord-30b3ea37-139f-4597-b6f5-1b1f07b26dcf",
+      "thread_id": "thread-914c3979-6b0a-4eae-80a5-c85dd00b59d9",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "exit",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-a450141b-4601-43e5-a8da-420b35660109",
+      "thread_id": "thread-a3f8bb2d-4532-4bbe-849a-721cb1368515",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "exit",
+      "key_strategy": "business",
+      "order_id": "ord-d1ef4eda-325c-42bc-8969-2c5aa71f2199",
+      "thread_id": "thread-e1b73087-d30e-45cc-900d-db47b8d06003",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "sync",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-c80f2942-ee51-421b-8901-dfb9b09bf3e8",
+      "thread_id": "thread-535a3752-7f04-4b1d-a270-bc2434a04f7c",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "exit",
+      "key_strategy": "business",
+      "order_id": "ord-85691450-b941-43b8-a9d6-74cb3e5826c3",
+      "thread_id": "thread-78907eea-2f00-4c19-aa04-663322bb3a0e",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "exit",
+      "key_strategy": "business",
+      "order_id": "ord-894604dc-7797-4633-869c-55cea241852e",
+      "thread_id": "thread-b54475da-705d-4a63-997c-74e5d7404d93",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "exit",
+      "key_strategy": "business",
+      "order_id": "ord-b6e81573-90ac-41e2-9040-6949b7eec7e4",
+      "thread_id": "thread-ec182734-c608-417c-960f-b285bee138b4",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "async",
+      "key_strategy": "business",
+      "order_id": "ord-76d8cc22-840d-4249-b117-68648d1caa0f",
+      "thread_id": "thread-c76ef6ca-6b2b-4bcf-a587-39a0e7c4b30c",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [],
+          "messages": [
+            "HumanMessage",
+            "AIMessage",
+            "ToolMessage"
+          ]
+        },
+        "path": "nothing_pending_but_unanswered",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 0
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "sync",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-43eb732d-7401-4cd7-af8b-3198b58c4084",
+      "thread_id": "thread-9857edfb-a715-4253-967f-d8599eeb75fc",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "agent"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage",
+            "ToolMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 0
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "sync",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-7718d126-e809-49fe-bdd1-a82c384b9541",
+      "thread_id": "thread-40248a09-e1f0-4174-a833-88be6086a303",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "exit",
+      "key_strategy": "none",
+      "order_id": "ord-9e5af312-9f0e-4808-ba3b-87fe486e439f",
+      "thread_id": "thread-7dbbec17-5c7e-4b15-89b6-a02242a5baea",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "sync",
+      "key_strategy": "none",
+      "order_id": "ord-11d68542-a4bb-42cf-afb8-16a3e082ecab",
+      "thread_id": "thread-055fe788-c252-479e-a7e0-c160586dbb75",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "exit",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-877ea007-e8a2-487b-9977-2bd342c8b28d",
+      "thread_id": "thread-01f9440a-0f1b-4cd2-9b50-e481f7e43832",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "async",
+      "key_strategy": "business",
+      "order_id": "ord-5dac18fb-758c-4268-a711-1952ef1c9c56",
+      "thread_id": "thread-cf9914f2-f9fd-4f77-9f93-9e21ad954e2c",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "exit",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-307870da-5c56-49db-b00e-275314b68f01",
+      "thread_id": "thread-2f504a37-7127-48de-94e9-1318ccbd4f8f",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "exit",
+      "key_strategy": "business",
+      "order_id": "ord-c4d5808f-d3e8-4437-950b-88f9d89f6132",
+      "thread_id": "thread-06f157cd-bd97-4d85-8330-7d7527fec122",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "async",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-76974229-d255-4539-8b48-1d8a3019efd8",
+      "thread_id": "thread-cd598ea2-504e-4a39-8abb-8f3507f69d87",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "sync",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-138b80eb-8ebb-43ab-808b-ae910f9bbc00",
+      "thread_id": "thread-7b8464bd-9940-4fa0-b1db-1057998e1bd8",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "agent"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage",
+            "ToolMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 0
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "async",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-d9e86b3c-372c-454c-b5ee-7a656960debb",
+      "thread_id": "thread-9bf23aff-70a2-4699-92a9-0571cfa67482",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "sync",
+      "key_strategy": "business",
+      "order_id": "ord-9f8dd521-a0da-467d-a0f7-c036429a6902",
+      "thread_id": "thread-ec0c3f7d-d36e-49de-980e-6d952969fe13",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "sync",
+      "key_strategy": "none",
+      "order_id": "ord-16246477-e446-4d55-8a74-3f916a475372",
+      "thread_id": "thread-aaed24ec-1cb3-41a1-847c-ebb7c3e8d70a",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "async",
+      "key_strategy": "business",
+      "order_id": "ord-53ea76f9-886b-4ad1-998f-3f208b8da003",
+      "thread_id": "thread-2b768cfd-ca84-41d3-ba32-28eefa6c9f66",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "sync",
+      "key_strategy": "business",
+      "order_id": "ord-04c4cc10-5911-446d-a06e-070d4993dfe8",
+      "thread_id": "thread-5ff9cc4e-1073-4936-8557-8a4b8cb9d15f",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "async",
+      "key_strategy": "business",
+      "order_id": "ord-0b6aeb58-4357-4489-96f5-5bfefbec1fde",
+      "thread_id": "thread-faa1a28d-5a9b-41b7-b9d9-c304b0803242",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "sync",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-12c6749a-0f34-4afa-bfec-732cf4bd0ef2",
+      "thread_id": "thread-2a7bd4a0-831a-4f6f-b6ec-d3c70ba39eac",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "async",
+      "key_strategy": "business",
+      "order_id": "ord-bbd75819-4caa-4ddd-a6d2-5e994c8a8b1e",
+      "thread_id": "thread-d387fd91-9670-46e0-a3e9-e181fb7f106f",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "sync",
+      "key_strategy": "business",
+      "order_id": "ord-87d6ee04-e02e-45cf-b939-0f11b0619aea",
+      "thread_id": "thread-1f544cea-10db-4045-bdba-8a15b61b584e",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "sync",
+      "key_strategy": "tool_call_id",
+      "order_id": "ord-1eee96df-7aed-429c-8178-1780b79b802f",
+      "thread_id": "thread-e41fd5fb-5136-4fc5-a0e0-f12c5d0206c2",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "agent"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage",
+            "ToolMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 0
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "during_tool",
+      "durability": "sync",
+      "key_strategy": "none",
+      "order_id": "ord-0ce710cb-470c-48d9-9ed2-73423d5f3175",
+      "thread_id": "thread-55868483-1579-4110-86a5-039e359817b9",
+      "killed": true,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "tools"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "none",
+      "durability": "async",
+      "key_strategy": "business",
+      "order_id": "ord-bcf42d80-d359-492e-a8f0-a3ceca1cfd2c",
+      "thread_id": "thread-3f5a0a49-7847-45d8-82db-9ba066b5faeb",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "async",
+        "path": "first_run",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "resume": {},
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "exit",
+      "key_strategy": "business",
+      "order_id": "ord-2a45c77f-04d3-4f07-a654-dfb944d6a96b",
+      "thread_id": "thread-a3208b10-621b-41f5-9729-23493e2f0fc0",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "exit",
+        "resume_saw": {
+          "has_checkpoint": false,
+          "next": [],
+          "messages": []
+        },
+        "path": "resubmitted_no_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 2,
+        "tool_calls": 1
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    },
+    {
+      "kill_point": "after_tool",
+      "durability": "sync",
+      "key_strategy": "business",
+      "order_id": "ord-e476421d-95ad-462f-997e-a89352a3896a",
+      "thread_id": "thread-8fa0fed7-ed78-4665-9268-4afde0412e6f",
+      "killed": true,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "correct",
+      "fault_confirmed": null,
+      "first_run": {
+        "outcome": "killed",
+        "reached_kill_point": true
+      },
+      "resume": {
+        "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+        "durability": "sync",
+        "resume_saw": {
+          "has_checkpoint": true,
+          "next": [
+            "agent"
+          ],
+          "messages": [
+            "HumanMessage",
+            "AIMessage",
+            "ToolMessage"
+          ]
+        },
+        "path": "resumed_from_checkpoint",
+        "outcome": "ok",
+        "final_messages": [
+          "HumanMessage",
+          "AIMessage",
+          "ToolMessage",
+          "AIMessage"
+        ],
+        "final_next": [],
+        "answered": true,
+        "model_calls": 1,
+        "tool_calls": 0
+      },
+      "client": "langgraph 1.2.22, checkpoint-postgres 3.2.1",
+      "kill_delay_s": 0.0
+    }
+  ]
+}

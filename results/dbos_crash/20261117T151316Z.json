@@ -1,0 +1,2310 @@
+{
+  "experiment": "dbos_crash",
+  "started_at": "2026-11-17T15:13:16.305295+00:00",
+  "parameters": {
+    "kill_points": [
+      "late_response"
+    ],
+    "tool_modes": [
+      "plain",
+      "step",
+      "child_workflow"
+    ],
+    "key_strategies": [
+      "none",
+      "business"
+    ],
+    "trials_per_cell": 10,
+    "seed": 7,
+    "system_database": "postgres"
+  },
+  "environment": {
+    "python": "3.12.2",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "subject": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+  },
+  "provenance": {
+    "git_commit": "131e5bab4f90f7bf6b3b8772484ac3ce563e0abe",
+    "git_dirty": false,
+    "subject_packages": [
+      "PyYAML==6.0.3",
+      "SQLAlchemy==2.1.9",
+      "annotated-types==0.8.0",
+      "anyio==4.16.0",
+      "certifi==2026.10.23",
+      "click==8.5.1",
+      "croniter==7.0.0",
+      "dbos==3.5.0",
+      "genai-prices==0.2.3",
+      "greenlet==3.5.6",
+      "griffelib==2.4.1",
+      "h11==0.16.0",
+      "httpcore2==2.16.2",
+      "httpcore==1.0.9",
+      "httpx2==2.16.2",
+      "httpx==0.28.1",
+      "idna==3.20",
+      "logfire-api==5.6.0",
+      "opentelemetry-api==1.45.2",
+      "psycopg-binary==3.3.9",
+      "psycopg==3.3.9",
+      "pydantic-ai-slim==2.68.0",
+      "pydantic-graph==2.68.0",
+      "pydantic==2.14.3",
+      "pydantic_core==2.50.4",
+      "python-dateutil==4.0.0",
+      "truststore==0.10.5",
+      "typing-inspection==0.4.5",
+      "typing_extensions==4.16.0",
+      "tzdata==2026.6"
+    ]
+  },
+  "summary": [
+    {
+      "kill_point": "late_response",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "trials": 10,
+      "refunded_once": 10,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "stuck x10",
+      "fault_confirmed": 10,
+      "requests_at_sink": 10,
+      "tool_calls_on_recovery": "- x10",
+      "distinct_keys": 0
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "plain",
+      "key_strategy": "business",
+      "trials": 10,
+      "refunded_once": 10,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "stuck x10",
+      "fault_confirmed": 10,
+      "requests_at_sink": 10,
+      "tool_calls_on_recovery": "- x10",
+      "distinct_keys": 0
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "trials": 10,
+      "refunded_once": 0,
+      "refunded_twice": 10,
+      "not_refunded": 0,
+      "verdicts": "duplicate x10",
+      "fault_confirmed": 10,
+      "requests_at_sink": 20,
+      "tool_calls_on_recovery": "- x10",
+      "distinct_keys": 0
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "step",
+      "key_strategy": "business",
+      "trials": 10,
+      "refunded_once": 10,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "correct x10",
+      "fault_confirmed": 10,
+      "requests_at_sink": 20,
+      "tool_calls_on_recovery": "- x10",
+      "distinct_keys": 0
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "trials": 10,
+      "refunded_once": 10,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "stuck x10",
+      "fault_confirmed": 10,
+      "requests_at_sink": 10,
+      "tool_calls_on_recovery": "- x10",
+      "distinct_keys": 0
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "child_workflow",
+      "key_strategy": "business",
+      "trials": 10,
+      "refunded_once": 10,
+      "refunded_twice": 0,
+      "not_refunded": 0,
+      "verdicts": "stuck x10",
+      "fault_confirmed": 10,
+      "requests_at_sink": 10,
+      "tool_calls_on_recovery": "- x10",
+      "distinct_keys": 0
+    }
+  ],
+  "trials": [
+    {
+      "kill_point": "late_response",
+      "tool_mode": "plain",
+      "key_strategy": "business",
+      "sequence": 0,
+      "order_id": "ord-8bbf7885-994a-4e53-a4f2-a9bfcf53eabc",
+      "workflow_id": "wf-295d8e96-cdc0-447f-b6be-5ca8f19d6676",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-8bbf7885-994a-4e53-a4f2-a9bfcf53eabc"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-295d8e96-cdc0-447f-b6be-5ca8f19d6676",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          "refund-ord-8bbf7885-994a-4e53-a4f2-a9bfcf53eabc"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 1,
+      "order_id": "ord-54b4e0c4-5503-47b0-b578-809a54811410",
+      "workflow_id": "wf-3ad7974e-b181-45c5-95a6-95b5a2ab236c",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-3ad7974e-b181-45c5-95a6-95b5a2ab236c",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "plain",
+      "key_strategy": "business",
+      "sequence": 2,
+      "order_id": "ord-e3fe5c4e-b229-48eb-8807-dcd66caabd87",
+      "workflow_id": "wf-398ccbc6-bbe7-4a8a-8bc3-67f6121e7d33",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-e3fe5c4e-b229-48eb-8807-dcd66caabd87"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-398ccbc6-bbe7-4a8a-8bc3-67f6121e7d33",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          "refund-ord-e3fe5c4e-b229-48eb-8807-dcd66caabd87"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 3,
+      "order_id": "ord-328aad9e-65c0-4238-b2d2-f10919fab7f0",
+      "workflow_id": "wf-5bf48d5f-34c5-4fb9-a1ca-24b06edce9ad",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-5bf48d5f-34c5-4fb9-a1ca-24b06edce9ad",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "child_workflow",
+      "key_strategy": "business",
+      "sequence": 4,
+      "order_id": "ord-8262eeb5-cbb1-44c2-aff2-6fedb5297a69",
+      "workflow_id": "wf-71b48e48-5977-47eb-a023-20f8427b0ed2",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-8262eeb5-cbb1-44c2-aff2-6fedb5297a69"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-71b48e48-5977-47eb-a023-20f8427b0ed2",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          "refund-ord-8262eeb5-cbb1-44c2-aff2-6fedb5297a69"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "child_workflow",
+      "key_strategy": "business",
+      "sequence": 5,
+      "order_id": "ord-78dd6b1f-657e-42e3-b4c4-273045e01e2e",
+      "workflow_id": "wf-557bc806-28af-4633-9782-6c3ce0184a11",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-78dd6b1f-657e-42e3-b4c4-273045e01e2e"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-557bc806-28af-4633-9782-6c3ce0184a11",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          "refund-ord-78dd6b1f-657e-42e3-b4c4-273045e01e2e"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "step",
+      "key_strategy": "business",
+      "sequence": 6,
+      "order_id": "ord-1c0f336a-6a70-47b3-b762-435595bf9cfc",
+      "workflow_id": "wf-e0a5654c-bc4a-46bb-88a8-55d00ebf6fb5",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-1c0f336a-6a70-47b3-b762-435595bf9cfc",
+        "refund-ord-1c0f336a-6a70-47b3-b762-435595bf9cfc"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-e0a5654c-bc4a-46bb-88a8-55d00ebf6fb5",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 2,
+        "keys_sent": [
+          "refund-ord-1c0f336a-6a70-47b3-b762-435595bf9cfc",
+          "refund-ord-1c0f336a-6a70-47b3-b762-435595bf9cfc"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "plain",
+      "key_strategy": "business",
+      "sequence": 7,
+      "order_id": "ord-35f42b9e-5c33-473e-8c37-1796cbac6ab1",
+      "workflow_id": "wf-222bf3b4-1501-4212-a96f-329597af7613",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-35f42b9e-5c33-473e-8c37-1796cbac6ab1"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-222bf3b4-1501-4212-a96f-329597af7613",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          "refund-ord-35f42b9e-5c33-473e-8c37-1796cbac6ab1"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 8,
+      "order_id": "ord-456f8fa8-689f-4954-a2b8-3a3673d74668",
+      "workflow_id": "wf-e8c52ec3-bd8e-417b-af76-223685d39b9a",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-e8c52ec3-bd8e-417b-af76-223685d39b9a",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "plain",
+      "key_strategy": "business",
+      "sequence": 9,
+      "order_id": "ord-752a5b36-8460-49ea-8166-bb66b2b5d75b",
+      "workflow_id": "wf-3b3f1206-e222-4d8a-a7d5-b21767afd900",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-752a5b36-8460-49ea-8166-bb66b2b5d75b"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-3b3f1206-e222-4d8a-a7d5-b21767afd900",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          "refund-ord-752a5b36-8460-49ea-8166-bb66b2b5d75b"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 10,
+      "order_id": "ord-8b1e2e4d-159d-44df-9b46-3741bbd2ace7",
+      "workflow_id": "wf-b3c1e9a2-bc37-41ea-81b6-f457ebc8f3a7",
+      "killed": false,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-b3c1e9a2-bc37-41ea-81b6-f457ebc8f3a7",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 2,
+        "keys_sent": [
+          null,
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "plain",
+      "key_strategy": "business",
+      "sequence": 11,
+      "order_id": "ord-dd7ac79f-f116-4272-9daa-dde93da249f4",
+      "workflow_id": "wf-450dbf46-d6fa-4b17-a458-b23992fc2ace",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-dd7ac79f-f116-4272-9daa-dde93da249f4"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-450dbf46-d6fa-4b17-a458-b23992fc2ace",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          "refund-ord-dd7ac79f-f116-4272-9daa-dde93da249f4"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 12,
+      "order_id": "ord-fa8f889b-3e11-4926-8140-68f953732a2b",
+      "workflow_id": "wf-89a2bed0-f1a1-458a-96c3-068cc312bbcd",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-89a2bed0-f1a1-458a-96c3-068cc312bbcd",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 13,
+      "order_id": "ord-5b94e96f-af5e-429f-b078-14015b6e5f74",
+      "workflow_id": "wf-d67eecef-c25b-4f16-a24c-7e14b13bea68",
+      "killed": false,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-d67eecef-c25b-4f16-a24c-7e14b13bea68",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 2,
+        "keys_sent": [
+          null,
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "child_workflow",
+      "key_strategy": "business",
+      "sequence": 14,
+      "order_id": "ord-6b074763-2966-4d7e-b56e-144b2866a6b8",
+      "workflow_id": "wf-e789f7a4-4977-4587-be96-0527cda21192",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-6b074763-2966-4d7e-b56e-144b2866a6b8"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-e789f7a4-4977-4587-be96-0527cda21192",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          "refund-ord-6b074763-2966-4d7e-b56e-144b2866a6b8"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "child_workflow",
+      "key_strategy": "business",
+      "sequence": 15,
+      "order_id": "ord-47bc614b-b148-4f00-bbe2-ed05e115b425",
+      "workflow_id": "wf-12bebd76-ed69-44de-9b8a-2fab3d5b5325",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-47bc614b-b148-4f00-bbe2-ed05e115b425"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-12bebd76-ed69-44de-9b8a-2fab3d5b5325",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          "refund-ord-47bc614b-b148-4f00-bbe2-ed05e115b425"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 16,
+      "order_id": "ord-f3ae440d-2257-4966-a39a-4a295a315bdf",
+      "workflow_id": "wf-c1abf458-ecb9-4459-be6c-0527083507a9",
+      "killed": false,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-c1abf458-ecb9-4459-be6c-0527083507a9",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 2,
+        "keys_sent": [
+          null,
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "step",
+      "key_strategy": "business",
+      "sequence": 17,
+      "order_id": "ord-6c631023-3ca1-471b-b416-73caf54b1ee9",
+      "workflow_id": "wf-5dad48b1-3a5f-4d08-863f-4fc06dd61ab4",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-6c631023-3ca1-471b-b416-73caf54b1ee9",
+        "refund-ord-6c631023-3ca1-471b-b416-73caf54b1ee9"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-5dad48b1-3a5f-4d08-863f-4fc06dd61ab4",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 2,
+        "keys_sent": [
+          "refund-ord-6c631023-3ca1-471b-b416-73caf54b1ee9",
+          "refund-ord-6c631023-3ca1-471b-b416-73caf54b1ee9"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 18,
+      "order_id": "ord-5a896761-3a9d-4376-8851-dfcbd7dc3441",
+      "workflow_id": "wf-800585f9-06f6-404f-b907-51e081ea5e44",
+      "killed": false,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-800585f9-06f6-404f-b907-51e081ea5e44",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 2,
+        "keys_sent": [
+          null,
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 19,
+      "order_id": "ord-63700650-ceff-498f-88ae-022b5bd1d990",
+      "workflow_id": "wf-cbcbc34a-4cc1-4f46-bd95-9aecfed644d1",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-cbcbc34a-4cc1-4f46-bd95-9aecfed644d1",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "plain",
+      "key_strategy": "business",
+      "sequence": 20,
+      "order_id": "ord-23016ec7-c67d-4ea1-a4bd-75f57ca92d91",
+      "workflow_id": "wf-f10c5098-9312-4d92-a442-ff1f4ffb312c",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-23016ec7-c67d-4ea1-a4bd-75f57ca92d91"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-f10c5098-9312-4d92-a442-ff1f4ffb312c",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          "refund-ord-23016ec7-c67d-4ea1-a4bd-75f57ca92d91"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "step",
+      "key_strategy": "business",
+      "sequence": 21,
+      "order_id": "ord-ff3a0044-6139-47c4-8123-a9aff9ed1b87",
+      "workflow_id": "wf-1d12d7f4-51fa-44e7-b0d9-88d0ae54b3fb",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-ff3a0044-6139-47c4-8123-a9aff9ed1b87",
+        "refund-ord-ff3a0044-6139-47c4-8123-a9aff9ed1b87"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-1d12d7f4-51fa-44e7-b0d9-88d0ae54b3fb",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 2,
+        "keys_sent": [
+          "refund-ord-ff3a0044-6139-47c4-8123-a9aff9ed1b87",
+          "refund-ord-ff3a0044-6139-47c4-8123-a9aff9ed1b87"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 22,
+      "order_id": "ord-cf34df37-728c-42ed-a1e3-5b0079239865",
+      "workflow_id": "wf-b1081c5d-20e4-4ca0-bad6-5cb86725e05c",
+      "killed": false,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-b1081c5d-20e4-4ca0-bad6-5cb86725e05c",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 2,
+        "keys_sent": [
+          null,
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 23,
+      "order_id": "ord-00c12cd9-6ed5-4481-8aca-cc01dbc2d434",
+      "workflow_id": "wf-d9c49e3a-febd-4f88-94cc-45f1b7299f06",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-d9c49e3a-febd-4f88-94cc-45f1b7299f06",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 24,
+      "order_id": "ord-23254a99-d1c0-4032-89f9-063679ffe0a0",
+      "workflow_id": "wf-428b6edf-f0b0-4f47-b0fe-f660a5c9f671",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-428b6edf-f0b0-4f47-b0fe-f660a5c9f671",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "child_workflow",
+      "key_strategy": "business",
+      "sequence": 25,
+      "order_id": "ord-90a5761d-58fe-4319-9566-0c3ce5ef2049",
+      "workflow_id": "wf-7ee439df-b4cd-4844-a2c4-f5aa04a1f50b",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-90a5761d-58fe-4319-9566-0c3ce5ef2049"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-7ee439df-b4cd-4844-a2c4-f5aa04a1f50b",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          "refund-ord-90a5761d-58fe-4319-9566-0c3ce5ef2049"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "child_workflow",
+      "key_strategy": "business",
+      "sequence": 26,
+      "order_id": "ord-64bb3701-67d7-4587-a30a-aec12f21da8d",
+      "workflow_id": "wf-ddd46988-5dc8-4318-b524-05659c0d1b27",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-64bb3701-67d7-4587-a30a-aec12f21da8d"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-ddd46988-5dc8-4318-b524-05659c0d1b27",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          "refund-ord-64bb3701-67d7-4587-a30a-aec12f21da8d"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 27,
+      "order_id": "ord-70cede69-1842-4d6b-82ff-6e4877ed3424",
+      "workflow_id": "wf-cb664203-a2b3-45e3-a942-0e3ee91f3c07",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-cb664203-a2b3-45e3-a942-0e3ee91f3c07",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "plain",
+      "key_strategy": "business",
+      "sequence": 28,
+      "order_id": "ord-6075ebe9-c0fb-4f17-8da2-e93acdb11460",
+      "workflow_id": "wf-c1d14ffe-639d-4087-b317-c36e9fc164d8",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-6075ebe9-c0fb-4f17-8da2-e93acdb11460"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-c1d14ffe-639d-4087-b317-c36e9fc164d8",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          "refund-ord-6075ebe9-c0fb-4f17-8da2-e93acdb11460"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 29,
+      "order_id": "ord-2268fb0e-0396-4993-8cf0-529e386b4b80",
+      "workflow_id": "wf-706fa5f9-5e3e-4053-b460-95603a8576bf",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-706fa5f9-5e3e-4053-b460-95603a8576bf",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "step",
+      "key_strategy": "business",
+      "sequence": 30,
+      "order_id": "ord-d1333c15-9c4e-499a-9018-07d5116c18a2",
+      "workflow_id": "wf-89440fd2-23cc-4cad-b2a5-698299573c91",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-d1333c15-9c4e-499a-9018-07d5116c18a2",
+        "refund-ord-d1333c15-9c4e-499a-9018-07d5116c18a2"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-89440fd2-23cc-4cad-b2a5-698299573c91",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 2,
+        "keys_sent": [
+          "refund-ord-d1333c15-9c4e-499a-9018-07d5116c18a2",
+          "refund-ord-d1333c15-9c4e-499a-9018-07d5116c18a2"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "step",
+      "key_strategy": "business",
+      "sequence": 31,
+      "order_id": "ord-1e232608-6932-4790-8e70-7b6967b2f0fb",
+      "workflow_id": "wf-30022d9c-18d7-4b46-b2c4-30207582f371",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-1e232608-6932-4790-8e70-7b6967b2f0fb",
+        "refund-ord-1e232608-6932-4790-8e70-7b6967b2f0fb"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-30022d9c-18d7-4b46-b2c4-30207582f371",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 2,
+        "keys_sent": [
+          "refund-ord-1e232608-6932-4790-8e70-7b6967b2f0fb",
+          "refund-ord-1e232608-6932-4790-8e70-7b6967b2f0fb"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "child_workflow",
+      "key_strategy": "business",
+      "sequence": 32,
+      "order_id": "ord-b5df56dd-4d6b-47f2-b612-01fdfad9208e",
+      "workflow_id": "wf-3e36d54a-d710-4d75-b69f-21cebaddc4b5",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-b5df56dd-4d6b-47f2-b612-01fdfad9208e"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-3e36d54a-d710-4d75-b69f-21cebaddc4b5",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          "refund-ord-b5df56dd-4d6b-47f2-b612-01fdfad9208e"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "step",
+      "key_strategy": "business",
+      "sequence": 33,
+      "order_id": "ord-a73c10af-d639-4888-8b0c-fab46e1cc1f0",
+      "workflow_id": "wf-7e14ca51-1966-4f24-b539-10d46c75faaa",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-a73c10af-d639-4888-8b0c-fab46e1cc1f0",
+        "refund-ord-a73c10af-d639-4888-8b0c-fab46e1cc1f0"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-7e14ca51-1966-4f24-b539-10d46c75faaa",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 2,
+        "keys_sent": [
+          "refund-ord-a73c10af-d639-4888-8b0c-fab46e1cc1f0",
+          "refund-ord-a73c10af-d639-4888-8b0c-fab46e1cc1f0"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "plain",
+      "key_strategy": "business",
+      "sequence": 34,
+      "order_id": "ord-194fd520-10a7-481b-89f6-080fc5e17399",
+      "workflow_id": "wf-e6914e24-6aef-44ec-b25d-1568602ddb1f",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-194fd520-10a7-481b-89f6-080fc5e17399"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-e6914e24-6aef-44ec-b25d-1568602ddb1f",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          "refund-ord-194fd520-10a7-481b-89f6-080fc5e17399"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 35,
+      "order_id": "ord-8f5f6c51-81fa-4793-8ab6-b4d3a69a5e75",
+      "workflow_id": "wf-e26aa53b-bba9-4aac-9951-1444ceab7e1f",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-e26aa53b-bba9-4aac-9951-1444ceab7e1f",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 36,
+      "order_id": "ord-5a5171bc-de45-48f3-8d7e-c229b31fa20a",
+      "workflow_id": "wf-2140c8d2-3597-40c2-801c-b7644ff3ec0c",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-2140c8d2-3597-40c2-801c-b7644ff3ec0c",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 37,
+      "order_id": "ord-ac3f29e2-ec87-4cbf-a461-5c66067c36c7",
+      "workflow_id": "wf-0f6e0012-b89d-470e-8b9f-8054c28c03a7",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-0f6e0012-b89d-470e-8b9f-8054c28c03a7",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "step",
+      "key_strategy": "business",
+      "sequence": 38,
+      "order_id": "ord-6340e38a-bd3a-466e-a090-eed380f4d561",
+      "workflow_id": "wf-6eb0c108-ac77-4c3c-ae11-3554f426bc9b",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-6340e38a-bd3a-466e-a090-eed380f4d561",
+        "refund-ord-6340e38a-bd3a-466e-a090-eed380f4d561"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-6eb0c108-ac77-4c3c-ae11-3554f426bc9b",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 2,
+        "keys_sent": [
+          "refund-ord-6340e38a-bd3a-466e-a090-eed380f4d561",
+          "refund-ord-6340e38a-bd3a-466e-a090-eed380f4d561"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 39,
+      "order_id": "ord-863ed7e0-789d-47e9-a1e7-95d614f9bc0d",
+      "workflow_id": "wf-c3226b75-3f42-4d87-84b6-e7606d7c5d5c",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-c3226b75-3f42-4d87-84b6-e7606d7c5d5c",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "plain",
+      "key_strategy": "business",
+      "sequence": 40,
+      "order_id": "ord-53c4d8be-b7fe-4510-afc9-5bf04da8eee4",
+      "workflow_id": "wf-9810fc82-78bb-4f7b-a20f-c1c5e49150b1",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-53c4d8be-b7fe-4510-afc9-5bf04da8eee4"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-9810fc82-78bb-4f7b-a20f-c1c5e49150b1",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          "refund-ord-53c4d8be-b7fe-4510-afc9-5bf04da8eee4"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "child_workflow",
+      "key_strategy": "business",
+      "sequence": 41,
+      "order_id": "ord-0813ecb8-39cc-45cc-802e-b52ac42688b9",
+      "workflow_id": "wf-8dbe0da2-b4d4-4ea7-8760-08dc09c6fbd8",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-0813ecb8-39cc-45cc-802e-b52ac42688b9"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-8dbe0da2-b4d4-4ea7-8760-08dc09c6fbd8",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          "refund-ord-0813ecb8-39cc-45cc-802e-b52ac42688b9"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 42,
+      "order_id": "ord-3ba0cd52-b90d-4f99-a291-3ba0b63043be",
+      "workflow_id": "wf-2152fa90-1b4c-4a3b-a455-35d0bb5c5c53",
+      "killed": false,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-2152fa90-1b4c-4a3b-a455-35d0bb5c5c53",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 2,
+        "keys_sent": [
+          null,
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 43,
+      "order_id": "ord-15b7475e-ee57-4483-b9db-1375bc774980",
+      "workflow_id": "wf-192441be-389d-46bd-8303-5827d7e64b80",
+      "killed": false,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-192441be-389d-46bd-8303-5827d7e64b80",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 2,
+        "keys_sent": [
+          null,
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 44,
+      "order_id": "ord-d29b9ce1-813e-46df-8001-332909feee55",
+      "workflow_id": "wf-bb319651-9597-497f-ba5f-d9f04e21ee06",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-bb319651-9597-497f-ba5f-d9f04e21ee06",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 45,
+      "order_id": "ord-d2a7fb69-11f7-4f34-b2b4-6377eafad94f",
+      "workflow_id": "wf-f1f4e18b-896c-4797-a94d-448365cd0412",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-f1f4e18b-896c-4797-a94d-448365cd0412",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "plain",
+      "key_strategy": "business",
+      "sequence": 46,
+      "order_id": "ord-87cdd470-1e7d-444a-b704-ab4392acf008",
+      "workflow_id": "wf-b6b9c71a-165e-4193-a8b6-4536aaba1ed7",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-87cdd470-1e7d-444a-b704-ab4392acf008"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-b6b9c71a-165e-4193-a8b6-4536aaba1ed7",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          "refund-ord-87cdd470-1e7d-444a-b704-ab4392acf008"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "step",
+      "key_strategy": "business",
+      "sequence": 47,
+      "order_id": "ord-7ff9bd1a-a7a9-4a7a-b71c-ca6056fa4883",
+      "workflow_id": "wf-2cd81ddc-2c03-4bed-a2d4-e2d71499a0fb",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-7ff9bd1a-a7a9-4a7a-b71c-ca6056fa4883",
+        "refund-ord-7ff9bd1a-a7a9-4a7a-b71c-ca6056fa4883"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-2cd81ddc-2c03-4bed-a2d4-e2d71499a0fb",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 2,
+        "keys_sent": [
+          "refund-ord-7ff9bd1a-a7a9-4a7a-b71c-ca6056fa4883",
+          "refund-ord-7ff9bd1a-a7a9-4a7a-b71c-ca6056fa4883"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "child_workflow",
+      "key_strategy": "business",
+      "sequence": 48,
+      "order_id": "ord-54cfd05e-20a8-49d7-a655-609267d0494b",
+      "workflow_id": "wf-08ea9336-260f-42fb-9b93-05e0a92d540a",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-54cfd05e-20a8-49d7-a655-609267d0494b"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-08ea9336-260f-42fb-9b93-05e0a92d540a",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          "refund-ord-54cfd05e-20a8-49d7-a655-609267d0494b"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "step",
+      "key_strategy": "business",
+      "sequence": 49,
+      "order_id": "ord-099e1fb9-8c49-47e1-a8ff-8a795ebfca3f",
+      "workflow_id": "wf-83b31040-69b5-47ea-8e69-0758e171b4b8",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-099e1fb9-8c49-47e1-a8ff-8a795ebfca3f",
+        "refund-ord-099e1fb9-8c49-47e1-a8ff-8a795ebfca3f"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-83b31040-69b5-47ea-8e69-0758e171b4b8",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 2,
+        "keys_sent": [
+          "refund-ord-099e1fb9-8c49-47e1-a8ff-8a795ebfca3f",
+          "refund-ord-099e1fb9-8c49-47e1-a8ff-8a795ebfca3f"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 50,
+      "order_id": "ord-5454b724-8ebd-4c61-8317-762923c1d261",
+      "workflow_id": "wf-d70f1842-f1a7-46c9-8130-c5db2de40f7e",
+      "killed": false,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-d70f1842-f1a7-46c9-8130-c5db2de40f7e",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 2,
+        "keys_sent": [
+          null,
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 51,
+      "order_id": "ord-5eecb421-40e8-4955-a8cf-d9a3f0581cbe",
+      "workflow_id": "wf-bf13a78a-51cf-4bd1-8c80-24d49b0a1f66",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-bf13a78a-51cf-4bd1-8c80-24d49b0a1f66",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "step",
+      "key_strategy": "business",
+      "sequence": 52,
+      "order_id": "ord-9af18379-9a8b-4062-be1a-846fecede423",
+      "workflow_id": "wf-d8f604bc-5642-4ac1-8960-5d01690d35f6",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "verdict": "correct",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-9af18379-9a8b-4062-be1a-846fecede423",
+        "refund-ord-9af18379-9a8b-4062-be1a-846fecede423"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-d8f604bc-5642-4ac1-8960-5d01690d35f6",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 2,
+        "keys_sent": [
+          "refund-ord-9af18379-9a8b-4062-be1a-846fecede423",
+          "refund-ord-9af18379-9a8b-4062-be1a-846fecede423"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "child_workflow",
+      "key_strategy": "business",
+      "sequence": 53,
+      "order_id": "ord-27db8cd8-7537-486a-ab4c-63651342f642",
+      "workflow_id": "wf-5e699266-1080-4358-95ad-510caef325d6",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        "refund-ord-27db8cd8-7537-486a-ab4c-63651342f642"
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-5e699266-1080-4358-95ad-510caef325d6",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          "refund-ord-27db8cd8-7537-486a-ab4c-63651342f642"
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 54,
+      "order_id": "ord-3156e331-ea5e-486b-9926-e766d88fed88",
+      "workflow_id": "wf-849948e2-e2ca-4859-b193-92c77169e7cf",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-849948e2-e2ca-4859-b193-92c77169e7cf",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 55,
+      "order_id": "ord-dfd944aa-db1e-403e-b00b-49d9aefe832f",
+      "workflow_id": "wf-cac03858-4550-48c2-b851-b50445e3f1ff",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-cac03858-4550-48c2-b851-b50445e3f1ff",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "child_workflow",
+      "key_strategy": "none",
+      "sequence": 56,
+      "order_id": "ord-cef4118d-43d5-401c-9d4f-db3d3c7c1a27",
+      "workflow_id": "wf-af28826b-d682-419e-9fe5-870e940755d2",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "child_workflow",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-af28826b-d682-419e-9fe5-870e940755d2",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 57,
+      "order_id": "ord-45321d99-d8ca-4071-bf5a-5d0359fbac2d",
+      "workflow_id": "wf-d7e1ea03-d44f-43cd-856f-58c5c063341b",
+      "killed": false,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-d7e1ea03-d44f-43cd-856f-58c5c063341b",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 2,
+        "keys_sent": [
+          null,
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "plain",
+      "key_strategy": "none",
+      "sequence": 58,
+      "order_id": "ord-19131564-6845-4a45-a2a0-75f7a0e01173",
+      "workflow_id": "wf-907b7fe8-a22d-4efe-b633-e4f5b11a3fef",
+      "killed": false,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "verdict": "stuck",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "plain",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-907b7fe8-a22d-4efe-b633-e4f5b11a3fef",
+        "path": "first_run",
+        "outcome": "raised",
+        "detail": "ReadTimeout: timed out",
+        "final_status": "ERROR",
+        "recovery_attempts": 1,
+        "model_calls": 1,
+        "tool_calls": 1,
+        "sink_posts": 1,
+        "keys_sent": [
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    },
+    {
+      "kill_point": "late_response",
+      "tool_mode": "step",
+      "key_strategy": "none",
+      "sequence": 59,
+      "order_id": "ord-48763b52-08b6-47e9-aa83-cdd141b34d33",
+      "workflow_id": "wf-cf9bf14f-1c61-483f-a7d9-737c325f2f64",
+      "killed": false,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "verdict": "duplicate",
+      "fault_confirmed": true,
+      "keys_at_sink": [
+        null,
+        null
+      ],
+      "first_run": {
+        "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0",
+        "tool_mode": "step",
+        "system_database": "postgresql+psycopg",
+        "executor_id": "exec-wf-cf9bf14f-1c61-483f-a7d9-737c325f2f64",
+        "path": "first_run",
+        "output": "The refund has been issued.",
+        "outcome": "ok",
+        "answered": true,
+        "final_status": "SUCCESS",
+        "recovery_attempts": 1,
+        "model_calls": 2,
+        "tool_calls": 1,
+        "sink_posts": 2,
+        "keys_sent": [
+          null,
+          null
+        ]
+      },
+      "resume": {},
+      "client": "pydantic-ai-slim 2.68.0, dbos 3.5.0"
+    }
+  ]
+}

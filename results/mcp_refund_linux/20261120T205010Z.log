@@ -1,0 +1,6 @@
+| transport | fault | arm | trials | correct | duplicate | lost | effects_committed | requests_received | sdk_extra_requests | client_saw_success | first_attempt | in_doubt_surfaced | stuck | other_verdicts | client_requests | missing_requests | fault_confirmed | report_mismatch | changed_after_first_read |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| stateless_json | lost_response | no_dedup | 3 | 0 | 3 | 0 | 6 | 6 | 0 | 3 | timeout x3 | 0 | 0 | - | 6 | 0 | 3 | 3 | 0 |
+| stateless_json | lost_response | stable_key | 3 | 3 | 0 | 0 | 3 | 6 | 0 | 3 | timeout x3 | 0 | 0 | - | 6 | 0 | 3 | 0 | 0 |
+
+wrote results/mcp_refund_linux/20261120T205010Z.json

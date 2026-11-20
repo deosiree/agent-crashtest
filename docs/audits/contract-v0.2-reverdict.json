@@ -1,0 +1,953 @@
+[
+  {
+    "file": "results/dbos_crash/20261117T013225Z.json",
+    "experiment": "dbos_crash",
+    "trials": 360,
+    "v0.1": {
+      "correct": 320,
+      "duplicate": 39,
+      "stuck": 1
+    },
+    "v0.2": {
+      "correct": 320,
+      "duplicate": 39,
+      "stuck": 1
+    },
+    "changed": [],
+    "payload_not_verifiable": 0
+  },
+  {
+    "file": "results/dbos_crash/20261117T143146Z.json",
+    "experiment": "dbos_crash",
+    "trials": 360,
+    "v0.1": {
+      "correct": 320,
+      "duplicate": 40
+    },
+    "v0.2": {
+      "correct": 320,
+      "duplicate": 40
+    },
+    "changed": [],
+    "payload_not_verifiable": 0
+  },
+  {
+    "file": "results/dbos_crash/20261117T151316Z.json",
+    "experiment": "dbos_crash",
+    "trials": 60,
+    "v0.1": {
+      "correct": 10,
+      "duplicate": 10,
+      "stuck": 40
+    },
+    "v0.2": {
+      "correct": 10,
+      "duplicate": 10,
+      "stuck": 40
+    },
+    "changed": [],
+    "payload_not_verifiable": 0
+  },
+  {
+    "file": "results/dbos_crash/20261117T151854Z.json",
+    "experiment": "dbos_crash",
+    "trials": 90,
+    "v0.1": {
+      "correct": 50,
+      "duplicate": 40
+    },
+    "v0.2": {
+      "correct": 50,
+      "duplicate": 40
+    },
+    "changed": [],
+    "payload_not_verifiable": 0
+  },
+  {
+    "file": "results/langgraph_crash/20261116T201651Z.json",
+    "experiment": "langgraph_crash",
+    "trials": 135,
+    "v0.1": {
+      "correct": 105,
+      "duplicate": 30
+    },
+    "v0.2": {
+      "correct": 105,
+      "duplicate": 30
+    },
+    "changed": [],
+    "payload_not_verifiable": 0
+  },
+  {
+    "file": "results/langgraph_crash/20261116T204350Z.json",
+    "experiment": "langgraph_crash",
+    "trials": 135,
+    "v0.1": {
+      "correct": 105,
+      "duplicate": 30
+    },
+    "v0.2": {
+      "correct": 105,
+      "duplicate": 30
+    },
+    "changed": [],
+    "payload_not_verifiable": 0
+  },
+  {
+    "file": "results/mcp_refund/20261116T040750Z.json",
+    "experiment": "mcp_refund_lost_response",
+    "trials": 120,
+    "v0.1": {
+      "correct": 80,
+      "duplicate": 40
+    },
+    "v0.2": {
+      "payload_not_verifiable": 120
+    },
+    "changed": [
+      {
+        "position": 0,
+        "order_id": "ord-0a477784-0345-4058-8942-d09b101b6f93",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 1,
+        "order_id": "ord-cb4598f4-3f9f-4148-ae27-544308598050",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 2,
+        "order_id": "ord-9da44b7d-8e4c-4369-8a66-117d64af51e0",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 3,
+        "order_id": "ord-5cbc4e8b-6709-49e8-9a57-517854ed5194",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 4,
+        "order_id": "ord-58097f66-b5d4-4b5f-8f7d-7d82237e023d",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 5,
+        "order_id": "ord-2b1316d3-dfb7-43fd-8a3a-4e9b726856f2",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 6,
+        "order_id": "ord-26cc96cd-3a6a-4292-938b-7ca0f65c7a5c",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 7,
+        "order_id": "ord-f8471910-bf6c-4b8b-840b-db025713bf80",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 8,
+        "order_id": "ord-303f531e-c8bb-4de3-a7f2-a8aebb3e1096",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 9,
+        "order_id": "ord-ad557932-5416-4a6d-a74d-e1ff563cb78b",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 10,
+        "order_id": "ord-30755322-6b58-4188-9e20-2965d26eaff5",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 11,
+        "order_id": "ord-5f572916-6937-4a84-bbaa-b265322fd61b",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 12,
+        "order_id": "ord-78c6ffaf-1a91-4458-9c02-df24c0acb687",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 13,
+        "order_id": "ord-0a60a357-1a69-4859-b942-b9e1a877690d",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 14,
+        "order_id": "ord-75cb9343-833d-491c-929f-d1a17084d117",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 15,
+        "order_id": "ord-d5233ce6-1432-4649-a018-3ba87a6c1d90",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 16,
+        "order_id": "ord-05499cef-a611-4bad-a591-da477ca25b0b",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 17,
+        "order_id": "ord-fe9754f0-8b1b-4807-bf13-9cdd74284a99",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 18,
+        "order_id": "ord-f15134f3-60cc-434d-bf5c-5f1ba1845a9f",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 19,
+        "order_id": "ord-bc5a6f2a-f949-4645-af44-02bb9a52ce48",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 20,
+        "order_id": "ord-61c843b9-51da-450e-904b-bd69ba933916",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 21,
+        "order_id": "ord-e501bc5e-6866-4afe-9e5d-b2bc4fed1480",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 22,
+        "order_id": "ord-6ee92e50-4b73-4772-8d6d-f7da7a92dfd0",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 23,
+        "order_id": "ord-7ff06942-5e0c-4528-85b9-eb55ca4e7b78",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 24,
+        "order_id": "ord-2eeb09a6-8a87-43fa-911a-a6c1e3fa526e",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 25,
+        "order_id": "ord-932549f2-4b80-4b64-a694-0686816d6519",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 26,
+        "order_id": "ord-b4278888-5784-4bd7-9f69-dc4b224354b8",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 27,
+        "order_id": "ord-c5d0952c-26d1-4ff2-9456-acbeb47c9c5c",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 28,
+        "order_id": "ord-c77217a8-6130-4aa7-8270-792d74c08e0d",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 29,
+        "order_id": "ord-5785334f-e947-48f3-822e-c645d065294b",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 30,
+        "order_id": "ord-2aa239e2-d2ff-405a-bb79-fb9a8dd1de5d",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 31,
+        "order_id": "ord-7644fff7-491f-4b5f-82a3-0ccd09a6fb3e",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 32,
+        "order_id": "ord-a88407c3-9255-435b-800b-61859c76dd59",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 33,
+        "order_id": "ord-0928fe5a-548d-4275-a73b-8296a3ac85b1",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 34,
+        "order_id": "ord-95d50412-a254-44c4-b02a-cf12419c86ab",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 35,
+        "order_id": "ord-c1eb40db-5de7-45bc-8b9d-92242a1a32b9",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 36,
+        "order_id": "ord-7b73c3e2-fc25-48a9-b6f1-5df328311bef",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 37,
+        "order_id": "ord-4da96839-b530-45a0-b495-da7da76e45a9",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 38,
+        "order_id": "ord-46a26bf6-143f-4040-82be-63e42f9a485b",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 39,
+        "order_id": "ord-942bcded-461b-459c-8b21-1b1d729ec62e",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 40,
+        "order_id": "ord-796c32a8-744b-423d-8eac-22e9c563164a",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 41,
+        "order_id": "ord-cb1d378f-59bb-48da-ad7c-75153ae99f6d",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 42,
+        "order_id": "ord-0dea3ac3-8a54-41ae-aa97-01e66ababf33",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 43,
+        "order_id": "ord-0fb5e4d3-979e-4f68-ba09-887531450c41",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 44,
+        "order_id": "ord-8a32d6fa-a6b4-49b7-927f-448b4ec1e88f",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 45,
+        "order_id": "ord-9d6fa586-717a-4944-a5af-d01ad1f6b5a4",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 46,
+        "order_id": "ord-146a584f-2ce1-431f-8ded-65a90b4c114b",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 47,
+        "order_id": "ord-2cc21b34-21e7-43a8-b19a-f11b190c7de4",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 48,
+        "order_id": "ord-35e8d9f9-7597-4394-aecc-8b68277da0fa",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 49,
+        "order_id": "ord-6b97c0a8-4919-4786-aa88-52c6cf1fc859",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 50,
+        "order_id": "ord-c589b149-498f-4417-82d9-d4e38e506dda",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 51,
+        "order_id": "ord-4e4f181c-8972-47ee-8863-7ed30ee6fe92",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 52,
+        "order_id": "ord-de6bcf17-b822-48ab-88fa-7c39b89219c6",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 53,
+        "order_id": "ord-27738ecb-51e5-4b8a-8b33-442d3e09cffc",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 54,
+        "order_id": "ord-4301b110-35af-4909-a2a4-86cc1c11857c",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 55,
+        "order_id": "ord-122f67c4-9a5f-4cae-bd7c-0502f0a60ea8",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 56,
+        "order_id": "ord-a3a06c58-6e09-49bd-9fa5-6dea6a7d7751",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 57,
+        "order_id": "ord-cce39cea-c0c3-43c9-a28c-d85db44a6ae2",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 58,
+        "order_id": "ord-0983c540-cd1f-4a1e-b6e5-d2fa76c8ef55",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 59,
+        "order_id": "ord-9521fa81-9b11-4fa8-bacd-70d67f804152",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 60,
+        "order_id": "ord-04c674e3-fe00-4ffb-a707-07dc4e0f90bb",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 61,
+        "order_id": "ord-6e87c7dc-cb47-413d-9baa-953ebeaba0cf",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 62,
+        "order_id": "ord-5e3fe513-7fec-4006-8804-a6c82e79dcae",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 63,
+        "order_id": "ord-c56add34-ee6a-4a80-a525-d23ca123921b",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 64,
+        "order_id": "ord-1848aae5-096a-48e6-89bb-ce5c96950528",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 65,
+        "order_id": "ord-4478eda5-3790-44b1-99d5-e403e3972f43",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 66,
+        "order_id": "ord-92394121-6942-4e4b-839d-14a048b470dd",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 67,
+        "order_id": "ord-b75eaaed-c6aa-425c-929c-1af85df1b5db",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 68,
+        "order_id": "ord-2006cd17-8a9e-4b72-b44c-769623678fab",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 69,
+        "order_id": "ord-c3980a51-1390-4b4a-accc-339ae898179f",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 70,
+        "order_id": "ord-e8136814-d24f-4f03-9182-3a5011917058",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 71,
+        "order_id": "ord-a44c1131-efe1-4a31-80fa-69e7ab84a19d",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 72,
+        "order_id": "ord-71ebdb75-2ca0-4c6b-b62a-559c2b22b42a",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 73,
+        "order_id": "ord-a2476844-7063-47a7-8d77-cd194e711aed",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 74,
+        "order_id": "ord-5ad225e1-b263-43ed-b2db-2c1fefbf78d9",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 75,
+        "order_id": "ord-90fa8713-cd75-46ea-8f9f-657407a6a432",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 76,
+        "order_id": "ord-17db5011-c89e-45a9-a463-d3a19e76ec06",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 77,
+        "order_id": "ord-c3316741-49c0-4cac-ba75-b30314494de4",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 78,
+        "order_id": "ord-f2b75cea-0229-4e44-8158-b83dd3047afd",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 79,
+        "order_id": "ord-db122ebf-8246-45e6-b586-298f9231d7b8",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 80,
+        "order_id": "ord-723574fa-d9f1-4903-8d76-e44d7eed2939",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 81,
+        "order_id": "ord-3120a5e1-d690-493b-a628-6bb78c5ab4e7",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 82,
+        "order_id": "ord-869cb72d-7a0d-42dd-8eeb-08d2cf56e640",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 83,
+        "order_id": "ord-32d6664c-e0e3-4d9a-bfa7-6bfea2c48433",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 84,
+        "order_id": "ord-a827c399-490d-4d0b-a9f6-74e908d80e89",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 85,
+        "order_id": "ord-d9822975-ade0-4eba-ac13-f81c20e9d8f1",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 86,
+        "order_id": "ord-0e991ff0-58a6-4080-8ae2-97a3b2835b11",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 87,
+        "order_id": "ord-0bd837ae-10c0-4b2b-8fee-b785f3d801dc",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 88,
+        "order_id": "ord-5f7c52e6-2620-4d45-b010-b787a9126947",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 89,
+        "order_id": "ord-2d485d63-268c-4fcf-9e83-f9f7945c86c4",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 90,
+        "order_id": "ord-881e9980-80ac-4035-9a8a-3030fd533c98",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 91,
+        "order_id": "ord-fd5fc8fe-61a6-4377-8096-14f645690736",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 92,
+        "order_id": "ord-1d0b4dac-e283-4bad-97cc-eeb60da7374e",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 93,
+        "order_id": "ord-44709306-cbd2-4201-8645-4e9a6126d339",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 94,
+        "order_id": "ord-174d16c7-8b59-49f5-b49d-2f12b034fdb5",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 95,
+        "order_id": "ord-572d201c-44ad-485e-85ff-f93eafc20175",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 96,
+        "order_id": "ord-0a5d3695-0231-410b-bbf1-22df2e094a03",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 97,
+        "order_id": "ord-7222790c-2a15-49a9-9bb4-4f6bb6181305",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 98,
+        "order_id": "ord-ead33073-06eb-4486-a748-41a756143ef4",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 99,
+        "order_id": "ord-a17e6c26-beb2-4c09-be97-fc24e75969a3",
+        "v0.1": "correct",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 100,
+        "order_id": "ord-6276a0cd-3b6c-42ba-b7a9-823377f7a8e7",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 101,
+        "order_id": "ord-91fbc83d-87ad-41de-b302-a6ee8d832980",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 102,
+        "order_id": "ord-0e4e60a5-78d0-44b3-ac6a-82b41fe9ba39",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 103,
+        "order_id": "ord-881ba19e-09e6-4ff9-a9d1-d6d6e09506a1",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 104,
+        "order_id": "ord-7910432c-0fe0-4dd7-8df5-82687ab4c422",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 105,
+        "order_id": "ord-42b29436-e0c6-4e39-a11c-dcee3b5a04dd",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 106,
+        "order_id": "ord-48b07e37-1b11-48ef-b221-1a9556b96eac",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 107,
+        "order_id": "ord-5a537fc5-6b87-4e47-853b-96de74276044",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 108,
+        "order_id": "ord-bfcee844-ad91-4a66-8330-06c144355027",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 109,
+        "order_id": "ord-315d5d50-831a-4490-be2c-4659f6d6363c",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 110,
+        "order_id": "ord-769767fb-78e4-4a70-bca0-95319c71f7e5",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 111,
+        "order_id": "ord-e14de219-34ed-4c40-8749-399853a1032f",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 112,
+        "order_id": "ord-93036e78-351e-45b2-a0a0-cbe34ed27249",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 113,
+        "order_id": "ord-f7be04d3-2b7d-4f53-a05e-25385426d5e9",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 114,
+        "order_id": "ord-34413a03-ee39-4134-a09c-797ae3f65e29",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 115,
+        "order_id": "ord-6657496c-65ec-49d6-9eec-3645a59cce0b",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 116,
+        "order_id": "ord-50e9c95f-050d-4ed4-b5dc-e9191eff1aad",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 117,
+        "order_id": "ord-c723af95-9c4c-4d80-a207-eccf469f6c59",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 118,
+        "order_id": "ord-3f8d0234-5d72-4495-b320-d2ebc0a7bfd1",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      },
+      {
+        "position": 119,
+        "order_id": "ord-1fb51e96-a1e5-4f04-8492-b62c995399d7",
+        "v0.1": "duplicate",
+        "v0.2": "payload_not_verifiable"
+      }
+    ],
+    "payload_not_verifiable": 120
+  },
+  {
+    "file": "results/mcp_refund/20261116T042024Z.json",
+    "experiment": "mcp_refund_lost_response",
+    "trials": 120,
+    "v0.1": {
+      "correct": 79,
+      "duplicate": 41
+    },
+    "v0.2": {
+      "correct": 79,
+      "duplicate": 41
+    },
+    "changed": [],
+    "payload_not_verifiable": 0
+  },
+  {
+    "file": "results/mcp_refund/20261116T042252Z.json",
+    "experiment": "mcp_refund_lost_response",
+    "trials": 120,
+    "v0.1": {
+      "correct": 80,
+      "duplicate": 40
+    },
+    "v0.2": {
+      "correct": 80,
+      "duplicate": 40
+    },
+    "changed": [],
+    "payload_not_verifiable": 0
+  },
+  {
+    "file": "results/mcp_refund/20261116T161126Z.json",
+    "experiment": "mcp_refund",
+    "trials": 720,
+    "v0.1": {
+      "correct": 400,
+      "duplicate": 320
+    },
+    "v0.2": {
+      "correct": 400,
+      "duplicate": 320
+    },
+    "changed": [],
+    "payload_not_verifiable": 0
+  },
+  {
+    "file": "results/mcp_refund/20261117T164731Z.json",
+    "experiment": "mcp_refund",
+    "trials": 120,
+    "v0.1": {
+      "correct": 80,
+      "duplicate": 40
+    },
+    "v0.2": {
+      "correct": 80,
+      "duplicate": 40
+    },
+    "changed": [],
+    "payload_not_verifiable": 0
+  },
+  {
+    "file": "results/mcp_refund/20261117T165004Z.json",
+    "experiment": "mcp_refund",
+    "trials": 720,
+    "v0.1": {
+      "correct": 400,
+      "duplicate": 320
+    },
+    "v0.2": {
+      "correct": 400,
+      "duplicate": 320
+    },
+    "changed": [],
+    "payload_not_verifiable": 0
+  },
+  {
+    "file": "results/single_call/20261116T165233Z.json",
+    "experiment": "mcp_single_call",
+    "trials": 180,
+    "v0.1": {
+      "correct": 60,
+      "duplicate": 20,
+      "in_doubt_surfaced": 100
+    },
+    "v0.2": {
+      "correct": 60,
+      "duplicate": 20,
+      "in_doubt_surfaced": 100
+    },
+    "changed": [],
+    "payload_not_verifiable": 0
+  },
+  {
+    "file": "results/single_call/20261116T171353Z.json",
+    "experiment": "mcp_single_call",
+    "trials": 3,
+    "v0.1": {
+      "duplicate": 3
+    },
+    "v0.2": {
+      "duplicate": 3
+    },
+    "changed": [],
+    "payload_not_verifiable": 0
+  },
+  {
+    "file": "results/single_call/20261116T205316Z.json",
+    "experiment": "mcp_single_call",
+    "trials": 18,
+    "v0.1": {
+      "correct": 6,
+      "duplicate": 2,
+      "in_doubt_surfaced": 10
+    },
+    "v0.2": {
+      "correct": 6,
+      "duplicate": 2,
+      "in_doubt_surfaced": 10
+    },
+    "changed": [],
+    "payload_not_verifiable": 0
+  }
+]

@@ -1,0 +1,2197 @@
+{
+  "experiment": "mcp_refund",
+  "started_at": "2026-11-17T22:06:05.024312+00:00",
+  "mode": "local (pgserver + subprocesses)",
+  "parameters": {
+    "transports": [
+      "stateless_json"
+    ],
+    "faults": [
+      "lost_response"
+    ],
+    "trials_per_cell": 20,
+    "client_timeout_s": 2.0,
+    "fault_delay_s": 4.0,
+    "max_attempts": 3
+  },
+  "environment": {
+    "python": "3.12.16",
+    "platform": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43",
+    "mcp": "2.3.0",
+    "httpx": "0.28.1",
+    "fastapi": "0.163.2",
+    "psycopg": "3.3.9"
+  },
+  "provenance": {
+    "git_commit": "20d3fdc298c4118de76fa60d0f2064af428e925e",
+    "git_dirty": false
+  },
+  "summary": [
+    {
+      "transport": "stateless_json",
+      "fault": "lost_response",
+      "arm": "no_dedup",
+      "trials": 20,
+      "correct": 0,
+      "duplicate": 20,
+      "lost": 0,
+      "effects_committed": 40,
+      "requests_received": 40,
+      "sdk_extra_requests": 0,
+      "client_saw_success": 20,
+      "first_attempt": "timeout x20",
+      "in_doubt_surfaced": 0,
+      "stuck": 0,
+      "other_verdicts": "-",
+      "client_requests": 40,
+      "missing_requests": 0,
+      "fault_confirmed": 20,
+      "changed_after_first_read": 0
+    },
+    {
+      "transport": "stateless_json",
+      "fault": "lost_response",
+      "arm": "stable_key",
+      "trials": 20,
+      "correct": 20,
+      "duplicate": 0,
+      "lost": 0,
+      "effects_committed": 20,
+      "requests_received": 40,
+      "sdk_extra_requests": 0,
+      "client_saw_success": 20,
+      "first_attempt": "timeout x20",
+      "in_doubt_surfaced": 0,
+      "stuck": 0,
+      "other_verdicts": "-",
+      "client_requests": 40,
+      "missing_requests": 0,
+      "fault_confirmed": 20,
+      "changed_after_first_read": 0
+    },
+    {
+      "transport": "stateless_json",
+      "fault": "lost_response",
+      "arm": "fresh_key_per_attempt",
+      "trials": 20,
+      "correct": 0,
+      "duplicate": 20,
+      "lost": 0,
+      "effects_committed": 40,
+      "requests_received": 40,
+      "sdk_extra_requests": 0,
+      "client_saw_success": 20,
+      "first_attempt": "timeout x20",
+      "in_doubt_surfaced": 0,
+      "stuck": 0,
+      "other_verdicts": "-",
+      "client_requests": 40,
+      "missing_requests": 0,
+      "fault_confirmed": 20,
+      "changed_after_first_read": 0
+    }
+  ],
+  "connection_drops": [],
+  "trials": [
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-bbfe1338-b216-4b41-954c-e330ac440cd5",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "timeout",
+          "elapsed_s": 2.014,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 0.07,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-504259fb-7af8-425f-8cb0-e909621c9ba4",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 0.027,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-d84466e2-5061-4c44-9cc3-6c337d7f7c50",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "timeout",
+          "elapsed_s": 2.012,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 0.025,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-44c1b834-b113-4116-93ae-5c0dbcc9bb1d",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "timeout",
+          "elapsed_s": 2.012,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 0.028,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-d33c5acf-f76c-4b73-921e-f32e84976436",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 0.026,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-0d54384c-a222-4dbc-bd06-876fa37ec41e",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "timeout",
+          "elapsed_s": 2.018,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 0.026,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-3bc1f612-9f11-4847-b30e-5cc3079ca52c",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 0.028,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-ad66eee9-15e0-4383-9cff-1bd96569d37c",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 0.027,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-b1dcc4b8-e015-4ff4-a456-478c4f7f13f8",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 0.028,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-3442d642-14db-41fe-9a8b-035b198d2931",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 0.026,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-a783e797-07ef-41bf-af99-0196e0a4c1de",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 0.027,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-85597826-ed54-4b3b-9657-cc22dc74ec44",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 0.029,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-aaec277f-4da2-4806-b4d8-4122c5593f24",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 0.026,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-a72ec8c1-fb2a-41fd-9326-56055c9a7a07",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 0.029,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-e588ded8-7353-43a8-be33-f69715e75e07",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 0.025,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-5a5a1451-b8d9-488e-aae8-94e983b08084",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 0.025,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-d4d3db4a-7eb6-4028-9533-1d287541aa89",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 0.026,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-6f87904a-7f4b-4a44-b53b-041789fc8e72",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "timeout",
+          "elapsed_s": 2.025,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 0.026,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-df05ddbc-e604-45d2-83f1-c663669dc7f9",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 0.03,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-b37ff440-37e9-4a22-9afb-0632b5058a0f",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "timeout",
+          "elapsed_s": 2.012,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 0.026,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-8e004d08-f02a-420d-818c-2baa9336798c",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-8e004d08-f02a-420d-818c-2baa9336798c",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "refund-ord-8e004d08-f02a-420d-818c-2baa9336798c",
+          "outcome": "ok",
+          "elapsed_s": 0.026,
+          "replayed": true,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-8d307049-8954-49eb-ade3-e289625735de",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-8d307049-8954-49eb-ade3-e289625735de",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "refund-ord-8d307049-8954-49eb-ade3-e289625735de",
+          "outcome": "ok",
+          "elapsed_s": 0.026,
+          "replayed": true,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-abf66528-6273-4e69-921a-f23bb76c01ef",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-abf66528-6273-4e69-921a-f23bb76c01ef",
+          "outcome": "timeout",
+          "elapsed_s": 2.012,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "refund-ord-abf66528-6273-4e69-921a-f23bb76c01ef",
+          "outcome": "ok",
+          "elapsed_s": 0.027,
+          "replayed": true,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-ee019a02-8325-40fa-ae0c-2d8788fb9677",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-ee019a02-8325-40fa-ae0c-2d8788fb9677",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "refund-ord-ee019a02-8325-40fa-ae0c-2d8788fb9677",
+          "outcome": "ok",
+          "elapsed_s": 0.03,
+          "replayed": true,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-131650bd-6de8-4804-ab21-645765545ef3",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-131650bd-6de8-4804-ab21-645765545ef3",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "refund-ord-131650bd-6de8-4804-ab21-645765545ef3",
+          "outcome": "ok",
+          "elapsed_s": 0.026,
+          "replayed": true,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-8ca70dac-20fa-4c96-b670-21968191427d",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-8ca70dac-20fa-4c96-b670-21968191427d",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "refund-ord-8ca70dac-20fa-4c96-b670-21968191427d",
+          "outcome": "ok",
+          "elapsed_s": 0.027,
+          "replayed": true,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-b920b195-09b1-4857-bb4f-4c414fc2ee38",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-b920b195-09b1-4857-bb4f-4c414fc2ee38",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "refund-ord-b920b195-09b1-4857-bb4f-4c414fc2ee38",
+          "outcome": "ok",
+          "elapsed_s": 0.027,
+          "replayed": true,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-7948f48b-913e-4db7-a678-7a70197eb052",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-7948f48b-913e-4db7-a678-7a70197eb052",
+          "outcome": "timeout",
+          "elapsed_s": 2.014,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "refund-ord-7948f48b-913e-4db7-a678-7a70197eb052",
+          "outcome": "ok",
+          "elapsed_s": 0.026,
+          "replayed": true,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-8c6878e7-01e6-4b42-ba07-648d3284b014",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-8c6878e7-01e6-4b42-ba07-648d3284b014",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "refund-ord-8c6878e7-01e6-4b42-ba07-648d3284b014",
+          "outcome": "ok",
+          "elapsed_s": 0.03,
+          "replayed": true,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-5c54a95f-bb55-4370-82c0-b13910e7a427",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-5c54a95f-bb55-4370-82c0-b13910e7a427",
+          "outcome": "timeout",
+          "elapsed_s": 2.025,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "refund-ord-5c54a95f-bb55-4370-82c0-b13910e7a427",
+          "outcome": "ok",
+          "elapsed_s": 0.028,
+          "replayed": true,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-d48f1f47-6759-4a63-9ea1-b35a995eee43",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-d48f1f47-6759-4a63-9ea1-b35a995eee43",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "refund-ord-d48f1f47-6759-4a63-9ea1-b35a995eee43",
+          "outcome": "ok",
+          "elapsed_s": 0.026,
+          "replayed": true,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-bfa7497b-888e-4896-8b42-a2950c0bb01a",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-bfa7497b-888e-4896-8b42-a2950c0bb01a",
+          "outcome": "timeout",
+          "elapsed_s": 2.011,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "refund-ord-bfa7497b-888e-4896-8b42-a2950c0bb01a",
+          "outcome": "ok",
+          "elapsed_s": 0.026,
+          "replayed": true,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-9365510a-ef46-4f04-a543-2622e9576449",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-9365510a-ef46-4f04-a543-2622e9576449",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "refund-ord-9365510a-ef46-4f04-a543-2622e9576449",
+          "outcome": "ok",
+          "elapsed_s": 0.025,
+          "replayed": true,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-5cf37468-c8a5-4fc0-a8d0-99b43a9e9f0a",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-5cf37468-c8a5-4fc0-a8d0-99b43a9e9f0a",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "refund-ord-5cf37468-c8a5-4fc0-a8d0-99b43a9e9f0a",
+          "outcome": "ok",
+          "elapsed_s": 0.028,
+          "replayed": true,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-045cc5c1-5419-4097-b38e-fa7d447cc7cd",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-045cc5c1-5419-4097-b38e-fa7d447cc7cd",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "refund-ord-045cc5c1-5419-4097-b38e-fa7d447cc7cd",
+          "outcome": "ok",
+          "elapsed_s": 0.025,
+          "replayed": true,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-0b47eab3-c0e3-43d0-83dc-22e8f0f72460",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-0b47eab3-c0e3-43d0-83dc-22e8f0f72460",
+          "outcome": "timeout",
+          "elapsed_s": 2.012,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "refund-ord-0b47eab3-c0e3-43d0-83dc-22e8f0f72460",
+          "outcome": "ok",
+          "elapsed_s": 0.025,
+          "replayed": true,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-15a04cfa-5baa-4c80-a34c-672d0bb39e1b",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-15a04cfa-5baa-4c80-a34c-672d0bb39e1b",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "refund-ord-15a04cfa-5baa-4c80-a34c-672d0bb39e1b",
+          "outcome": "ok",
+          "elapsed_s": 0.029,
+          "replayed": true,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-5439fecc-9d14-41d6-aadb-d8b5ac6a2842",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-5439fecc-9d14-41d6-aadb-d8b5ac6a2842",
+          "outcome": "timeout",
+          "elapsed_s": 2.012,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "refund-ord-5439fecc-9d14-41d6-aadb-d8b5ac6a2842",
+          "outcome": "ok",
+          "elapsed_s": 0.025,
+          "replayed": true,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-f0816904-7ae7-4a68-8dd7-9692bb3d1757",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-f0816904-7ae7-4a68-8dd7-9692bb3d1757",
+          "outcome": "timeout",
+          "elapsed_s": 2.012,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "refund-ord-f0816904-7ae7-4a68-8dd7-9692bb3d1757",
+          "outcome": "ok",
+          "elapsed_s": 0.029,
+          "replayed": true,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-1be0618b-e2f0-41d7-a3bf-15ca1f4cac5a",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-1be0618b-e2f0-41d7-a3bf-15ca1f4cac5a",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "refund-ord-1be0618b-e2f0-41d7-a3bf-15ca1f4cac5a",
+          "outcome": "ok",
+          "elapsed_s": 0.028,
+          "replayed": true,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-ee9e8769-c19a-42b9-ae03-40be0e4fceef",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-5b19da60-6f5b-436f-aac5-7a7f8be953e1",
+          "outcome": "timeout",
+          "elapsed_s": 2.014,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "attempt-0e2b617e-c1bb-4d91-9f97-6d56baf7dcc5",
+          "outcome": "ok",
+          "elapsed_s": 0.026,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-c352a2c0-350b-4f8b-a980-58f6b9b4d97f",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-87a75734-ff1c-459b-8019-ed0c2a8c9b97",
+          "outcome": "timeout",
+          "elapsed_s": 2.025,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "attempt-17d82750-b8b6-4ea6-af5c-3a9f8bf59745",
+          "outcome": "ok",
+          "elapsed_s": 0.027,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-aff71ac9-f19b-4bd2-836b-e973e35190f6",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-efb70be2-913f-4cc5-95ca-15b03fc74e67",
+          "outcome": "timeout",
+          "elapsed_s": 2.049,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "attempt-2e4a8b77-0ec5-427c-a110-ad384ea0d9fa",
+          "outcome": "ok",
+          "elapsed_s": 0.026,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-548f271a-d39a-4309-bfc8-279a84eee7bf",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-4775ffca-97a4-441b-86a3-441003bd9251",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "attempt-66077e13-39f4-4bb8-a4a3-73da9d9f8382",
+          "outcome": "ok",
+          "elapsed_s": 0.029,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-7405f4cb-0a62-4228-86b9-8fce04c7967a",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-ce89107c-f80f-48f2-b04d-921fc7ad4db0",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "attempt-73ae6409-50bb-47bf-85c0-0c17568b0d42",
+          "outcome": "ok",
+          "elapsed_s": 0.025,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-b4f1a073-caef-4c16-9fbc-57dd3b389d8e",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-71496a1c-40d9-47e7-9985-fe9cfc400ee5",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "attempt-b8a623b9-c06e-4c1d-901a-42ff52346b27",
+          "outcome": "ok",
+          "elapsed_s": 0.025,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-d8ff6772-9f6e-41cd-abba-4320fe59ccaf",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-040c4b84-46df-40ec-a611-92e82b985009",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "attempt-2514ffdb-c34d-49b8-98aa-d09eb834eed0",
+          "outcome": "ok",
+          "elapsed_s": 0.026,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-bb51fbce-04b5-4765-a678-acfa23b6cb92",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-6836f730-438a-464c-92ef-e66e87834b24",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "attempt-0a8e357e-2055-4046-96bd-397756adb235",
+          "outcome": "ok",
+          "elapsed_s": 0.025,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-5877914e-851a-4c34-a73e-9035f19e0d78",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-e99e3627-174e-47c2-9d50-128f32951ad0",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "attempt-bb1bad30-5c5a-4426-a54c-d6f7cc18cf66",
+          "outcome": "ok",
+          "elapsed_s": 0.031,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-d3fd302d-a8a3-4b60-b85b-180efb680247",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-248154a6-d3bb-42dd-8eb2-2a689e0edeb8",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "attempt-aea85c2c-91b8-4621-97cb-3ec9c43d5bd0",
+          "outcome": "ok",
+          "elapsed_s": 0.026,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-e65544ea-9384-41dc-a321-bf2b161391a9",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-5947ff88-2da3-453f-83c9-a16c3c039a3e",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "attempt-731cb19f-126c-4af7-b6be-4f5e6081a413",
+          "outcome": "ok",
+          "elapsed_s": 0.026,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-ca037cbf-55d8-4f3e-adaa-742fae494490",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-a73c29ca-e6c9-4391-8fe5-5f5ee2f04217",
+          "outcome": "timeout",
+          "elapsed_s": 2.012,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "attempt-50666b34-5e18-4a54-b7e7-d5adc3430327",
+          "outcome": "ok",
+          "elapsed_s": 0.027,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-8c9dccf5-fea5-4afd-b0a7-ca30b533288c",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-11f91b91-d5ac-45e9-aec9-77ca4b951181",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "attempt-1b4fba88-151b-4ff4-b39f-66fd93cc634d",
+          "outcome": "ok",
+          "elapsed_s": 0.026,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-39cec436-b863-4901-ac14-82de2a9b8c88",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-106c85da-b93b-43ad-a005-1e68f58c0621",
+          "outcome": "timeout",
+          "elapsed_s": 2.025,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "attempt-e278c388-c5af-4f0d-8ebe-40c3b569a43e",
+          "outcome": "ok",
+          "elapsed_s": 0.031,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-5865aee4-d46e-4eed-b0da-9357d9730985",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-00d38e35-290b-4428-bb9a-d8c0280c4cd1",
+          "outcome": "timeout",
+          "elapsed_s": 2.012,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "attempt-f9f7571a-97d8-49b5-82df-251ad8cc0236",
+          "outcome": "ok",
+          "elapsed_s": 0.026,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-b79450e8-b092-4194-b86a-929d0caebcde",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-020a555d-0665-4310-a6ea-54f168f7f251",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "attempt-bac87a8c-bcbc-4a72-bfa7-9a61983a1332",
+          "outcome": "ok",
+          "elapsed_s": 0.026,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-ce5edae1-96ba-42f1-b6ac-45a63c2e6223",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-5affd82d-4b06-4f14-a98b-e85147107895",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "attempt-87b877a3-49d1-40eb-ad5a-3fa026d59bb0",
+          "outcome": "ok",
+          "elapsed_s": 0.028,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-7aafd48f-140f-4820-b069-ea16dca8ddf3",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-9794bd4b-0ad4-4009-b718-e450c3ae1826",
+          "outcome": "timeout",
+          "elapsed_s": 2.013,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "attempt-99efe2da-b0ea-46f8-8f41-a984bc8e3321",
+          "outcome": "ok",
+          "elapsed_s": 0.025,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-ae926648-2475-4975-b0be-378ff097e07e",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-23a6bc23-c3fa-4cb2-b537-54b990504fa0",
+          "outcome": "timeout",
+          "elapsed_s": 2.012,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "attempt-015b3b26-af2e-4beb-add9-65e443b9f8b8",
+          "outcome": "ok",
+          "elapsed_s": 0.028,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-27887fa9-b9e0-432a-9d66-91e7671564db",
+      "intended_effects": 1,
+      "effects_committed": 2,
+      "requests_received": 2,
+      "client_saw_success": true,
+      "verdict": "duplicate",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-7346640d-0fde-4dbe-829e-81a56f6f2a6a",
+          "outcome": "timeout",
+          "elapsed_s": 2.012,
+          "replayed": null,
+          "raised": "group(group(MCPError[-32001]))"
+        },
+        {
+          "number": 2,
+          "idempotency_key": "attempt-37678f33-bf0a-4062-acf8-9745bc1962be",
+          "outcome": "ok",
+          "elapsed_s": 0.026,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 2,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    }
+  ]
+}

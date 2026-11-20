@@ -1,0 +1,28 @@
+# Experiments 003 and 004 on Linux: the runners plus the CrewAI, agent-framework
+# and LangGraph subjects, each in its own environment built from the same lock
+# file as on the host. The reference `mcp` client subject runs in the project's
+# own environment, as on the host. Started through docker-compose.yml:
+#   docker compose --profile experiments run --rm crash-003
+#   docker compose --profile experiments run --rm crash-004
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+WORKDIR /app
+
+COPY subjects/requirements/ /tmp/req/
+# The lock files were written on Windows and pin pywin32, which has no Linux build
+# and which no subject needs here. Every other version is installed as locked.
+RUN sed -i '/^pywin32==/d' /tmp/req/*.txt \
+ && python -m venv /subjects/crewai && /subjects/crewai/bin/pip install --no-cache-dir -r /tmp/req/crewai.txt \
+ && python -m venv /subjects/agentfw && /subjects/agentfw/bin/pip install --no-cache-dir -r /tmp/req/agent_framework.txt \
+ && python -m venv /subjects/langgraph && /subjects/langgraph/bin/pip install --no-cache-dir -r /tmp/req/langgraph_refund_agent.txt
+
+# The harness. PYTHONPATH puts /app/src first so the runners find /app/subjects.
+COPY pyproject.toml requirements-lock.txt ./
+COPY src ./src
+RUN pip install --no-cache-dir .
+COPY subjects ./subjects
+ENV PYTHONPATH=/app/src
+
+RUN useradd --create-home appuser && mkdir /out && chown appuser /out
+USER appuser

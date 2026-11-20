@@ -1,0 +1,1717 @@
+{
+  "experiment": "mcp_refund",
+  "started_at": "2026-11-17T22:05:52.516247+00:00",
+  "mode": "local (pgserver + subprocesses)",
+  "parameters": {
+    "transports": [
+      "stateless_json"
+    ],
+    "faults": [
+      "lost_response"
+    ],
+    "trials_per_cell": 20,
+    "client_timeout_s": 2.0,
+    "fault_delay_s": 1.8,
+    "max_attempts": 3
+  },
+  "environment": {
+    "python": "3.12.16",
+    "platform": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43",
+    "mcp": "2.3.0",
+    "httpx": "0.28.1",
+    "fastapi": "0.163.2",
+    "psycopg": "3.3.9"
+  },
+  "provenance": {
+    "git_commit": "20d3fdc298c4118de76fa60d0f2064af428e925e",
+    "git_dirty": false
+  },
+  "summary": [
+    {
+      "transport": "stateless_json",
+      "fault": "lost_response",
+      "arm": "no_dedup",
+      "trials": 20,
+      "correct": 20,
+      "duplicate": 0,
+      "lost": 0,
+      "effects_committed": 20,
+      "requests_received": 20,
+      "sdk_extra_requests": 0,
+      "client_saw_success": 20,
+      "first_attempt": "ok x20",
+      "in_doubt_surfaced": 0,
+      "stuck": 0,
+      "other_verdicts": "-",
+      "client_requests": 20,
+      "missing_requests": 0,
+      "fault_confirmed": 20,
+      "changed_after_first_read": 0
+    },
+    {
+      "transport": "stateless_json",
+      "fault": "lost_response",
+      "arm": "stable_key",
+      "trials": 20,
+      "correct": 20,
+      "duplicate": 0,
+      "lost": 0,
+      "effects_committed": 20,
+      "requests_received": 20,
+      "sdk_extra_requests": 0,
+      "client_saw_success": 20,
+      "first_attempt": "ok x20",
+      "in_doubt_surfaced": 0,
+      "stuck": 0,
+      "other_verdicts": "-",
+      "client_requests": 20,
+      "missing_requests": 0,
+      "fault_confirmed": 20,
+      "changed_after_first_read": 0
+    },
+    {
+      "transport": "stateless_json",
+      "fault": "lost_response",
+      "arm": "fresh_key_per_attempt",
+      "trials": 20,
+      "correct": 20,
+      "duplicate": 0,
+      "lost": 0,
+      "effects_committed": 20,
+      "requests_received": 20,
+      "sdk_extra_requests": 0,
+      "client_saw_success": 20,
+      "first_attempt": "ok x20",
+      "in_doubt_surfaced": 0,
+      "stuck": 0,
+      "other_verdicts": "-",
+      "client_requests": 20,
+      "missing_requests": 0,
+      "fault_confirmed": 20,
+      "changed_after_first_read": 0
+    }
+  ],
+  "connection_drops": [],
+  "trials": [
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-7ff4001c-b91c-4052-a3f2-2c74ef3baf88",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 1.875,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-95535f6d-0024-4170-badb-1dc40b618a2a",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 1.82,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-7f6b1914-f1e9-4e0d-9db5-1171142fdc76",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 1.819,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-bbaba430-c59e-478d-884f-9b9d0bd58c60",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 1.821,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-59f2ffc4-c654-4e0a-aeb6-aec3758f3e62",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 1.821,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-374d6091-2596-452e-b404-c8610c1b6985",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 1.82,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-4d257669-ac36-4b65-a652-ae21824122ec",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 1.819,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-65c3dfbd-db07-4621-aac5-67f31d23c3bf",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 1.82,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-68537702-85d1-47a8-9e7c-0444f05f5d85",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 1.821,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-db435c15-5552-4e86-803d-ec14a20ec002",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 1.821,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-b076bba4-ef6f-4ad1-b621-5e0e01a79901",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 1.821,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-fb3c16b0-23c3-46f5-bcd0-34718cff6ee7",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 1.848,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-566ded27-e6b2-4dad-ae31-4f3b405922b2",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 1.822,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-f3f331ba-5c6f-489b-822d-c63c21f6ff83",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 1.819,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-aa119d01-716c-4acd-86f5-b31c041523fc",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 1.826,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-5d3d02a0-dd5f-4530-8019-c1a5fb795628",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 1.82,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-6442ca04-25a5-4fef-98d9-e7a41ab72bb7",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 1.819,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-281dc615-a7b9-469f-b4ac-bf2c6735bd92",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 1.822,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-86c11694-cf43-44af-8112-7956fee5b054",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 1.819,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "no_dedup",
+      "fault": "lost_response",
+      "order_id": "ord-fa255fc9-57a7-4fe0-8040-96dcf8c3fa5a",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": null,
+          "outcome": "ok",
+          "elapsed_s": 1.82,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-95c07e0f-a0a3-4500-8562-b03c5240f2bc",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-95c07e0f-a0a3-4500-8562-b03c5240f2bc",
+          "outcome": "ok",
+          "elapsed_s": 1.818,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-793f68de-fa53-43ac-a4f1-7bada7624833",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-793f68de-fa53-43ac-a4f1-7bada7624833",
+          "outcome": "ok",
+          "elapsed_s": 1.824,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-1849c4d2-031d-44df-9c59-75ea05dc6c20",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-1849c4d2-031d-44df-9c59-75ea05dc6c20",
+          "outcome": "ok",
+          "elapsed_s": 1.82,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-931f87a2-ba9a-4416-aacf-d643497d45e9",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-931f87a2-ba9a-4416-aacf-d643497d45e9",
+          "outcome": "ok",
+          "elapsed_s": 1.821,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-4ef56353-48c9-48a8-80e0-d0bebd9681f3",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-4ef56353-48c9-48a8-80e0-d0bebd9681f3",
+          "outcome": "ok",
+          "elapsed_s": 1.822,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-bf2d5919-94c6-43d3-8c2d-76410f1ad832",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-bf2d5919-94c6-43d3-8c2d-76410f1ad832",
+          "outcome": "ok",
+          "elapsed_s": 1.823,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-a84055c5-5661-4f40-977a-573241aebff9",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-a84055c5-5661-4f40-977a-573241aebff9",
+          "outcome": "ok",
+          "elapsed_s": 1.821,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-ed13a0f3-b70a-4bc9-838d-8e3266c5c21f",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-ed13a0f3-b70a-4bc9-838d-8e3266c5c21f",
+          "outcome": "ok",
+          "elapsed_s": 1.821,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-3cc812bc-084e-4908-894b-0630785527bb",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-3cc812bc-084e-4908-894b-0630785527bb",
+          "outcome": "ok",
+          "elapsed_s": 1.821,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-1d7be964-660b-4473-886f-729d3a702196",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-1d7be964-660b-4473-886f-729d3a702196",
+          "outcome": "ok",
+          "elapsed_s": 1.825,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-d8beafaf-6d33-4176-ad0f-623310316a8f",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-d8beafaf-6d33-4176-ad0f-623310316a8f",
+          "outcome": "ok",
+          "elapsed_s": 1.83,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-07c6b6ec-ff15-4d19-af8a-ac7a7aff9967",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-07c6b6ec-ff15-4d19-af8a-ac7a7aff9967",
+          "outcome": "ok",
+          "elapsed_s": 1.822,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-078e839c-6f14-4150-96e0-93da24013393",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-078e839c-6f14-4150-96e0-93da24013393",
+          "outcome": "ok",
+          "elapsed_s": 1.82,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-0eb5ac19-f299-44a9-a9fb-e07df0f3ae8e",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-0eb5ac19-f299-44a9-a9fb-e07df0f3ae8e",
+          "outcome": "ok",
+          "elapsed_s": 1.824,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-846cae7b-28f1-45d4-929e-a207b6cde759",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-846cae7b-28f1-45d4-929e-a207b6cde759",
+          "outcome": "ok",
+          "elapsed_s": 1.82,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-6a93d314-bb4b-49b7-9d8f-3141847fa178",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-6a93d314-bb4b-49b7-9d8f-3141847fa178",
+          "outcome": "ok",
+          "elapsed_s": 1.83,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-b5468809-afa0-45b6-b188-beffd6575951",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-b5468809-afa0-45b6-b188-beffd6575951",
+          "outcome": "ok",
+          "elapsed_s": 1.82,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-4a4e82f9-5c5e-4ac7-a21b-dbae0c9d8e5a",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-4a4e82f9-5c5e-4ac7-a21b-dbae0c9d8e5a",
+          "outcome": "ok",
+          "elapsed_s": 1.823,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-31e1a200-cb9a-4d33-a565-bee59c94b206",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-31e1a200-cb9a-4d33-a565-bee59c94b206",
+          "outcome": "ok",
+          "elapsed_s": 1.819,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "stable_key",
+      "fault": "lost_response",
+      "order_id": "ord-857eef21-ba11-43bd-9ddd-8fb8e4a8317a",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "refund-ord-857eef21-ba11-43bd-9ddd-8fb8e4a8317a",
+          "outcome": "ok",
+          "elapsed_s": 1.821,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-ab638c5a-b023-4908-be21-098cbc8c6b6a",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-d2fe9956-9cbe-4f29-8e0e-00124f5b20aa",
+          "outcome": "ok",
+          "elapsed_s": 1.82,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-9843db7d-144e-4f20-8418-b89a149a3001",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-d7b9c6a5-5c1f-4bed-9767-fff3e08db2df",
+          "outcome": "ok",
+          "elapsed_s": 1.823,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-afc11ab5-03b6-46aa-914f-c9e6565eb91d",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-8ac724b9-5e89-4002-af59-1895488bf3a0",
+          "outcome": "ok",
+          "elapsed_s": 1.819,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-ebdb0ea7-72a8-40ba-bc67-921ccdb2fb63",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-2e44f9e1-4671-455d-b1f8-6966984dfabd",
+          "outcome": "ok",
+          "elapsed_s": 1.824,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-88c6e6f4-1b57-4d90-8844-ce83a3f746e1",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-3f3669ca-e5c6-4302-8c8f-8b883326d794",
+          "outcome": "ok",
+          "elapsed_s": 1.818,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-a6c82437-76ed-410c-9dc9-d58af60723d9",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-ce2aa26e-6abf-418c-a526-7d6d2fa3001e",
+          "outcome": "ok",
+          "elapsed_s": 1.823,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-e90106bf-ad45-4287-86af-d6366b4992c6",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-488009a8-be62-4fee-8778-2e115443d72c",
+          "outcome": "ok",
+          "elapsed_s": 1.82,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-3b4fd5d6-bb59-40ed-bdb2-724edd1fc79d",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-7ca8a0bc-f8da-47e2-9a17-3f464e393695",
+          "outcome": "ok",
+          "elapsed_s": 1.82,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-c3fc191e-f87d-4977-9a7a-739f7e527c25",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-0c7b36f3-8863-4cff-bbae-b47eb090583a",
+          "outcome": "ok",
+          "elapsed_s": 1.82,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-759473b5-1bd3-45e1-bc01-d0eee1067ff2",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-0ec2f90a-8af9-4ac3-a1d6-dc85ea70a01b",
+          "outcome": "ok",
+          "elapsed_s": 1.824,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-71cef4dc-35e3-4579-ad06-c649c393c546",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-a890d4bb-58d2-4b41-9c66-3083753f5491",
+          "outcome": "ok",
+          "elapsed_s": 1.82,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-89a1de35-a7a9-450f-96a0-6d2478512d55",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-4495b95a-4aee-49f5-8596-d5365c9b2f86",
+          "outcome": "ok",
+          "elapsed_s": 1.821,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-ef1a96db-3fa0-4dfd-82fb-639a29792169",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-9820901b-b601-4eab-87b5-728e960175ef",
+          "outcome": "ok",
+          "elapsed_s": 1.82,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-45ffec33-8262-4a5a-bbc8-83665d3a6319",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-1a0d5d85-fe88-4922-bd05-08694fcab9cf",
+          "outcome": "ok",
+          "elapsed_s": 1.824,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-27b1dd88-ab77-40fe-9753-82d27d8b99b2",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-a2c11983-5207-4939-aaf9-704c23b30adc",
+          "outcome": "ok",
+          "elapsed_s": 1.82,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-53568ea3-6d98-4e7c-90f7-2c19b4a7c454",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-5b1cfbba-c134-4181-8aa2-b6c526d18d13",
+          "outcome": "ok",
+          "elapsed_s": 1.819,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-3b63dc6e-2824-4e22-8e1f-065fc69e5483",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-ade3b140-b487-4078-8d5e-876843f1c963",
+          "outcome": "ok",
+          "elapsed_s": 1.819,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-d881a78a-0d70-4d21-9c4a-88e81573032c",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-aebe4b62-ebf3-421b-b8ce-225aac2c209c",
+          "outcome": "ok",
+          "elapsed_s": 1.823,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-54a8686d-e078-4a94-ac96-1e73e5c5fd9c",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-5c303920-bf1f-4c4d-a436-a3cbd697f765",
+          "outcome": "ok",
+          "elapsed_s": 1.82,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    },
+    {
+      "arm": "fresh_key_per_attempt",
+      "fault": "lost_response",
+      "order_id": "ord-e0d15495-a104-4b5b-a116-665ec3fd7ea7",
+      "intended_effects": 1,
+      "effects_committed": 1,
+      "requests_received": 1,
+      "client_saw_success": true,
+      "verdict": "correct",
+      "attempts": [
+        {
+          "number": 1,
+          "idempotency_key": "attempt-279ad679-419d-45b0-8d3a-0d4c5fb1dfda",
+          "outcome": "ok",
+          "elapsed_s": 1.828,
+          "replayed": false,
+          "raised": null
+        }
+      ],
+      "transport": "stateless_json",
+      "sdk_extra_requests": 0,
+      "request_delta": 0,
+      "client_requests": 1,
+      "fault_confirmed": true,
+      "changed_after_first_read": false,
+      "changed_by_end_of_run": false
+    }
+  ]
+}

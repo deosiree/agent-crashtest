@@ -1,0 +1,536 @@
+[
+  {
+    "file": "results/dbos_crash/20261117T013225Z.json",
+    "experiment": "dbos_crash",
+    "trials": 360,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 39,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 39
+    },
+    "by_verdict": {
+      "correct / matches": 320,
+      "duplicate / contradicts": 39,
+      "stuck / matches": 1
+    }
+  },
+  {
+    "file": "results/dbos_crash/20261117T143146Z.json",
+    "experiment": "dbos_crash",
+    "trials": 360,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 40,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 40
+    },
+    "by_verdict": {
+      "correct / matches": 320,
+      "duplicate / contradicts": 40
+    }
+  },
+  {
+    "file": "results/dbos_crash/20261117T151316Z.json",
+    "experiment": "dbos_crash",
+    "trials": 60,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 10,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 10
+    },
+    "by_verdict": {
+      "correct / matches": 10,
+      "duplicate / contradicts": 10,
+      "stuck / matches": 40
+    }
+  },
+  {
+    "file": "results/dbos_crash/20261117T151854Z.json",
+    "experiment": "dbos_crash",
+    "trials": 90,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 40,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 40
+    },
+    "by_verdict": {
+      "correct / matches": 50,
+      "duplicate / contradicts": 40
+    }
+  },
+  {
+    "file": "results/dbos_crash/20261117T210619Z.json",
+    "experiment": "dbos_crash",
+    "trials": 360,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 40,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 40
+    },
+    "by_verdict": {
+      "correct / matches": 320,
+      "duplicate / contradicts": 40
+    }
+  },
+  {
+    "file": "results/dbos_crash_linux/20261117T172403Z.json",
+    "experiment": "dbos_crash",
+    "trials": 360,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 40,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 40
+    },
+    "by_verdict": {
+      "correct / matches": 320,
+      "duplicate / contradicts": 40
+    }
+  },
+  {
+    "file": "results/langgraph_crash/20261116T201651Z.json",
+    "experiment": "langgraph_crash",
+    "trials": 135,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 30,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 30
+    },
+    "by_verdict": {
+      "correct / matches": 105,
+      "duplicate / contradicts": 30
+    }
+  },
+  {
+    "file": "results/langgraph_crash/20261116T204350Z.json",
+    "experiment": "langgraph_crash",
+    "trials": 135,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 30,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 30
+    },
+    "by_verdict": {
+      "correct / matches": 105,
+      "duplicate / contradicts": 30
+    }
+  },
+  {
+    "file": "results/langgraph_crash/20261117T183124Z.json",
+    "experiment": "langgraph_crash",
+    "trials": 180,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 0,
+    "false_by_report_and_effects": {},
+    "by_verdict": {
+      "correct / matches": 180
+    }
+  },
+  {
+    "file": "results/langgraph_crash_linux/20261117T214634Z.json",
+    "experiment": "langgraph_crash",
+    "trials": 135,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 35,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 35
+    },
+    "by_verdict": {
+      "correct / matches": 100,
+      "duplicate / contradicts": 35
+    }
+  },
+  {
+    "file": "results/mcp_refund/20261116T040750Z.json",
+    "experiment": "mcp_refund_lost_response",
+    "trials": 120,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 40,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 40
+    },
+    "by_verdict": {
+      "correct / matches": 80,
+      "duplicate / contradicts": 40
+    }
+  },
+  {
+    "file": "results/mcp_refund/20261116T042024Z.json",
+    "experiment": "mcp_refund_lost_response",
+    "trials": 120,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 41,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 40,
+      "reported done, sink 3": 1
+    },
+    "by_verdict": {
+      "correct / matches": 79,
+      "duplicate / contradicts": 41
+    }
+  },
+  {
+    "file": "results/mcp_refund/20261116T042252Z.json",
+    "experiment": "mcp_refund_lost_response",
+    "trials": 120,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 40,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 40
+    },
+    "by_verdict": {
+      "correct / matches": 80,
+      "duplicate / contradicts": 40
+    }
+  },
+  {
+    "file": "results/mcp_refund/20261116T161126Z.json",
+    "experiment": "mcp_refund",
+    "trials": 720,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 320,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 320
+    },
+    "by_verdict": {
+      "correct / matches": 400,
+      "duplicate / contradicts": 320
+    }
+  },
+  {
+    "file": "results/mcp_refund/20261117T164731Z.json",
+    "experiment": "mcp_refund",
+    "trials": 120,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 40,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 40
+    },
+    "by_verdict": {
+      "correct / matches": 80,
+      "duplicate / contradicts": 40
+    }
+  },
+  {
+    "file": "results/mcp_refund/20261117T165004Z.json",
+    "experiment": "mcp_refund",
+    "trials": 720,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 320,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 320
+    },
+    "by_verdict": {
+      "correct / matches": 400,
+      "duplicate / contradicts": 320
+    }
+  },
+  {
+    "file": "results/mcp_refund_linux/20261117T220552Z.json",
+    "experiment": "mcp_refund",
+    "trials": 60,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 0,
+    "false_by_report_and_effects": {},
+    "by_verdict": {
+      "correct / matches": 60
+    }
+  },
+  {
+    "file": "results/mcp_refund_linux/20261117T220554Z.json",
+    "experiment": "mcp_refund",
+    "trials": 60,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 0,
+    "false_by_report_and_effects": {},
+    "by_verdict": {
+      "correct / matches": 60
+    }
+  },
+  {
+    "file": "results/mcp_refund_linux/20261117T220559Z.json",
+    "experiment": "mcp_refund",
+    "trials": 60,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 40,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 40
+    },
+    "by_verdict": {
+      "correct / matches": 20,
+      "duplicate / contradicts": 40
+    }
+  },
+  {
+    "file": "results/mcp_refund_linux/20261117T220605Z.json",
+    "experiment": "mcp_refund",
+    "trials": 60,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 40,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 40
+    },
+    "by_verdict": {
+      "correct / matches": 20,
+      "duplicate / contradicts": 40
+    }
+  },
+  {
+    "file": "results/mcp_refund_linux/20261117T220609Z.json",
+    "experiment": "mcp_refund",
+    "trials": 60,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 40,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 40
+    },
+    "by_verdict": {
+      "correct / matches": 20,
+      "duplicate / contradicts": 40
+    }
+  },
+  {
+    "file": "results/model_retry/20261118T023259Z-pilot.json",
+    "experiment": "model_retry",
+    "trials": 0,
+    "skipped_error_trials": 1,
+    "report_matches_sink_false": 0,
+    "false_by_report_and_effects": {},
+    "by_verdict": {}
+  },
+  {
+    "file": "results/model_retry/20261118T023540Z-pilot.json",
+    "experiment": "model_retry",
+    "trials": 0,
+    "skipped_error_trials": 1,
+    "report_matches_sink_false": 0,
+    "false_by_report_and_effects": {},
+    "by_verdict": {}
+  },
+  {
+    "file": "results/model_retry/20261118T031223Z-pilot.json",
+    "experiment": "model_retry",
+    "trials": 0,
+    "skipped_error_trials": 1,
+    "report_matches_sink_false": 0,
+    "false_by_report_and_effects": {},
+    "by_verdict": {}
+  },
+  {
+    "file": "results/model_retry/20261118T031410Z-pilot.json",
+    "experiment": "model_retry",
+    "trials": 57,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 7,
+    "false_by_report_and_effects": {
+      "reported not_done, sink 1": 5,
+      "reported not_done, sink 2": 2
+    },
+    "by_verdict": {
+      "correct / matches": 15,
+      "duplicate / contradicts": 2,
+      "in_doubt_surfaced / matches": 15,
+      "stuck / contradicts": 5,
+      "stuck / matches": 15,
+      "unconfirmed_success / matches": 5
+    }
+  },
+  {
+    "file": "results/model_retry/20261118T033259Z-pilot.json",
+    "experiment": "model_retry",
+    "trials": 57,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 1,
+    "false_by_report_and_effects": {
+      "reported not_done, sink 1": 1
+    },
+    "by_verdict": {
+      "correct / matches": 30,
+      "in_doubt_surfaced / matches": 24,
+      "stuck / contradicts": 1,
+      "unconfirmed_success / matches": 2
+    }
+  },
+  {
+    "file": "results/model_retry/20261118T035136Z.json",
+    "experiment": "model_retry",
+    "trials": 930,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 41,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 34,
+      "reported not_done, sink 1": 7
+    },
+    "by_verdict": {
+      "correct / matches": 478,
+      "duplicate / contradicts": 34,
+      "in_doubt_surfaced / matches": 406,
+      "stuck / contradicts": 7,
+      "stuck / matches": 2,
+      "unconfirmed_success / matches": 3
+    },
+    "with_hand_codes": {
+      "report_matches_sink_false": 40,
+      "false_by_report_and_effects": {
+        "reported done, sink 2": 34,
+        "reported not_done, sink 1": 6
+      },
+      "by_verdict": {
+        "correct / matches": 478,
+        "duplicate / contradicts": 34,
+        "in_doubt_surfaced / matches": 406,
+        "stuck / contradicts": 5,
+        "stuck / matches": 4,
+        "unconfirmed_success / contradicts": 1,
+        "unconfirmed_success / matches": 2
+      }
+    }
+  },
+  {
+    "file": "results/single_call/20261116T165233Z.json",
+    "experiment": "mcp_single_call",
+    "trials": 180,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 20,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 20
+    },
+    "by_verdict": {
+      "None / contradicts": 20,
+      "None / matches": 160
+    }
+  },
+  {
+    "file": "results/single_call/20261116T171353Z.json",
+    "experiment": "mcp_single_call",
+    "trials": 3,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 3,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 3
+    },
+    "by_verdict": {
+      "None / contradicts": 3
+    }
+  },
+  {
+    "file": "results/single_call/20261116T205316Z.json",
+    "experiment": "mcp_single_call",
+    "trials": 18,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 2,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 2
+    },
+    "by_verdict": {
+      "correct / matches": 6,
+      "duplicate / contradicts": 2,
+      "in_doubt_surfaced / matches": 10
+    }
+  },
+  {
+    "file": "results/single_call/20261117T172136Z.json",
+    "experiment": "mcp_single_call",
+    "trials": 3,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 3,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 3
+    },
+    "by_verdict": {
+      "duplicate / contradicts": 3
+    }
+  },
+  {
+    "file": "results/single_call/20261117T180204Z.json",
+    "experiment": "mcp_single_call",
+    "trials": 180,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 20,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 20
+    },
+    "by_verdict": {
+      "correct / matches": 60,
+      "duplicate / contradicts": 20,
+      "in_doubt_surfaced / matches": 100
+    }
+  },
+  {
+    "file": "results/single_call_linux/20261117T215146Z.json",
+    "experiment": "mcp_single_call",
+    "trials": 180,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 20,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 20
+    },
+    "by_verdict": {
+      "correct / matches": 60,
+      "duplicate / contradicts": 20,
+      "in_doubt_surfaced / matches": 100
+    }
+  },
+  {
+    "file": "results/single_call_linux/20261117T220513Z.json",
+    "experiment": "mcp_single_call",
+    "trials": 30,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 0,
+    "false_by_report_and_effects": {},
+    "by_verdict": {
+      "correct / matches": 30
+    }
+  },
+  {
+    "file": "results/single_call_linux/20261117T220700Z.json",
+    "experiment": "mcp_single_call",
+    "trials": 30,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 10,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 10
+    },
+    "by_verdict": {
+      "duplicate / contradicts": 10,
+      "in_doubt_surfaced / matches": 20
+    }
+  },
+  {
+    "file": "results/single_call_linux/20261117T220708Z.json",
+    "experiment": "mcp_single_call",
+    "trials": 30,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 0,
+    "false_by_report_and_effects": {},
+    "by_verdict": {
+      "correct / matches": 30
+    }
+  },
+  {
+    "file": "results/single_call_linux/20261117T220727Z.json",
+    "experiment": "mcp_single_call",
+    "trials": 30,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 10,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 10
+    },
+    "by_verdict": {
+      "duplicate / contradicts": 10,
+      "in_doubt_surfaced / matches": 20
+    }
+  },
+  {
+    "file": "results/single_call_linux/20261117T220823Z.json",
+    "experiment": "mcp_single_call",
+    "trials": 30,
+    "skipped_error_trials": 0,
+    "report_matches_sink_false": 10,
+    "false_by_report_and_effects": {
+      "reported done, sink 2": 10
+    },
+    "by_verdict": {
+      "duplicate / contradicts": 10,
+      "in_doubt_surfaced / matches": 20
+    }
+  }
+]
