@@ -4,7 +4,11 @@ Run with:  python -m crashtest.refund_mcp.server
 Env:       SINK_URL (default http://127.0.0.1:8101), MCP_HOST, MCP_PORT,
            MCP_STATELESS and MCP_JSON_RESPONSE (both default true),
            MCP_EVENT_STORE (default false: an in-memory event store, for
-           resumable SSE streams; used only by a stateful server)
+           resumable SSE streams; used only by a stateful server),
+           MCP_PROGRESS_DELAY_S (default unset: when set, the tool first sends
+           one progress notification, then waits this long before it calls
+           the sink; experiment 008's mid-stream cut needs bytes on the
+           stream before the commit)
 
 The server adds no deduplication of its own. It forwards an optional
 idempotency key to the sink as a header, the way a payments client would.
@@ -12,11 +16,12 @@ idempotency key to the sink as a header, the way a payments client would.
 
 from __future__ import annotations
 
+import asyncio
 import os
 from typing import Literal, cast, get_args
 
 import httpx
-from mcp.server.mcpserver import MCPServer
+from mcp.server.mcpserver import Context, MCPServer
 from mcp.server.transport_security import TransportSecuritySettings
 from pydantic import BaseModel
 
@@ -34,6 +39,19 @@ def _log_level(value: str) -> LogLevel:
     return cast(LogLevel, level)
 
 
+def _progress_delay(value: str | None) -> float | None:
+    if value is None or not value.strip():
+        return None
+    delay = float(value)
+    if delay < 0:
+        raise ValueError(f"MCP_PROGRESS_DELAY_S must not be negative, got {value!r}")
+    return delay
+
+
+# Experiment 008. None (the default, and experiments 001 to 007): no progress
+# notification and no pause, so the tool behaves exactly as before.
+PROGRESS_DELAY_S = _progress_delay(os.environ.get("MCP_PROGRESS_DELAY_S"))
+
 mcp = MCPServer("refund-service", log_level=_log_level(os.environ.get("MCP_LOG_LEVEL", "WARNING")))
 
 
@@ -48,7 +66,10 @@ class RefundResult(BaseModel):
 
 @mcp.tool()
 async def issue_refund(
-    order_id: str, amount_cents: int, idempotency_key: str | None = None
+    order_id: str,
+    amount_cents: int,
+    idempotency_key: str | None = None,
+    ctx: Context | None = None,
 ) -> RefundResult:
     """Refund an order. This moves money and must not be repeated for the same order.
 
@@ -58,6 +79,11 @@ async def issue_refund(
         idempotency_key: Optional. A caller-chosen key identifying this one refund
             operation. Calls repeating the same key return the original refund.
     """
+    if PROGRESS_DELAY_S is not None and ctx is not None:
+        # Sent only if the client asked for progress (a progress token); either
+        # way the pause comes before the sink call, so before the commit.
+        await ctx.report_progress(0, 1, "refund started")
+        await asyncio.sleep(PROGRESS_DELAY_S)
     headers = {"Idempotency-Key": idempotency_key} if idempotency_key else {}
     async with httpx.AsyncClient(timeout=60.0) as client:
         response = await client.post(

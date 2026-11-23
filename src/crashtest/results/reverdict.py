@@ -34,7 +34,12 @@ REPO = Path(__file__).resolve().parents[3]
 
 def _status_and_confirmed(experiment: str, t: dict) -> tuple[SubjectStatus, bool]:
     """The subject's status and whether a reported success was confirmed, per runner."""
-    if experiment in ("mcp_refund", "mcp_refund_lost_response", "mcp_resume"):
+    if experiment in (
+        "mcp_refund",
+        "mcp_refund_lost_response",
+        "mcp_resume",
+        "mcp_cut_points",
+    ):
         if t["client_saw_success"]:
             return "completed", True  # a success response, first-hand or replayed
         attempts = t.get("attempts") or []

@@ -30,6 +30,7 @@ FACTORS: dict[str, tuple[str, ...]] = {
     "dbos_crash": ("kill_point", "tool_mode", "key_strategy"),  # 005
     "model_retry": ("model", "framing", "status_tool"),  # 006
     "mcp_resume": ("client_mode", "transport", "fault", "drop_point", "arm"),  # 007
+    "mcp_cut_points": ("client_mode", "transport", "fault", "drop_point", "arm"),  # 008
 }
 
 
@@ -46,6 +47,7 @@ CONDITIONS: dict[str, tuple[str, ...]] = {
     "mcp_refund": ("client_timeout_s", "fault_delay_s"),
     "mcp_single_call": ("subject_timeout_s", "fault_delay_s"),
     "mcp_resume": ("client_timeout_s",),
+    "mcp_cut_points": ("client_timeout_s",),
 }
 
 

@@ -4,7 +4,7 @@ A crash-consistency testbench for AI-agent tool calls.
 
 Agents call tools that move money, send email and write records. When a response is lost or a process dies mid-call, something usually retries — and the effect can happen twice. `agent-crashtest` injects those failures and counts what actually reached the outside world.
 
-**Status: early.** Seven experiments run end to end: two on the reference MCP client, one on three MCP client libraries, one that kills and resumes a LangGraph agent, one that kills and recovers a pydantic-ai agent on DBOS, one on what real models do after a tool reports an unknown outcome, and one on whether the MCP client resumes a dropped stream. Known gaps are listed in [docs/audits/implementation-gap-report.md](docs/audits/implementation-gap-report.md).
+**Status: early.** Eight experiments run end to end: two on the reference MCP client, one on three MCP client libraries, one that kills and resumes a LangGraph agent, one that kills and recovers a pydantic-ai agent on DBOS, one on what real models do after a tool reports an unknown outcome, one on whether the MCP client resumes a dropped stream, and one on cutting the connection before the commit. Known gaps are listed in [docs/audits/implementation-gap-report.md](docs/audits/implementation-gap-report.md).
 
 ## First result
 
@@ -47,6 +47,7 @@ To point your own MCP client at the same tool and fault, see [docs/connect-your-
 - **pydantic-ai on DBOS, killed and recovered (005).** A plain function tool ran again even after it had returned; a `@DBOS.step` or child-workflow tool ran again only when killed mid-call. Every key tested held. With step retries turned on, a late response alone, with no crash, refunded twice. All documented behaviour, not defects. [Write-up](docs/experiments/005-pydantic-ai-dbos.md).
 - **Real models after an unknown outcome (006).** Opus 5.5, Sonnet 5.5 and Haiku 5.5, 930 trials. After "internal server error" with no way to check, Sonnet 5.5 sent the refund again in 34 of 50 trials, refunding twice, and in 32 of those told the user only one refund was made; in every other faulted condition no model re-sent it (0 of 300 for Opus, 0 of 250 for Sonnet, 0 of 300 for Haiku). Given a tool to look up the order's refunds, every model looked them up, before the refund and again after the error, and none re-sent (150 of 150 per model). Every re-sent call repeated the arguments exactly, so an argument-hash key would have caught all of them. [Write-up](docs/experiments/006-model-retry.md); [validation against the sink](docs/experiments/006-validation.md).
 - **Resuming a dropped MCP stream (007).** The reference `mcp` client 2.3.0 resumed a dropped call from a server's event store, and refunded once even with a naive retry, only with the 2025-11-25 protocol (`mode="legacy"`), a stateful SSE server with an event store, and a drop after the stream's priming event (20 of 20 per strategy). With its default settings it negotiates 2026-07-28, which has no resumable streams, and a naive retry refunded twice in every trial. [Write-up](docs/experiments/007-mcp-resume.md).
+- **Cutting the connection before the commit (008).** With the reference `mcp` client 2.3.0 and a tool that reports progress and pauses before its effect, a cut before the request reached the server, or mid-stream while the tool was still working, left no refund from the first attempt, so even a naive retry refunded once (120 of 120 per cut point, on Windows and on Linux). A cut before the request raised the same exception as a cut after the commit, where the naive retry refunded twice: the caller cannot tell the two apart from the error. A cut during the effect itself was not tested. [docs/experiments/008-mcp-cut-points.md](docs/experiments/008-mcp-cut-points.md).
 - **The two durable engines side by side:** [docs/comparison-langgraph-dbos.md](docs/comparison-langgraph-dbos.md).
 
 Across the first five, the one defence that held in every configuration was an idempotency key derived from the business operation and enforced by the database that performs the effect.
@@ -155,7 +156,7 @@ The same checks run in CI on every push: see [CONTRIBUTING.md](CONTRIBUTING.md).
 ruff check src tests; ruff format --check src tests; mypy; pytest --cov
 ```
 
-**Known timing-sensitive tests.** Five connection-drop tests in `tests/test_client_matrix.py` depend on the client's 1.5-second timeout (`FAST` in that file) racing the proxy's cut. On 21 November 2026 they failed once together in a full local run on a loaded Windows machine: the client timed out before the proxy cut the connection. The proxy now keeps one client to the sink for its whole life instead of creating one per commit wait, expires that client's idle connections after 1 second (before the sink's server closes them, after 5 seconds), and retries a sink read once if its connection was dropped. Trials of experiments 002 and 007 record those retries as `sink_retries`; `tests/test_drop_proxy_sink.py` covers the retry and the expiry. If the five tests still fail, rerun them alone before suspecting a regression:
+**Known timing-sensitive tests.** Five connection-drop tests in `tests/test_client_matrix.py` depend on the client's 1.5-second timeout (`FAST` in that file) racing the proxy's cut. On 21 November 2026 they failed once together in a full local run on a loaded Windows machine: the client timed out before the proxy cut the connection. The proxy now keeps one client to the sink for its whole life instead of creating one per commit wait, expires that client's idle connections after 1 second (before the sink's server closes them, after 5 seconds), and retries a sink read once if its connection was dropped. Trials of experiments 002, 003, 007 and 008 record those retries as `sink_retries` (results files written before the field existed, including 008's two runs of record and every 003 file, do not have it); `tests/test_drop_proxy_sink.py` covers the retry and the expiry. If the five tests still fail, rerun them alone before suspecting a regression:
 
 - `test_connection_drop_with_naive_retry_refunds_twice[stateless_json]`
 - `test_connection_drop_with_naive_retry_refunds_twice[stateless_sse]`
@@ -171,7 +172,7 @@ Changes since the first public snapshot are listed in [CHANGELOG.md](CHANGELOG.m
 |---|---|
 | `src/crashtest/sink/` | Sink service and its SQL schema |
 | `src/crashtest/refund_mcp/` | MCP server with the `issue_refund` tool |
-| `src/crashtest/faults/` | Fault proxy that cuts a connection after the effect has committed |
+| `src/crashtest/faults/` | Fault proxy that cuts a connection after the commit, before the request, or mid-stream |
 | `src/crashtest/experiment/` | Trial logic, runners, local stack launcher |
 | `subjects/` | One script per system under test; each runs in its own Python environment |
 | `tests/` | Sink tests, end-to-end MCP tests, unit tests |

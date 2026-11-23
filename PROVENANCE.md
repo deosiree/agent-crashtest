@@ -4,6 +4,8 @@ Every results file in `results/` records the commit of the code that produced it
 
 This repository was published from a snapshot of the private research repository in which the experiments were developed and run. **The commits named in results files belong to that private history and cannot be looked up here.** The results files are unchanged copies, with one exception below: no results file was edited after its run in the research repository.
 
+**Not published:** later confirming re-runs of experiments 002, 007 and 008, cited in `CHANGELOG.md` and the 008 write-up, exist only in the research repository.
+
 **The exception: seven files with one line replaced in this public copy.** Experiment 003's runner records each subject's `pip freeze`, which includes the editable install of this project with the research repository's address. In these seven public copies that address, and only that, is replaced by `<private research repository>`; the commit that follows it is kept. Each copy differs from its original in exactly that one line. The originals are unchanged in the research repository; their SHA-256, as committed there, is:
 
 | File | SHA-256 of the original |

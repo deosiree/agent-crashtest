@@ -6,7 +6,7 @@ Updated 23 November 2026. Each milestone ends with something measured and writte
 
 - [x] Prior work read; extend-or-build decision — `docs/related-work.md`
 - [x] Cited issues re-verified; hypotheses H1–H5 — `docs/evidence-check.md`
-- [x] Reliability contract (now v0.3) — `docs/contract.md`
+- [x] Reliability contract (now v0.4) — `docs/contract.md`
 - [x] MVP architecture — `docs/architecture.md`
 - [x] Sink service with database-enforced idempotency and a lost-response fault
 - [x] Refund MCP server and client trial logic
@@ -18,10 +18,9 @@ Updated 23 November 2026. Each milestone ends with something measured and writte
 
 ## Order of the open work
 
-1. M2: cut the connection mid-stream and before the request arrives, not only after the commit.
-2. M3: attempt to replicate the crash-path result reported in arXiv 2608.03836.
+1. M3: attempt to replicate the crash-path result reported in arXiv 2608.03836.
 
-Done so far, in order: the GitHub Actions experiment workflow (`.github/workflows/experiment.yml`); 003 and 004 on Linux (003: all 18 cells matched; 004: 26 of 27, where under `async` a kill just after the tool refunded twice without a key, and once on Windows); the timeout-to-delay sweep for 001 and 003 (duplicates only above the timeout); a consistency pass that re-judged every results file with no verdict change; M5 (experiment 006, validated against the sink export); and experiment 007 (MCP stream resumption). Experiment 007 also showed that 002's four server settings were one transport on the wire, and that in 003 only CrewAI's two transports differed; both write-ups carry dated notes.
+Done so far, in order: the GitHub Actions experiment workflow (`.github/workflows/experiment.yml`); 003 and 004 on Linux (003: all 18 cells matched; 004: 26 of 27, where under `async` a kill just after the tool refunded twice without a key, and once on Windows); the timeout-to-delay sweep for 001 and 003 (duplicates only above the timeout); a consistency pass that re-judged every results file with no verdict change; M5 (experiment 006, validated against the sink export); experiment 007 (MCP stream resumption); and experiment 008 (connection cuts before the request and mid-stream), which completes M2. Experiment 007 also showed that 002's four server settings were one transport on the wire, and that in 003 only CrewAI's two transports differed; both write-ups carry dated notes.
 
 ## Audit actions
 
@@ -41,7 +40,7 @@ Done so far, in order: the GitHub Actions experiment workflow (`.github/workflow
 - [x] Run the same faults through other MCP clients (CrewAI, Microsoft agent-framework) — `docs/experiments/003-mcp-client-libraries.md`. Result: CrewAI's client resent on a late response and refunded twice, 20 of 20
 - [x] Check whether the CrewAI behaviour is already reported: yes, publicly, as crewAI #8932 (fix PR #8933 open)
 - [x] Stateful SSE server with an event store: does the client resume or replay after a drop? — `docs/experiments/007-mcp-resume.md` (plan: `docs/m2-plan.md`). Result: the reference client resumed and refunded once, even with a naive retry, only under `mode="legacy"` (protocol 2025-11-25) with an event store and a drop after the priming event; by default it negotiates 2026-07-28, which has no resumable streams, and refunded twice
-- [ ] Cut the connection mid-stream and before the request arrives, not only after the commit
+- [x] Cut the connection mid-stream and before the request arrives, not only after the commit — `docs/experiments/008-mcp-cut-points.md` (plan: `docs/m2-cut-points-plan.md`). Result: a cut before the request, or mid-stream before the commit, left no refund from the first attempt, so even a naive retry refunded once (480 trials on each of Windows and Linux); a cut before the request raised the same exception as one after the commit
 
 ## M3 — first framework subject (hypothesis H1)
 
@@ -63,6 +62,7 @@ Done so far, in order: the GitHub Actions experiment workflow (`.github/workflow
 - [x] One run of 005 on Linux in Docker (`docker compose --profile experiments run dbos-crash`): all 36 cells matched the Windows runs
 - [x] Contract v0.2: the stricter `correct`, reviewed against every earlier result first — `docs/audits/contract-v0.2-review.md`
 - [x] Contract v0.3: property RA, `report_matches_sink` beside every verdict; no verdict changed — `docs/audits/contract-v0.3-review.md`
+- [x] Contract v0.4: `fault_confirmed` means the fault fired where its fault point says (for 008's two cuts, before the commit); no verdict or earlier value changed — `docs/audits/contract-v0.4-review.md`
 - [x] Shared checker with `in_doubt_surfaced` and `stuck` verdicts — `src/crashtest/checker.py`
 - [x] Result store in PostgreSQL — `src/crashtest/results/`; `python -m crashtest.results --local load`
 

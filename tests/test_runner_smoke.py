@@ -17,6 +17,7 @@ from __future__ import annotations
 import os
 import sys
 
+import httpx
 import pytest
 
 from crashtest.experiment import langgraph_crash, single_call
@@ -44,6 +45,46 @@ async def test_single_call_runner_one_trial(stack):
     assert (result.subject_outcome, result.effects_committed) == ("ok", 1)
     assert (result.verdict, result.report_matches_sink) == ("correct", True)
     assert result.client.startswith("mcp ")
+    assert result.sink_retries == 0
+
+
+async def test_single_call_records_a_retried_sink_read(stack):
+    # The proxy's first read of the sink fails the way a stale keep-alive
+    # connection does; the 003 record must count the retry.
+    async with DropProxy(upstream_url=stack.mcp_url, sink_url=stack.sink_url) as proxy:
+        real = proxy._sink
+        assert real is not None
+        failed = {"n": 0}
+
+        class FailFirst(httpx.AsyncBaseTransport):
+            async def handle_async_request(self, request: httpx.Request) -> httpx.Response:
+                if failed["n"] == 0:
+                    failed["n"] += 1
+                    raise httpx.RemoteProtocolError("Server disconnected")
+                return await real._transport.handle_async_request(request)
+
+        proxy._sink = httpx.AsyncClient(base_url=stack.sink_url, transport=FailFirst())
+        try:
+            result = await single_call.run_single_call(
+                subject="mcp_sdk", python=sys.executable, transport="stateless_json",
+                fault="connection_drop", mcp_url=stack.mcp_url, sink_url=stack.sink_url,
+                drop_proxy=proxy, subject_timeout_s=10.0, fault_delay_s=0.0,
+                hang_limit_s=60.0, settle_s=0.2,
+            )  # fmt: skip
+            # A second trial on the same proxy, with no failure, records no retry:
+            # the count is per trial, not the proxy's running total.
+            second = await single_call.run_single_call(
+                subject="mcp_sdk", python=sys.executable, transport="stateless_json",
+                fault="connection_drop", mcp_url=stack.mcp_url, sink_url=stack.sink_url,
+                drop_proxy=proxy, subject_timeout_s=10.0, fault_delay_s=0.0,
+                hang_limit_s=60.0, settle_s=0.2,
+            )  # fmt: skip
+        finally:
+            await real.aclose()
+
+    assert failed["n"] == 1
+    assert (result.sink_retries, result.fault_confirmed, result.effects_committed) == (1, True, 1)
+    assert (second.sink_retries, second.fault_confirmed, proxy.sink_retries) == (0, True, 1)
 
 
 async def test_langgraph_crash_runner_one_trial(stack):

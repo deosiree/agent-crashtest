@@ -1,4 +1,4 @@
-"""A TCP proxy that cuts one connection after the effect has committed.
+"""A TCP proxy that cuts one client connection at a chosen point.
 
 It sits between the MCP client and the MCP server and forwards bytes untouched.
 When armed for an order, it watches for the request that mentions that order,
@@ -9,15 +9,23 @@ client never receives a single response byte for that call.
 This is the "connection drop" form of the lost-response fault: the response is
 not late, it is gone.
 
-Two drop points (experiment 007 added the second):
+Four drop points (experiment 007 added the second, 008 the last two):
 
-  no_bytes       nothing the server sends on the connection reaches the client
-                 (experiments 002 and 003)
-  after_headers  the response headers, and every complete SSE event that carries
-                 no JSON-RPC message (an event store's priming event), reach the
-                 client; from the first JSON-RPC message on, nothing does. The
-                 cut comes when that message arrives from the server, which is
-                 after the commit, and is still checked against the sink.
+  no_bytes        nothing the server sends on the connection reaches the client;
+                  the cut waits for the commit (experiments 002 and 003)
+  after_headers   the response headers, and every complete SSE event that carries
+                  no JSON-RPC message (an event store's priming event), reach the
+                  client; from the first JSON-RPC message on, nothing does. The
+                  cut comes when that message arrives from the server, which is
+                  after the commit, and is still checked against the sink.
+  before_request  the client's bytes that carry the call are never forwarded:
+                  the server does not receive the request, and nothing commits.
+                  The cut comes at once; the sink is read to check it is empty.
+  mid_stream      the response headers and complete SSE events reach the client
+                  up to and including the first JSON-RPC notification (a
+                  progress event); the cut comes right after it, without waiting
+                  for anything. A response arriving first is withheld, and the
+                  record says so. The sink is read at the cut.
 
 The proxy also counts client requests that carry a `Last-Event-ID` header: a
 client resuming a stream, as the 2025-11-25 MCP transport describes.
@@ -34,8 +42,10 @@ from urllib.parse import urlsplit
 
 import httpx
 
-DropPoint = Literal["no_bytes", "after_headers"]
-DROP_POINTS: tuple[DropPoint, ...] = ("no_bytes", "after_headers")
+DropPoint = Literal["no_bytes", "after_headers", "before_request", "mid_stream"]
+DROP_POINTS: tuple[DropPoint, ...] = ("no_bytes", "after_headers", "before_request", "mid_stream")
+# The points that cut after the commit, and wait for it.
+AFTER_COMMIT_POINTS: tuple[DropPoint, ...] = ("no_bytes", "after_headers")
 
 # Any JSON-RPC message carries this member; headers and priming events do not.
 _JSONRPC_MARKER = b'"jsonrpc"'
@@ -60,6 +70,38 @@ def forwardable_prefix(buffer: bytes) -> tuple[int, bool]:
         if index != -1:
             end = max(end, index + len(sep))
     return end, marker != -1
+
+
+_BLOCK_ENDS = (b"\r\n\r\n", b"\n\n")
+
+
+def _block_end(buffer: bytes, start: int) -> int:
+    """End of the blank-line-terminated block containing `start`, or -1 if incomplete."""
+    ends = [i + len(sep) for sep in _BLOCK_ENDS if (i := buffer.find(sep, start)) != -1]
+    return min(ends) if ends else -1
+
+
+def mid_stream_prefix(buffer: bytes) -> tuple[int, str | None]:
+    """How much of the server's bytes the `mid_stream` drop point lets through.
+
+    Returns (end, first). `first` is None while no complete JSON-RPC message has
+    arrived, and `end` is then what `forwardable_prefix` lets through. It is
+    "notification" when the first message carries a method and no result or
+    error: that message is let through, `end` being the end of its event. It is
+    "response" when the first message is a result or an error: that is held
+    back, `end` being the end of the last block before it.
+    """
+    marker = buffer.find(_JSONRPC_MARKER)
+    if marker == -1:
+        return forwardable_prefix(buffer)[0], None
+    message_end = _block_end(buffer, marker)
+    before, _ = forwardable_prefix(buffer[:marker])
+    if message_end == -1:
+        return before, None
+    message = buffer[marker:message_end]
+    if b'"method"' in message and b'"result"' not in message and b'"error"' not in message:
+        return message_end, "notification"
+    return before, "response"
 
 
 def count_event_ids(data: bytes) -> int:
@@ -108,6 +150,40 @@ class DropRecord:
     # What reached the client on the cut connection after the call was sent.
     bytes_forwarded: int = 0
     event_ids_forwarded: int = 0
+    # Experiment 008. before_request: the client's bytes carrying the call were
+    # not forwarded. mid_stream: JSON-RPC notifications let through, and whether
+    # the response was (it never is: a response arriving first is withheld).
+    request_withheld: bool = False
+    notifications_forwarded: int = 0
+    response_forwarded: bool = False
+    # The sink's request log and refunds for the order, read at the cut (the
+    # before_request and mid_stream points; None for the after-commit points,
+    # which wait for the commit instead).
+    sink_requests_at_cut: int | None = None
+    sink_refunds_at_cut: int | None = None
+
+    def landed_as_intended(self) -> bool:
+        """Did the cut land where its drop point says (the trial's `fault_confirmed`)?
+
+        After-commit points: the sink held the refund when the connection was cut.
+        before_request: the call was withheld and the sink had neither a request
+        nor a refund for the order at the cut. mid_stream: at least one
+        notification reached the client, the response did not, and the sink held
+        no refund at the cut.
+        """
+        if self.drop_point in AFTER_COMMIT_POINTS:
+            return self.committed_before_drop
+        if self.drop_point == "before_request":
+            return (
+                self.request_withheld
+                and self.sink_requests_at_cut == 0
+                and self.sink_refunds_at_cut == 0
+            )
+        return (
+            self.notifications_forwarded >= 1
+            and not self.response_forwarded
+            and self.sink_refunds_at_cut == 0
+        )
 
 
 # The proxy's client to the sink drops idle connections after this long, well before
@@ -177,6 +253,11 @@ class DropProxy:
             await self._sink.aclose()
             self._sink = None
 
+    def _sink_client(self) -> httpx.AsyncClient:
+        if self._sink is None:  # used outside `async with`: open one and keep it
+            self._sink = _new_sink_client(self.sink_url)
+        return self._sink
+
     def arm(self, order_id: str, drop_point: DropPoint = "no_bytes") -> None:
         """Drop the next connection that carries a request for this order."""
         if drop_point not in DROP_POINTS:
@@ -228,6 +309,22 @@ class DropProxy:
                         if target["order"] is None and wire in self._armed:
                             target["point"] = self._armed.pop(wire)
                             target["order"] = order_id
+                if target["point"] == "before_request" and target["order"] is not None:
+                    # The bytes carrying the call stop here; the server never sees them.
+                    order = target["order"]
+                    requests, refunds = await self._read_sink(order)
+                    self.drops.append(
+                        DropRecord(
+                            order,
+                            committed_before_drop=refunds > 0,
+                            bytes_withheld=len(data),
+                            drop_point="before_request",
+                            request_withheld=True,
+                            sink_requests_at_cut=requests,
+                            sink_refunds_at_cut=refunds,
+                        )
+                    )
+                    return  # the finally block below aborts both sides
                 up_writer.write(data)
                 await up_writer.drain()
 
@@ -241,6 +338,34 @@ class DropProxy:
                     writer.write(data)
                     await writer.drain()
                     continue
+                if target["point"] == "mid_stream":
+                    pending += data
+                    end, first = mid_stream_prefix(pending)
+                    if end:
+                        writer.write(pending[:end])
+                        await writer.drain()
+                        forwarded += end
+                        event_ids += count_event_ids(pending[:end])
+                        pending = pending[end:]
+                    if first is None:
+                        continue
+                    # Cut now, whatever the server is doing: no wait for a commit.
+                    requests, refunds = await self._read_sink(order)
+                    self.drops.append(
+                        DropRecord(
+                            order,
+                            committed_before_drop=refunds > 0,
+                            bytes_withheld=len(pending),
+                            drop_point="mid_stream",
+                            bytes_forwarded=forwarded,
+                            event_ids_forwarded=event_ids,
+                            notifications_forwarded=int(first == "notification"),
+                            response_forwarded=False,
+                            sink_requests_at_cut=requests,
+                            sink_refunds_at_cut=refunds,
+                        )
+                    )
+                    return
                 if target["point"] == "after_headers":
                     pending += data
                     end, found = forwardable_prefix(pending)
@@ -279,11 +404,6 @@ class DropProxy:
             # abort(), not close(): nothing buffered is flushed to the client.
             writer.transport.abort()
             up_writer.transport.abort()
-
-    def _sink_client(self) -> httpx.AsyncClient:
-        if self._sink is None:  # used outside `async with`: open one and keep it
-            self._sink = _new_sink_client(self.sink_url)
-        return self._sink
 
     async def _sink_get(self, order_id: str) -> httpx.Response:
         """GET /refunds for the order, retried once if the connection was dropped.

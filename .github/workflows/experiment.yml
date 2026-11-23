@@ -26,6 +26,7 @@ on:
           - 004-langgraph
           - 005-dbos
           - 007-mcp-resume
+          - 008-mcp-cut-points
       extra_args:
         description: Extra runner arguments; later flags override the defaults
         required: false
@@ -92,6 +93,8 @@ jobs:
                    --trials 10 --out-dir results/dbos_crash_linux" ;;
             007-mcp-resume)
               cmd="crashtest.experiment.resume --trials 20 --out-dir results/mcp_resume_linux" ;;
+            008-mcp-cut-points)
+              cmd="crashtest.experiment.cut_points --trials 10 --out-dir results/mcp_cut_points_linux" ;;
             *) echo "unknown experiment $EXPERIMENT"; exit 1 ;;
           esac
           # $cmd and $EXTRA_ARGS are split into words on purpose.

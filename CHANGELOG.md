@@ -1,5 +1,17 @@
 # Changelog
 
+## Third public snapshot
+
+Experiment 008, contract version 0.4, and `sink_retries` for experiment 003. No earlier verdict or results file changed.
+
+**Experiment 008: a connection cut before the request, and mid-stream.** The write-up, its pre-registered plan, the runner (`src/crashtest/experiment/cut_points.py`), its tests (`tests/test_cut_points.py`), the experiment workflow option, and the two runs of record (Windows and Linux, 480 trials each; every one of 48 cells matched its prediction on both). The proxy gains two cut points, `before_request` and `mid_stream`; the MCP server can send a progress event and pause before its effect; the local stack serves two stateful SSE servers that do.
+
+**Contract version 0.4.** `fault_confirmed` now means the fault fired where its fault point says, decided for every connection drop by `DropRecord.landed_as_intended`. For 008's two new cuts that is before the commit. For experiments 001 to 007 every fault point is after the commit, so no earlier value or verdict changes (`docs/audits/contract-v0.4-review.md`).
+
+**`sink_retries` for experiment 003.** Its records now carry the field, as 002 and 007's do. A new test fails the proxy's first sink read and checks that a 003 trial counts the retry. Earlier 003 files do not have it.
+
+**Evidence: 008 and the proxy change.** 008's runs of record used the proxy from before the second snapshot's fix. Two re-runs on the maintainer's development tree, one after each of the proxy's two changes, matched every one of the 48 cells at 5 trials per cell (the runs of record used 10). That shows no outcome changed at that sample size, not a rate. In the second re-run, two trials' second attempts hung for 130.8 s and 40.4 s while the laptop was in Windows Modern Standby; their outcomes were unaffected. The re-runs are not published (`PROVENANCE.md`).
+
 ## Second public snapshot
 
 A harness fix and tests. No experiment, result or contract text changed: `docs/contract.md` is still v0.3, and every results file is unchanged.

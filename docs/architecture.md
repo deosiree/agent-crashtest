@@ -26,7 +26,7 @@ Two more runners use the same sink and proxy: `single_call` runs one tool call t
 | Sink | `src/crashtest/sink/` | Fake payments API. Records every refund and every request. Enforces idempotency keys with a unique index. Injects the lost-response fault. |
 | Refund MCP server | `src/crashtest/refund_mcp/` | One tool, `issue_refund`. Forwards the optional key to the sink. Adds no deduplication of its own. |
 | Checker | `src/crashtest/checker.py` | The one place a verdict is decided, from the sink's count and the subject's final status. |
-| Fault proxy | `src/crashtest/faults/drop_proxy.py` | Sits between a client and the MCP server. Counts the tool calls the client sent, and when armed cuts the connection after the sink has committed. |
+| Fault proxy | `src/crashtest/faults/drop_proxy.py` | Sits between a client and the MCP server. Counts the tool calls the client sent, and when armed cuts the connection: after the sink has committed, or (experiment 008) before the request reaches the server, or mid-stream before the commit. |
 | Trial | `src/crashtest/experiment/trial.py` | One logical operation under one retry strategy and one fault. |
 | Runner | `src/crashtest/experiment/run.py` | Runs every (transport, fault, strategy) cell and writes a results file with versions and parameters. |
 | Single-call runner | `src/crashtest/experiment/single_call.py` | One tool call through an external client library; counts the requests it became. |
@@ -59,7 +59,7 @@ Not in the MVP: the scoreboard site, nightly CI matrix, real-model studies, and 
 | Fault trigger | Armed per order in the database; consumed only by a request that creates an effect | Deterministic. The fault fires after the commit, so the window being tested is exact. A replay or a conflict commits nothing new and leaves the fault armed. |
 | Fault record | Each request-log row says whether a fault was applied to it | A results file can then show the fault fired, instead of inferring it from the client's timeout. |
 | K2 simulation | Delay the response past the client timeout | Portable, needs no socket tricks, and is indistinguishable from a lost response at the caller. |
-| Connection drop | A TCP proxy in the runner's process, armed in memory, not in the database | The sink cannot cut a connection between two other parties. The proxy asks the sink whether the refund has committed before it cuts, and records each drop. |
+| Connection drop | A TCP proxy in the runner's process, armed in memory, not in the database | The sink cannot cut a connection between two other parties. For a cut after the commit, the proxy asks the sink whether the refund has committed before it cuts; for 008's two cuts it reads the sink at the cut. It records each drop. |
 | Second counting point | The proxy counts the tool calls each client sent | Requests are otherwise counted only at the sink, two hops from the client. The second count separates "the client resent" from "a request never arrived". |
 | Ground-truth read | Twice per trial, with a short pause between | A request that timed out with no fault may still be in flight at the first read. A change between the reads is recorded. |
 | MCP transport | Streamable HTTP; stateless with JSON responses by default | Removes sessions and streaming from the first experiment so that only retry behaviour varies. Experiment 002 adds stateful sessions and SSE. |

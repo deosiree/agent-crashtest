@@ -55,6 +55,9 @@ class Attempt:
     raised: str | None = None  # the exception type behind a failed attempt
     # The MCP protocol version the client negotiated, if it connected.
     protocol: str | None = None
+    # Experiment 008: progress notifications the client delivered to its callback
+    # during this attempt (None when the trial did not ask for progress).
+    progress_seen: int | None = None
 
 
 @dataclass
@@ -171,6 +174,13 @@ def _describe(exc: BaseException) -> str:
     return type(exc).__name__ + (f"[{code}]" if code is not None else "")
 
 
+def _progress_counter(attempt: Attempt):
+    async def on_progress(progress: float, total: float | None, message: str | None) -> None:
+        attempt.progress_seen = (attempt.progress_seen or 0) + 1
+
+    return on_progress
+
+
 def _key_for_attempt(arm: Arm, operation_key: str) -> str | None:
     if arm == "no_dedup":
         return None
@@ -197,6 +207,7 @@ async def run_trial(
     settle_s: float = 0.3,
     client_mode: Literal["auto", "legacy"] = "auto",
     drop_point: DropPoint = "no_bytes",
+    progress: bool = False,
 ) -> TrialResult:
     order_id = f"ord-{uuid.uuid4()}"
     operation_key = f"refund-{order_id}"
@@ -237,13 +248,21 @@ async def run_trial(
 
             started = time.perf_counter()
             attempt = Attempt(number=number, idempotency_key=key, outcome="", elapsed_s=0.0)
+            if progress:
+                attempt.progress_seen = 0
+            # Experiment 008: asking for progress gives the call a progress token,
+            # so a server that reports progress puts an event on the stream.
+            on_progress = _progress_counter(attempt) if progress else None
             try:
                 # A fresh connection per attempt: the retry does not depend on
                 # whatever state a timed-out session was left in.
                 async with Client(mcp_url, mode=client_mode) as client:
                     attempt.protocol = client.session.protocol_version
                     result = await client.call_tool(
-                        "issue_refund", arguments, read_timeout_seconds=client_timeout_s
+                        "issue_refund",
+                        arguments,
+                        read_timeout_seconds=client_timeout_s,
+                        progress_callback=on_progress,
                     )
                 if result.is_error:
                     attempt.outcome = "error:tool_error"
@@ -282,8 +301,11 @@ async def run_trial(
     if fault == "lost_response":
         fault_confirmed = any(r.get("fault_applied") for r in truth["requests"])
     elif fault == "connection_drop" and drop_proxy is not None:
+        # Where the drop point says: after the commit for 002's and 007's points;
+        # before anything reached the server, or mid-stream before the commit, for
+        # 008's (crashtest.faults.drop_proxy.DropRecord.landed_as_intended).
         fault_confirmed = any(
-            d.order_id == order_id and d.committed_before_drop
+            d.order_id == order_id and d.landed_as_intended()
             for d in drop_proxy.drops[drops_before:]
         )
 

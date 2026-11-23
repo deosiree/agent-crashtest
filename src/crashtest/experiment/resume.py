@@ -29,7 +29,7 @@ from typing import Literal
 from crashtest.experiment.crash_common import provenance
 from crashtest.experiment.run import recheck_at_end
 from crashtest.experiment.trial import ARMS, Fault, TrialResult, run_trial
-from crashtest.faults.drop_proxy import DROP_POINTS, DropPoint, DropProxy
+from crashtest.faults.drop_proxy import DropPoint, DropProxy
 
 REPO = Path(__file__).resolve().parents[3]
 
@@ -50,7 +50,9 @@ class FaultCell:
 
 FAULT_CELLS: tuple[FaultCell, ...] = (
     FaultCell("none", None),
-    *(FaultCell("connection_drop", point) for point in DROP_POINTS),
+    # 007's two drop points only; 008 (cut_points.py) has its own.
+    FaultCell("connection_drop", "no_bytes"),
+    FaultCell("connection_drop", "after_headers"),
 )
 
 SUMMARY_COLUMNS = (

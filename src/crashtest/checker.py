@@ -1,7 +1,7 @@
 """The one place a verdict is decided. Every runner calls `classify`.
 
 The verdicts and their meanings are defined in docs/contract.md, section 3
-(contract version 0.3). The effect count and the effect payloads come from the
+(contract version 0.4). The effect count and the effect payloads come from the
 sink. The subject's own account of what happened is used only to tell the
 non-duplicate cases apart; it can never turn a duplicate into anything else.
 

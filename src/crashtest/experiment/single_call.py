@@ -79,10 +79,14 @@ class SingleCallResult:
     verdict: str = ""
     # Tool calls the client put on the wire, counted at the proxy.
     client_requests: int = 0
-    # Whether the injected fault is known to have fired after the commit.
+    # Whether the injected fault is known to have fired where its fault point says
+    # (contract v0.4); for this runner's faults, that is after the commit.
     fault_confirmed: bool | None = None
     # What the subject told its caller agrees with the sink (contract v0.3, RA).
     report_matches_sink: bool | None = None
+    # The proxy's sink reads retried after a dropped keep-alive connection, in this
+    # trial. Results files written before this field existed do not have it.
+    sink_retries: int | None = None
 
 
 async def run_single_call(
@@ -106,6 +110,7 @@ async def run_single_call(
     mcp_url = drop_proxy.url
     drop_proxy.watch(order_id)
     drops_before = len(drop_proxy.drops)
+    sink_retries_before = drop_proxy.sink_retries
 
     async with httpx.AsyncClient(base_url=sink_url, timeout=30.0) as sink:
         if fault == "lost_response":
@@ -150,12 +155,14 @@ async def run_single_call(
         truth = r.json()
 
     client_requests = drop_proxy.unwatch(order_id)
+    # The proxy's sink reads that were retried after a dropped connection.
+    sink_retries = drop_proxy.sink_retries - sink_retries_before
     fault_confirmed: bool | None = None
     if fault == "lost_response":
         fault_confirmed = any(q.get("fault_applied") for q in truth["requests"])
     elif fault == "connection_drop":
         fault_confirmed = any(
-            d.order_id == order_id and d.committed_before_drop
+            d.order_id == order_id and d.landed_as_intended()
             for d in drop_proxy.drops[drops_before:]
         )
     # A subject that raises has told its caller it does not know the outcome; one
@@ -189,6 +196,7 @@ async def run_single_call(
         ),
         client_requests=client_requests,
         fault_confirmed=fault_confirmed,
+        sink_retries=sink_retries,
         report_matches_sink=report_matches_sink(
             effects=len(truth["refunds"]), intended=1, report=told
         ),

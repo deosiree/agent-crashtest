@@ -34,7 +34,25 @@ DEFAULT_TRANSPORT = "stateless_json"
 EVENT_STORE_TRANSPORTS: dict[str, tuple[bool, bool]] = {
     "stateful_sse_store": (False, False),
 }
-SERVED_TRANSPORTS: dict[str, tuple[bool, bool]] = {**TRANSPORTS, **EVENT_STORE_TRANSPORTS}
+
+# Experiment 008: the stateful SSE servers of 007 again, with a tool that sends one
+# progress notification and then pauses this long before it calls the sink, so
+# that a connection can be cut mid-stream before the commit. Kept apart for the
+# same reason as above.
+PROGRESS_DELAY_S = 3.0
+PROGRESS_TRANSPORTS: dict[str, tuple[bool, bool]] = {
+    "stateful_sse_progress": (False, False),
+    "stateful_sse_store_progress": (False, False),
+}
+SERVED_TRANSPORTS: dict[str, tuple[bool, bool]] = {
+    **TRANSPORTS,
+    **EVENT_STORE_TRANSPORTS,
+    **PROGRESS_TRANSPORTS,
+}
+
+
+def _has_event_store(name: str) -> bool:
+    return name in EVENT_STORE_TRANSPORTS or name == "stateful_sse_store_progress"
 
 
 @dataclass
@@ -137,7 +155,10 @@ def local_stack(
                         "MCP_PORT": str(mcp_ports[name]),
                         "MCP_STATELESS": str(stateless).lower(),
                         "MCP_JSON_RESPONSE": str(json_response).lower(),
-                        "MCP_EVENT_STORE": str(name in EVENT_STORE_TRANSPORTS).lower(),
+                        "MCP_EVENT_STORE": str(_has_event_store(name)).lower(),
+                        "MCP_PROGRESS_DELAY_S": (
+                            str(PROGRESS_DELAY_S) if name in PROGRESS_TRANSPORTS else ""
+                        ),
                     },
                 )
             )
