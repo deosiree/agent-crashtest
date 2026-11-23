@@ -1,6 +1,6 @@
 # Remaining research gaps
 
-As of 16 November 2026. Earlier findings: [related-work.md](related-work.md), [evidence-check.md](evidence-check.md).
+As of 16 November 2026. **Note, 23 November 2026:** written before experiments 006 to 008 and parts of it are out of date; for what has been done since, see [ROADMAP.md](../ROADMAP.md) and [CHANGELOG.md](../CHANGELOG.md). Earlier findings: [related-work.md](related-work.md), [evidence-check.md](evidence-check.md).
 
 ## Originality: where the project stands
 

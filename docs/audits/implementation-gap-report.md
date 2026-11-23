@@ -133,6 +133,8 @@ Architecture §2 lists a "Result store: PostgreSQL tables for runs and trials". 
 
 ## 4. Missing components (architecture §2)
 
+**Status note, 23 November 2026:** this section records the state at the audit. Since then the checker (`src/crashtest/checker.py`), the result store (`src/crashtest/results/`) and the pydantic-ai + DBOS subject (experiment 005) have been built, and the LangGraph subject was run (experiment 004). The scripted LLM is still in-process, and the injector still kills a host process.
+
 | Piece | Status | Notes |
 |---|---|---|
 | Scripted LLM | **Different from design** | Specified as an "OpenAI-compatible server". Implemented as an in-process scripted model inside `subjects/langgraph_refund_agent.py`. It cannot be reused by a subject in another framework. |
@@ -146,7 +148,7 @@ Architecture §2 lists a "Result store: PostgreSQL tables for runs and trials". 
 1. **Order.** Architecture §2 says the pieces are added "in order": scripted LLM, injector, subjects, checker, result store. A subject and a kill harness were written before the checker, which is how the verdict logic came to be copied a third time.
 2. **M2 is recorded as open but is done.** `ROADMAP.md` still lists "Run the same faults through other MCP clients" as unchecked. Experiment 003 did it.
 3. **M3 items skipped.** The roadmap's M3 begins with "Read and quote LangGraph's durability documentation" and "evaluate an existing mock before writing one". Neither is recorded. The durability modes were read from the installed package's docstrings, not the documentation. The replication of arXiv 2608.03836 has not been attempted.
-4. **A result about another project.** Experiment 003 names a defect in CrewAI. Contract §7 rule 4 and the roadmap both require sharing the reproduction with maintainers before publishing. The repository is private, so nothing has been published; the write-up says so.
+4. **A result about another project.** Experiment 003 names a defect in CrewAI. Contract §7 rule 4 and the roadmap both require sharing the reproduction with maintainers before publishing. The repository is private, so nothing has been published; the write-up says so. (Note, 23 November 2026: the repository has since been made public; the CrewAI behaviour was already public as crewAI issue #8932.)
 
 ## 6. Uncommitted work at the time of the audit
 

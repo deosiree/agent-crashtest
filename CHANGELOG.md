@@ -1,5 +1,13 @@
 # Changelog
 
+## Fourth public snapshot
+
+A results table and documentation fixes. No experiment, results file, verdict or contract text changed.
+
+**Results tables.** `python -m crashtest.results.table --write` writes a summary table into the README (one row per experiment, machine and run conditions) and every cell into `docs/results.md`, from the run files listed in `results/PUBLIC_RUNS.txt` and only for experiments 001 to 008. Verdicts are re-derived with the current checker, taking every refund's amount as correct (amounts can be checked only against the sink database, with `python -m crashtest.results.reverdict`); they differ from the recorded verdicts in 0 trials. Experiment 006 shows its recorded verdicts and links its hand-checked corrections. Rows never pool machines or run conditions. A test checks that both tables match the results files.
+
+**Documentation.** Status updates to `docs/architecture.md` (the result store and the DBOS subject exist), a dated note on `docs/research-gaps.md`, a status note on section 4 of the implementation gap report, the arXiv replication marked not scheduled in the roadmap, and in the README a note that 008 did not test a silent drop and a date on the 19-test check.
+
 ## Third public snapshot
 
 Experiment 008, contract version 0.4, and `sink_retries` for experiment 003. No earlier verdict or results file changed.

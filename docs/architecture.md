@@ -42,11 +42,11 @@ The pieces still to add, in order:
 |---|---|---|
 | Scripted LLM | OpenAI-compatible server returning scripted tool calls, so agent runs are deterministic and free | New. **Interim:** an in-process scripted model inside the LangGraph subject, which other frameworks cannot reuse |
 | Injector | Runs a subject in a container and kills it at K1, K3, K4, K5 | Extends the sink-side K2 fault. **Interim:** `langgraph_crash` kills a host process at two points |
-| Subjects | LangGraph + PostgreSQL saver; pydantic-ai + DBOS with a plain tool and with a `@DBOS.step` tool | New; each wraps the same scenarios. **LangGraph exists; pydantic-ai + DBOS does not** |
+| Subjects | LangGraph + PostgreSQL saver; pydantic-ai + DBOS with a plain tool and with a `@DBOS.step` tool | New; each wraps the same scenarios. **Both exist** (004 and 005; status updated 23 November 2026) |
 | Checker | Shared verdict logic for all subjects, including `in_doubt_surfaced` and `stuck` | **Done:** `src/crashtest/checker.py` |
-| Result store | PostgreSQL tables for runs and trials, replacing loose JSON files | Extends the runner. Not started |
+| Result store | PostgreSQL tables for runs and trials, replacing loose JSON files | Extends the runner. **Done:** `src/crashtest/results/` (status updated 23 November 2026) |
 
-Not in the MVP: the scoreboard site, nightly CI matrix, real-model studies, and the live demo.
+Not in the MVP: the scoreboard site, nightly CI matrix, real-model studies, and the live demo. (23 November 2026: one real-model study was run anyway, experiment 006, and the README now has a generated results table; the scoreboard site, nightly matrix and live demo are still not built.)
 
 ## 3. Decisions
 

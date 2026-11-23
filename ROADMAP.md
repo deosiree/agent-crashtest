@@ -18,7 +18,7 @@ Updated 23 November 2026. Each milestone ends with something measured and writte
 
 ## Order of the open work
 
-1. M3: attempt to replicate the crash-path result reported in arXiv 2608.03836.
+1. M3: replicating the crash-path result reported in arXiv 2608.03836 is not scheduled.
 
 Done so far, in order: the GitHub Actions experiment workflow (`.github/workflows/experiment.yml`); 003 and 004 on Linux (003: all 18 cells matched; 004: 26 of 27, where under `async` a kill just after the tool refunded twice without a key, and once on Windows); the timeout-to-delay sweep for 001 and 003 (duplicates only above the timeout); a consistency pass that re-judged every results file with no verdict change; M5 (experiment 006, validated against the sink export); experiment 007 (MCP stream resumption); and experiment 008 (connection cuts before the request and mid-stream), which completes M2. Experiment 007 also showed that 002's four server settings were one transport on the wire, and that in 003 only CrewAI's two transports differed; both write-ups carry dated notes.
 
@@ -50,7 +50,7 @@ Done so far, in order: the GitHub Actions experiment workflow (`.github/workflow
 - [x] LangGraph + PostgreSQL saver subject; kills during and after the tool call — `docs/experiments/004-langgraph-crash-resume.md`
 - [x] Close the P1 gaps in `docs/audits/implementation-gap-report.md`; 004 re-run with the shared checker, same counts
 - [x] Remaining gaps in that report: G5, G7, G9–G11, and the end-of-run re-read from G4
-- [ ] Attempt to replicate the crash-path result reported in arXiv 2608.03836
+- [ ] Attempt to replicate the crash-path result reported in arXiv 2608.03836: not scheduled
 
 ## M4 — durable-engine axis (hypothesis H2)
 
