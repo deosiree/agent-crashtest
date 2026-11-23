@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "agent-crashtest"
-version = "0.0.1"
+version = "0.1.0"
 description = "Crash-consistency testbench for AI-agent tool calls"
 requires-python = ">=3.12"
 license = "MIT"
@@ -16,7 +16,12 @@ dependencies = [
     "psycopg[binary,pool]>=3.2",
 ]
 
+[project.scripts]
+crashtest = "crashtest.cli:main"
+
 [project.optional-dependencies]
+# A pip-installable PostgreSQL, so `crashtest serve` runs without Docker.
+local = ["pgserver>=0.1.4"]
 # Experiment 006 (M5) calls the Anthropic API. Not needed for anything else.
 m5 = ["anthropic"]
 # pytest, plus a pip-installable PostgreSQL for running without Docker.

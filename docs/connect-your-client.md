@@ -23,6 +23,19 @@ python -m crashtest.experiment.run --local --faults lost_response --arms stable_
 
 The verdicts come from the project's checker (`crashtest.checker`), applied to the sink's counts. Every trial, with its verdict, is in the JSON file written to `demo-results/`. Re-checked on Windows on 24 November 2026: the same counts.
 
+## With the `crashtest` command
+
+Install the project with its local extra (`pip install "agent-crashtest[local] @ git+https://github.com/munendra07-tech/agent-crashtest@v0.1.0"`, or `pip install -e ".[local]"` from a clone), then:
+
+| Step | Command | What it does |
+|---|---|---|
+| 1 | `crashtest serve` | Starts PostgreSQL, the sink and the MCP server on free ports, prints their URLs, and runs until Ctrl+C. It writes the URLs to `.crashtest-stack.json` in the current folder, so the commands below find the sink |
+| 2 | `crashtest arm ORDER_ID --delay 5` | The next refund for `ORDER_ID` commits, then its response is held for 5 seconds |
+| 3 | (your client) | Calls `issue_refund` on the printed MCP URL, with a timeout shorter than the delay |
+| 4 | `crashtest verdict ORDER_ID --report done` | Reads the sink and prints the refunds committed, the checker's verdict, and whether what your client said (`--report`) agrees with the sink. Exits 0 only for `correct`; `--json` prints one JSON object |
+
+`arm` and `verdict` take `--sink-url` (or the `CRASHTEST_SINK_URL` environment variable) to use another sink, such as the Docker Compose stack's `http://localhost:8101`. The sections below do the same steps by hand, with `curl` and Python.
+
 ## 1. Start the stack
 
 **With Docker:**

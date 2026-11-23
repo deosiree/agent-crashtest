@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.0: the crash-test connector
+
+A developer can now install agent-crashtest and crash-test their own MCP client in four commands. No experiment, results file or contract text changed.
+
+- **`crashtest serve`** starts PostgreSQL, the sink and the MCP server with its fake `issue_refund` tool on this machine, and prints their URLs.
+- **`crashtest arm ORDER_ID`** makes the next refund for an order lose its response: the sink commits it, then holds the response past the client's timeout.
+- **`crashtest verdict ORDER_ID`** reads the sink and prints how many refunds were committed, the checker's verdict, and whether the client's report agrees with the sink. It exits 0 only for `correct`.
+- **`pip install "agent-crashtest[local]"`**: the `local` extra installs a pip-packaged PostgreSQL, so no Docker is needed.
+- The README opens with a "Use it" section, and `docs/connect-your-client.md` leads with the commands.
+
 ## Fifth public snapshot
 
 Documentation only: the local MCP refund server as a connector a developer can run. No code, experiment, results file or contract text changed.

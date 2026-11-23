@@ -6,6 +6,42 @@ Agents call tools that move money, send email and write records. When a response
 
 **Status: early.** Eight experiments run end to end: two on the reference MCP client, one on three MCP client libraries, one that kills and resumes a LangGraph agent, one that kills and recovers a pydantic-ai agent on DBOS, one on what real models do after a tool reports an unknown outcome, one on whether the MCP client resumes a dropped stream, and one on cutting the connection before the commit. Known gaps are listed in [docs/audits/implementation-gap-report.md](docs/audits/implementation-gap-report.md).
 
+## Use it: crash-test your own MCP client
+
+agent-crashtest runs a fake refund tool over MCP on your machine. Point your own MCP client or agent at it, make the tool's response go missing, and see whether your client refunded once, twice or not at all. No real money moves and nothing is hosted: the tool writes a row to a local test database.
+
+Install (Python 3.12 or later; no Docker needed):
+
+```powershell
+pip install "agent-crashtest[local] @ git+https://github.com/munendra07-tech/agent-crashtest@v0.1.0"
+```
+
+Then:
+
+1. **Start the server and the sink**, and leave it running. It prints the MCP server's URL:
+
+   ```powershell
+   crashtest serve
+   ```
+
+2. **In another terminal, in the same folder, arm the fault** for an order ID you choose. The next refund for it commits, then its response is held for 5 seconds:
+
+   ```powershell
+   crashtest arm ord-123 --delay 5
+   ```
+
+3. **From your client, call the tool** `issue_refund` with `order_id="ord-123"` and `amount_cents=2500`, with a client timeout shorter than 5 seconds, and let your client do whatever it does: retry, give up or report.
+
+4. **Ask for the verdict**, saying what your client told its caller (`done`, `unknown`, `not_done` or `none`):
+
+   ```powershell
+   crashtest verdict ord-123 --report done
+   ```
+
+   It prints how many refunds the sink committed, the verdict (`correct`, `duplicate`, ...) and whether your client's report agrees with the sink. It exits 0 only for `correct`, so you can use it in your own tests.
+
+The tool's arguments, the idempotency key, two worked examples (an unsafe retry and a stable key) and the same steps by hand: [docs/connect-your-client.md](docs/connect-your-client.md).
+
 ## First result
 
 A refund issued through an MCP tool, where the server commits the refund and the response is lost:

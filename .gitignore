@@ -13,3 +13,6 @@ htmlcov/
 .mypy_cache/
 .ruff_cache/
 demo-results/
+# Written by `crashtest serve`
+.crashtest-stack.json
+.crashtest-pgdata/
