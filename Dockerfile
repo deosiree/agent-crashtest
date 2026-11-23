@@ -6,6 +6,8 @@ WORKDIR /app
 
 COPY pyproject.toml ./
 COPY src ./src
+# pyproject.toml installs examples/ as crashtest/examples (the example agents).
+COPY examples ./examples
 RUN pip install --no-cache-dir .
 
 # Run as an unprivileged user.

@@ -20,6 +20,8 @@ RUN sed -i '/^pywin32==/d' /tmp/req/*.txt \
 # The harness. PYTHONPATH puts /app/src first so the runners find /app/subjects.
 COPY pyproject.toml requirements-lock.txt ./
 COPY src ./src
+# pyproject.toml installs examples/ as crashtest/examples (the example agents).
+COPY examples ./examples
 RUN pip install --no-cache-dir .
 COPY subjects ./subjects
 ENV PYTHONPATH=/app/src

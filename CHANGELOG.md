@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1: the Docker images build again
+
+The three Dockerfiles copy `examples/`, which the 0.2.0 package build needs; `docker compose up` failed at v0.2.0. No other change: `pip install`, `crashtest run refunds`, `crashtest selftest` and the GitHub Action behave as in 0.2.0. The README's install command and Action usage now name `@v0.2.1`.
+
 ## 0.2.0: crashtest run refunds, a PASS/FAIL report and a GitHub Action
 
 One command now tells a developer whether their agent refunds twice when a tool's response is lost, and why. No experiment, results file, verdict or contract text changed; the server, sink, checker and the 0.1.0 commands are reused as they were.

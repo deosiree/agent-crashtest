@@ -13,6 +13,8 @@ RUN python -m venv /subject && /subject/bin/pip install --no-cache-dir -r /tmp/s
 # The harness. PYTHONPATH puts /app/src first so the runner finds /app/subjects.
 COPY pyproject.toml ./
 COPY src ./src
+# pyproject.toml installs examples/ as crashtest/examples (the example agents).
+COPY examples ./examples
 RUN pip install --no-cache-dir .
 COPY subjects ./subjects
 ENV PYTHONPATH=/app/src
