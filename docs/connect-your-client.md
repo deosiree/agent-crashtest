@@ -2,6 +2,27 @@
 
 This guide is for testing a client, framework or agent of your own against the same fault the experiments use. The fault: the sink commits a refund, then holds its response past your client's timeout, so the client never hears back. What decides the result is how many refunds the sink holds afterwards, not what your client says.
 
+**Nothing real is refunded.** The tool is a test double: `issue_refund` writes one row to the sink, a local PostgreSQL database that the stack starts for you. No payment provider, account or network service outside your machine is involved, and no real money moves. Everything runs locally; there is no hosted server.
+
+## Two examples: an unsafe retry and a stable key
+
+Before connecting your own client, see both outcomes with the project's own client. Each command starts the whole stack locally (no Docker needed), runs three trials with the fault armed, and prints a table:
+
+```powershell
+python -m crashtest.experiment.run --local --faults lost_response --arms no_dedup --trials 3 --out-dir demo-results
+```
+
+```powershell
+python -m crashtest.experiment.run --local --faults lost_response --arms stable_key --trials 3 --out-dir demo-results
+```
+
+| Example | What the client does | What the sink holds | Verdict |
+|---|---|---|---|
+| Unsafe retry (`no_dedup`) | Times out, then calls `issue_refund` again with no idempotency key | Two refunds per order (`effects_committed` 6 for 3 trials) | `duplicate` 3, `report_mismatch` 3: each time the client said one refund was made |
+| Stable key (`stable_key`) | Times out, then calls again with the same `idempotency_key` | One refund per order (`effects_committed` 3) | `correct` 3, `report_mismatch` 0 |
+
+The verdicts come from the project's checker (`crashtest.checker`), applied to the sink's counts. Every trial, with its verdict, is in the JSON file written to `demo-results/`. Re-checked on Windows on 24 November 2026: the same counts.
+
 ## 1. Start the stack
 
 **With Docker:**

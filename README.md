@@ -24,7 +24,9 @@ This result is expected; it validates the harness. It was run locally without Do
 
 The same test against four MCP server settings, with a second fault that cuts the connection instead of delaying the response: the `mcp` Python client resent nothing by itself in 720 trials, and the outcome depended only on the key strategy. A later check (experiment 007) showed that the client's default protocol, 2026-07-28, made the four server settings one transport on the wire, so this measured one transport four times. Details and limits: [docs/experiments/002-mcp-client-matrix.md](docs/experiments/002-mcp-client-matrix.md).
 
-## Try it: an unsafe client and a safe one
+## Try it: a local MCP refund server, an unsafe client and a safe one
+
+The project includes an MCP server with one fake refund tool (`issue_refund`: it writes a row to a local test database and moves no real money) and a sink that records every refund, so you can see whether a client refunded once, twice or not at all. It all runs on your machine. To point your own MCP client at it and read the sink's verdict, see [docs/connect-your-client.md](docs/connect-your-client.md).
 
 The fault: the sink commits the refund, then holds its response past the client's timeout, so the client never hears back. Each command runs three trials on a local stack (no Docker needed) and prints a table:
 

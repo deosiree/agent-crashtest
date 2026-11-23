@@ -1,5 +1,12 @@
 # Changelog
 
+## Fifth public snapshot
+
+Documentation only: the local MCP refund server as a connector a developer can run. No code, experiment, results file or contract text changed.
+
+- `docs/connect-your-client.md` says the refund tool is a test double that moves no real money and that everything runs locally, and opens with the two examples (an unsafe retry with no key, and a stable key) with their commands and the sink's verdicts. Both commands were re-run on 24 November 2026 with the documented counts.
+- The README's "Try it" section names the local MCP refund server and links the guide.
+
 ## Fourth public snapshot
 
 A results table and documentation fixes. No experiment, results file, verdict or contract text changed.
