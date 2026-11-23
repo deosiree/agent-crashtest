@@ -1,0 +1,90 @@
+name: agent-crashtest refunds
+description: >-
+  Run an agent against one simulated refund tool over MCP (a test double writing to a
+  local PostgreSQL; no real money) with one fault, a lost response, and fail the build
+  if the agent refunds twice.
+branding:
+  icon: shield
+  color: red
+
+inputs:
+  agent:
+    description: >-
+      naive or stable_key (the two example agents), or the path of your own agent
+      script, relative to the workspace (see examples/stable_key_agent.py for the contract).
+    required: false
+    default: stable_key
+  trials:
+    description: How many fresh orders to run the agent on.
+    required: false
+    default: "5"
+  fail-on-duplicate-effect:
+    description: >-
+      "true" fails the step when the sink holds a duplicate (or lost) refund. With
+      "false" the report is still written and the step passes. Environment errors and
+      an unconfirmed fault always fail it.
+    required: false
+    default: "true"
+
+outputs:
+  result:
+    description: PASS, FAIL, WARN or INCONCLUSIVE (empty on an environment error).
+    value: ${{ steps.run.outputs.result }}
+  exit-code:
+    description: The exit code of crashtest run refunds (0, 1, 2 or 3).
+    value: ${{ steps.run.outputs.exit-code }}
+  junit-file:
+    description: The JUnit XML report, one test case per trial.
+    value: ${{ steps.run.outputs.junit-file }}
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Install agent-crashtest
+      shell: bash
+      env:
+        ACTION_PATH: ${{ github.action_path }}
+      run: python -m pip install --disable-pip-version-check "${ACTION_PATH}[local]"
+
+    - name: crashtest run refunds
+      id: run
+      shell: bash
+      env:
+        AGENT: ${{ inputs.agent }}
+        TRIALS: ${{ inputs.trials }}
+        FAIL_ON_DUPLICATE: ${{ inputs.fail-on-duplicate-effect }}
+      run: |
+        junit="${GITHUB_WORKSPACE}/crashtest-junit.xml"
+        echo "junit-file=${junit}" >> "$GITHUB_OUTPUT"
+        set +e
+        crashtest run refunds --agent "$AGENT" --trials "$TRIALS" \
+          --data-dir "${RUNNER_TEMP}/crashtest-pgdata" \
+          --junit-file "$junit" --markdown-file "$GITHUB_STEP_SUMMARY"
+        code=$?
+        set -e
+        echo "exit-code=${code}" >> "$GITHUB_OUTPUT"
+        if [ -f "$junit" ]; then
+          python -c 'import sys, xml.etree.ElementTree as E; print("result=" + E.parse(sys.argv[1]).getroot().find("properties/property[@name=\"result\"]").get("value"))' "$junit" >> "$GITHUB_OUTPUT"
+        fi
+        case "$code" in
+          0) ;;
+          1)
+            if [ "$FAIL_ON_DUPLICATE" = "true" ]; then
+              echo "::error title=agent-crashtest::duplicate or lost refund (see the report above)"
+              exit 1
+            fi
+            echo "::warning title=agent-crashtest::duplicate or lost refund (fail-on-duplicate-effect is off)"
+            ;;
+          3)
+            echo "::error title=agent-crashtest::the fault was not confirmed; the run tested nothing"
+            exit 3
+            ;;
+          *)
+            echo "::error title=agent-crashtest::environment or configuration error (exit ${code})"
+            exit "$code"
+            ;;
+        esac

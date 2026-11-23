@@ -1,0 +1,36 @@
+name: My agent failed
+description: crashtest run refunds says FAIL, WARN or INCONCLUSIVE and you want help reading why
+labels: [agent-failed, question]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        The report separates what was observed (from the sink) from the likely cause (an
+        inference). The observed part is the fact; tell us where you think the inference is
+        wrong. Please do not paste secrets, API keys or customer data.
+  - type: textarea
+    id: report
+    attributes:
+      label: The report
+      description: "The output of: crashtest run refunds --agent ... --format markdown"
+    validations:
+      required: true
+  - type: textarea
+    id: agent
+    attributes:
+      label: Your agent
+      description: >-
+        The framework or MCP client and its version, and how it retries (or the relevant
+        part of your agent script).
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+      description: For example "my client uses an idempotency key, so I expected PASS".
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: "Output of: pip show agent-crashtest"

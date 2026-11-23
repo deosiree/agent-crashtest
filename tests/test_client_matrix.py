@@ -14,6 +14,12 @@ from crashtest.experiment.trial import run_trial
 from crashtest.faults.drop_proxy import DropProxy
 
 FAST = {"client_timeout_s": 1.5, "fault_delay_s": 4.0, "max_attempts": 3}
+# For a connection drop the client must see the proxy's cut, not its own timeout.
+# The cut comes once the proxy has seen the commit in the sink, usually within
+# milliseconds; with FAST's 1.5 s the two raced on a loaded machine. A timeout well
+# past the cut removes the race and costs nothing, since the cut ends the wait.
+# (fault_delay_s is not used by a connection drop: only lost_response arms the sink.)
+DROP = {**FAST, "client_timeout_s": 10.0}
 
 
 @pytest.fixture(params=list(TRANSPORTS))
@@ -52,7 +58,7 @@ async def test_connection_drop_with_naive_retry_refunds_twice(stack, transport, 
         sink_url=stack.sink_url,
         transport=transport,
         drop_proxy=proxy,
-        **FAST,
+        **DROP,
     )
 
     assert [d.committed_before_drop for d in proxy.drops] == [True]
@@ -73,7 +79,7 @@ async def test_connection_drop_with_a_stable_key_refunds_once(stack, transport, 
         sink_url=stack.sink_url,
         transport=transport,
         drop_proxy=proxy,
-        **FAST,
+        **DROP,
     )
 
     assert [a.outcome for a in result.attempts] == ["disconnect", "ok"]

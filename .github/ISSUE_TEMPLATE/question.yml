@@ -1,0 +1,13 @@
+name: Question
+description: How to use crashtest, what a verdict means, or whether it fits your setup
+labels: [question]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+      description: >-
+        The verdicts are defined in docs/contract.md and connecting a client is covered in
+        docs/connect-your-client.md; a pointer to what was unclear there helps too.
+    validations:
+      required: true

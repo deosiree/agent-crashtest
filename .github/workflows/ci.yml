@@ -22,9 +22,9 @@ jobs:
           cache: pip
       - run: pip install -e ".[dev]"
       - name: Ruff lint
-        run: ruff check src tests
+        run: ruff check src tests examples
       - name: Ruff format
-        run: ruff format --check src tests
+        run: ruff format --check src tests examples
       - name: mypy
         run: mypy
 
@@ -72,3 +72,65 @@ jobs:
       - name: Stop stack
         if: always()
         run: docker compose down -v
+
+  clean-install:
+    # A clean Ubuntu runner: install the package (not editable) into a fresh
+    # environment and run both example agents outside the checkout. The unsafe
+    # agent must FAIL (exit 1), the safe one must PASS (exit 0).
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install from scratch
+        run: |
+          python -m venv "$RUNNER_TEMP/clean"
+          "$RUNNER_TEMP/clean/bin/pip" install --no-cache-dir ".[local]"
+      - name: Selftest
+        working-directory: ${{ runner.temp }}
+        run: '"$RUNNER_TEMP/clean/bin/crashtest" selftest'
+      - name: The naive agent fails
+        working-directory: ${{ runner.temp }}
+        run: |
+          set +e
+          "$RUNNER_TEMP/clean/bin/crashtest" run refunds --agent naive --trials 3 \
+            --format json --output naive.json
+          code=$?
+          set -e
+          test "$code" -eq 1
+          "$RUNNER_TEMP/clean/bin/python" -c "import json; r = json.load(open('naive.json')); print(r['summary']); assert r['result'] == 'FAIL'"
+      - name: The stable-key agent passes
+        working-directory: ${{ runner.temp }}
+        run: |
+          "$RUNNER_TEMP/clean/bin/crashtest" run refunds --agent stable_key --trials 3
+
+  action:
+    # The GitHub Action in action.yml, run from this checkout.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: The Action passes the stable-key agent
+        id: safe
+        uses: ./
+        with:
+          agent: stable_key
+          trials: "3"
+      - name: The Action reports the naive agent's duplicate
+        id: unsafe
+        uses: ./
+        with:
+          agent: naive
+          trials: "3"
+          fail-on-duplicate-effect: "false"
+      - name: Check the outputs
+        env:
+          SAFE: ${{ steps.safe.outputs.result }}
+          UNSAFE: ${{ steps.unsafe.outputs.result }}
+          UNSAFE_CODE: ${{ steps.unsafe.outputs.exit-code }}
+          JUNIT: ${{ steps.unsafe.outputs.junit-file }}
+        run: |
+          test "$SAFE" = PASS
+          test "$UNSAFE" = FAIL
+          test "$UNSAFE_CODE" = 1
+          grep -q 'type="duplicate"' "$JUNIT"

@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.2.0: crashtest run refunds, a PASS/FAIL report and a GitHub Action
+
+One command now tells a developer whether their agent refunds twice when a tool's response is lost, and why. No experiment, results file, verdict or contract text changed; the server, sink, checker and the 0.1.0 commands are reused as they were.
+
+- **`crashtest run refunds --agent naive|stable_key|PATH`** starts the local stack, arms the lost-response fault for a fresh order per trial (`--trials`, default 5), runs the agent once per order and prints the report.
+- **`crashtest selftest`** checks the harness itself before you trust a result about your own agent: it runs `crashtest run refunds` with both example agents as controls (3 trials each) and passes only if the naive agent FAILs with a duplicate and the fault confirmed in every trial and the stable-key agent PASSes. Exit 0 when both controls behave, 1 when one misbehaves (the harness is at fault, not your agent), 2 for an environment error. No new verdicts.
+- **Two example agents** in `examples/`, both short scripts on the plain `mcp` client and templates for your own: `naive_retry_agent.py` retries with no idempotency key (FAIL), `stable_key_agent.py` sends one key per order (PASS). They are installed with the package.
+- **The report** keeps three parts apart: what was observed (from the sink and the harness), the likely cause (labelled as an inference) and the recommended fix. PASS means every trial's verdict from the checker is `correct`. Every report states what was tested (one simulated refund tool over MCP and one fault, a lost response), that the tool is a test double writing only to a local PostgreSQL, and the result as "N of N trials": repeatability under the stated configuration, not a rate. `--format text|json|markdown|junit`, `--output`, `--junit-file`, `--markdown-file`.
+- **Exit codes:** 0 PASS; 1 a duplicate or lost refund; 2 an environment or configuration error; 3 the fault could not be confirmed. When the sink is correct but the agent's report contradicts it, the run shows WARN and exits 0, or 1 with `--fail-on-report-mismatch`.
+- **A GitHub Action** (`action.yml`): `uses: munendra07-tech/agent-crashtest@v0.2.0` with `agent`, `trials` and `fail-on-duplicate-effect`. It writes a JUnit report and the Markdown report to the job summary, and fails on a duplicate refund.
+- **CI** installs the package from scratch on a clean Ubuntu runner and runs `crashtest selftest` and both example agents (FAIL, then PASS), and runs the Action itself on both.
+- **Tests:** the five connection-drop tests in `tests/test_client_matrix.py` that raced the client's timeout against the proxy's cut now give the client a 10-second timeout, so the cut always comes first. New tests cover `crashtest run refunds`, its formats and exit codes.
+- **The README is a landing page** (what, why, quickstart with expected output, how it works, the Action, limitations); the research results follow, unchanged. Issue templates (bug, question, "my agent failed"), good first issues in `CONTRIBUTING.md`, and Dependabot for pip and GitHub Actions.
+
 ## 0.1.0: the crash-test connector
 
 A developer can now install agent-crashtest and crash-test their own MCP client in four commands. No experiment, results file or contract text changed.

@@ -1,22 +1,142 @@
 # agent-crashtest
 
-A crash-consistency testbench for AI-agent tool calls.
+**Crash-test your AI agent's tool calls.** Does your agent refund a customer twice when a tool's response is lost?
 
-Agents call tools that move money, send email and write records. When a response is lost or a process dies mid-call, something usually retries — and the effect can happen twice. `agent-crashtest` injects those failures and counts what actually reached the outside world.
+Agents call tools that move money, send email and write records. When a response is lost or a process dies mid-call, something usually retries, and the effect can happen twice. `agent-crashtest` gives your agent a fake refund tool over MCP, makes the first response go missing, and counts how many refunds actually happened. You get a PASS/FAIL report that says what was observed, the likely cause and how to fix it.
 
-**Status: early.** Eight experiments run end to end: two on the reference MCP client, one on three MCP client libraries, one that kills and resumes a LangGraph agent, one that kills and recovers a pydantic-ai agent on DBOS, one on what real models do after a tool reports an unknown outcome, one on whether the MCP client resumes a dropped stream, and one on cutting the connection before the commit. Known gaps are listed in [docs/audits/implementation-gap-report.md](docs/audits/implementation-gap-report.md).
+**What it tests, exactly:** one simulated refund tool (`issue_refund`) over MCP, and one fault, a lost response: the sink commits the refund, then withholds the reply past your agent's timeout. It does not test payment idempotency in general, a real payment provider, or any other effect or fault.
 
-## Use it: crash-test your own MCP client
+**It is a sandbox.** The tool is a test double: it writes only to a local PostgreSQL database that it starts on your machine, moves no money, and nothing is hosted. Never point it, or an agent under test, at real payment credentials or production systems.
 
-agent-crashtest runs a fake refund tool over MCP on your machine. Point your own MCP client or agent at it, make the tool's response go missing, and see whether your client refunded once, twice or not at all. No real money moves and nothing is hosted: the tool writes a row to a local test database.
+## Why it matters
 
-Install (Python 3.12 or later; no Docker needed):
+A lost response is ordinary: a timeout, a dropped connection, a restarted worker. The agent cannot tell whether the refund went through, so it tries again, and the customer is refunded twice while the agent reports one refund. Most retry logic is never tested against that case, because it is hard to reproduce on purpose. Here it is one command, and the answer comes from the database that holds the refunds, not from what the agent says.
+
+## Quickstart
+
+Python 3.12 or later; no Docker needed. Install:
 
 ```powershell
-pip install "agent-crashtest[local] @ git+https://github.com/munendra07-tech/agent-crashtest@v0.1.0"
+pip install "agent-crashtest[local] @ git+https://github.com/munendra07-tech/agent-crashtest@v0.2.0"
 ```
 
-Then:
+Before testing your agent, run `crashtest selftest`. It checks that the harness itself works on your machine, using the two example agents as controls (the unsafe one must FAIL with a duplicate in every trial, the safe one must PASS), and takes about 40 seconds:
+
+```powershell
+crashtest selftest
+```
+
+```text
+selftest passed: the harness detects a duplicate refund and passes a safe agent; your own agent's result can be trusted on this machine
+```
+
+If a control misbehaves, it says which one, that the harness (not your agent) is at fault, and exits 1; an environment error exits 2.
+
+To see the two controls' full reports, run the unsafe example agent, which retries with no idempotency key:
+
+```powershell
+crashtest run refunds --agent naive
+```
+
+It starts PostgreSQL, a sink and the MCP server, runs five trials and prints (order IDs shortened):
+
+```text
+crashtest run refunds: FAIL - 5 of 5 trials refunded more than once
+agent: naive; fault: lost response (held 5 s, agent timeout 2 s); exit code 1
+
+What was tested: one simulated refund tool (issue_refund) over MCP and one fault, a lost response: the sink commits the refund, then withholds the reply past the agent's timeout. No other effect or fault is tested.
+The tool is a test double: it writes only to a local PostgreSQL database and moves no money. Never point it, or an agent under test, at real payment credentials or production systems.
+
+OBSERVED (from the sink and the harness)
+  trials: 5
+  expected refunds: 5
+  actual refunds (in the sink): 10
+  extra refunds per trial: 1, 1, 1, 1, 1
+  refund requests received by the sink: 10
+  what the agent told its caller: done 5
+  agent's report agrees with the sink: 0 of 5
+  fault fired (response held past the agent's timeout): 5 of 5
+  verdicts (crashtest.checker): duplicate 5
+  0 of 5 trials refunded exactly once. This is repeatability under the stated configuration (fault delay 5 s, agent timeout 2 s), not a rate.
+
+  trial  order         refunds  requests  fault fired  agent said  agrees with sink  verdict
+  1      ord-6f1c...   2        2         yes          done        NO                duplicate
+  ...
+
+LIKELY CAUSE (inference from the observations above, not observed directly)
+  - The first request committed and its response was lost (the fault held it past the agent's timeout); the agent retried without an idempotency key. It then told its caller that one refund was made.
+
+RECOMMENDED FIX
+  - Derive one idempotency key from the business operation (for example refund-<order_id>), send the same key on every attempt, and let the system that makes the refund enforce it (here the sink does, in its database). A key made fresh for each attempt does not help. Before retrying after a timeout, check whether the refund already exists.
+```
+
+Then the safe one, which sends the same key on every attempt:
+
+```powershell
+crashtest run refunds --agent stable_key
+```
+
+```text
+crashtest run refunds: PASS - 5 of 5 trials refunded exactly once (verdict correct)
+...
+```
+
+Each run takes about 30 seconds on a laptop, including starting the stack. The trials are deterministic, so the report gives "N of N trials": repeatability under the stated configuration (fault delay, agent timeout), not a rate.
+
+### Test your own agent
+
+Copy [`examples/stable_key_agent.py`](examples/stable_key_agent.py) (or [`examples/naive_retry_agent.py`](examples/naive_retry_agent.py)) and replace its body with your agent or client. The contract is small:
+
+- **Arguments:** `--mcp-url URL --order-id ID --amount-cents N --timeout SECONDS`. Call the MCP tool `issue_refund` at that URL for that order and amount, with that client timeout. The tool also takes an optional `idempotency_key`.
+- **Output:** the last line on stdout is one JSON object, `{"report": "done"}`, `"unknown"` or `"not_done"`: what your agent would tell its caller about the refund. Anything else counts as no report.
+
+```powershell
+crashtest run refunds --agent path/to/my_agent.py --trials 10
+```
+
+`--python PATH` runs your script with another interpreter, such as your agent's own virtual environment.
+
+### Reports and exit codes
+
+`--format text|json|markdown|junit` picks the report's format (`markdown` suits a PR comment, `junit` a CI test report); `--output FILE` writes it to a file, and `--junit-file FILE` and `--markdown-file FILE` write a second copy. Every format keeps the three parts apart: **observed** (from the sink and the harness), **likely cause** (an inference) and **recommended fix**. Each trial's verdict comes from the project's checker, as defined in the [contract](docs/contract.md); PASS means every trial's verdict is `correct`.
+
+| Exit code | Result | Meaning |
+|---|---|---|
+| 0 | PASS | Every trial refunded exactly once and the agent reported it |
+| 0 | WARN | The sink holds exactly one refund per order, but the agent said something else (for example "unknown"). Shown in the report; exits 1 with `--fail-on-report-mismatch` if what the agent said contradicts the sink |
+| 1 | FAIL | A duplicate or lost refund: the sink does not hold exactly one correct refund for an order |
+| 2 | | An environment or configuration error (the stack did not start, the agent script was not found) |
+| 3 | INCONCLUSIVE | The fault could not be confirmed: no refund reached the sink while it was armed, so the trial tested nothing |
+
+## How it works
+
+```
+                       arm the fault, read the refunds
+   crashtest run ─────────────────────────────────────────────┐
+     │  one fresh order per trial                              ▼
+     └─> your agent ──MCP──> refund MCP server ──HTTP──> sink ──> PostgreSQL
+         (a script)          tool: issue_refund          commits the refund, then
+                                                         holds the response past
+     report <── checker (verdicts) <── the sink's rows   the agent's timeout
+```
+
+The sink plays the outside world: each row in its `refunds` table is a refund that happened, and it enforces idempotency keys in the database. The fault makes it commit the first refund for an order and then withhold the response, so the agent never hears back. What the agent does next decides how many rows there are. The verdict comes from those rows; what the agent says is recorded beside it, not trusted.
+
+## In CI: the GitHub Action
+
+```yaml
+- uses: munendra07-tech/agent-crashtest@v0.2.0
+  with:
+    agent: path/to/my_agent.py   # or naive, stable_key
+    trials: 5
+    fail-on-duplicate-effect: true
+```
+
+The Action installs the package with Python 3.12, runs `crashtest run refunds`, writes the JUnit report to `crashtest-junit.xml` in the workspace and the Markdown report to the job summary, and fails the step on a duplicate (or lost) refund. With `fail-on-duplicate-effect: false` it reports and passes. Its outputs are `result`, `exit-code` and `junit-file`.
+
+## Step by step: serve, arm, verdict
+
+To drive a client by hand instead of through an agent script:
 
 1. **Start the server and the sink**, and leave it running. It prints the MCP server's URL:
 
@@ -40,7 +160,31 @@ Then:
 
    It prints how many refunds the sink committed, the verdict (`correct`, `duplicate`, ...) and whether your client's report agrees with the sink. It exits 0 only for `correct`, so you can use it in your own tests.
 
-The tool's arguments, the idempotency key, two worked examples (an unsafe retry and a stable key) and the same steps by hand: [docs/connect-your-client.md](docs/connect-your-client.md).
+The tool's arguments, the idempotency key and the same steps with `curl` and Python: [docs/connect-your-client.md](docs/connect-your-client.md).
+
+## Limitations
+
+- **One scenario.** A refund through one MCP tool, with one fault: the first response is lost after the refund commits. Connection cuts, crashes of the agent's own process and other effects (bookings, inventory) are not in `crashtest run` yet.
+- **The agent runs as a script**, once per order, with the arguments above. An agent that needs a model, credentials or a long-running process has to be wrapped in such a script.
+- **A test double, not a payment provider.** A PASS says your agent's retries are safe against this test double, a sink that enforces idempotency keys in its database; it says nothing about whether your real provider does.
+- **Repeatability, not a rate.** "5 of 5 trials" says the outcome repeated under the stated configuration (fault delay, agent timeout); it is not a probability and carries no confidence interval. An agent whose behaviour depends on timing or on a model may need more trials, or other timings.
+- **Tested on Windows and Ubuntu with Python 3.12**; macOS has not been tested. The Action runs your agent with its own Python 3.12, which has the `mcp` client; whether packages your agent needs can be installed into that Python in an earlier step has not been tested yet.
+
+## Roadmap
+
+What comes after this release will be chosen from early users' feedback, so please open an issue with what you tried and what you need. Plans and their status: [ROADMAP.md](ROADMAP.md).
+
+## Contributing and license
+
+Bug reports, reproductions and "my agent failed and I don't know why" questions are all welcome: open an issue with one of the templates. Setup, checks and good first issues are in [CONTRIBUTING.md](CONTRIBUTING.md). MIT licensed: see [LICENSE](LICENSE).
+
+---
+
+## The research behind it
+
+`agent-crashtest` started as a crash-consistency testbench, and the experiments below are where the tool's scenario and verdicts come from.
+
+**Status: early.** Eight experiments run end to end: two on the reference MCP client, one on three MCP client libraries, one that kills and resumes a LangGraph agent, one that kills and recovers a pydantic-ai agent on DBOS, one on what real models do after a tool reports an unknown outcome, one on whether the MCP client resumes a dropped stream, and one on cutting the connection before the commit. Known gaps are listed in [docs/audits/implementation-gap-report.md](docs/audits/implementation-gap-report.md).
 
 ## First result
 
@@ -237,15 +381,7 @@ The same checks run in CI on every push: see [CONTRIBUTING.md](CONTRIBUTING.md).
 ruff check src tests; ruff format --check src tests; mypy; pytest --cov
 ```
 
-**Known timing-sensitive tests.** Five connection-drop tests in `tests/test_client_matrix.py` depend on the client's 1.5-second timeout (`FAST` in that file) racing the proxy's cut. On 21 November 2026 they failed once together in a full local run on a loaded Windows machine: the client timed out before the proxy cut the connection. The proxy now keeps one client to the sink for its whole life instead of creating one per commit wait, expires that client's idle connections after 1 second (before the sink's server closes them, after 5 seconds), and retries a sink read once if its connection was dropped. Trials of experiments 002, 003, 007 and 008 record those retries as `sink_retries` (results files written before the field existed, including 008's two runs of record and every 003 file, do not have it); `tests/test_drop_proxy_sink.py` covers the retry and the expiry. If the five tests still fail, rerun them alone before suspecting a regression:
-
-- `test_connection_drop_with_naive_retry_refunds_twice[stateless_json]`
-- `test_connection_drop_with_naive_retry_refunds_twice[stateless_sse]`
-- `test_connection_drop_with_naive_retry_refunds_twice[stateful_json]`
-- `test_connection_drop_with_naive_retry_refunds_twice[stateful_sse]`
-- `test_connection_drop_with_a_stable_key_refunds_once[stateful_sse]`
-
-Changes since the first public snapshot are listed in [CHANGELOG.md](CHANGELOG.md).
+**Connection-drop tests and timing.** Five connection-drop tests in `tests/test_client_matrix.py` (the naive-retry test on each of the four transports and the stable-key test on stateful SSE) used to depend on the client's 1.5-second timeout (`FAST` in that file) racing the proxy's cut. On 21 November 2026 they failed once together in a full local run on a loaded Windows machine: the client timed out before the proxy cut the connection. The proxy now keeps one client to the sink for its whole life instead of creating one per commit wait, expires that client's idle connections after 1 second (before the sink's server closes them, after 5 seconds), and retries a sink read once if its connection was dropped. Trials of experiments 002, 003, 007 and 008 record those retries as `sink_retries` (results files written before the field existed, including 008's two runs of record and every 003 file, do not have it); `tests/test_drop_proxy_sink.py` covers the retry and the expiry. Since 0.2.0 the connection-drop tests give the client a 10-second timeout (`DROP` in that file). The proxy cuts the connection as soon as it sees the commit in the sink, so the cut, not the timeout, ends the client's wait, and the tests take no longer than before. Checked by delaying the proxy's commit check by 2 seconds on purpose: with the old timeout all 8 cases of these two tests (four transports each) failed, with the new one all 8 passed.
 
 ## Layout
 

@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for your interest. The project is early, so the most useful contributions are bug reports, reproductions and new fault scenarios.
+Thanks for your interest. The project is early, so the most useful contributions are bug reports, reproductions, reports of agents that failed (or passed) `crashtest run refunds`, and new fault scenarios. Issue templates are provided for a bug, a question, and "my agent failed".
 
 ## Set up
 
@@ -15,11 +15,11 @@ python3.12 -m venv .venv && . .venv/bin/activate && pip install -e ".[dev]"
 All four must pass; CI runs the same checks.
 
 ```bash
-ruff check src tests
+ruff check src tests examples
 ```
 
 ```bash
-ruff format --check src tests
+ruff format --check src tests examples
 ```
 
 ```bash
@@ -29,6 +29,15 @@ mypy
 ```bash
 pytest
 ```
+
+## Good first issues
+
+Small, self-contained tasks, each a good first pull request. Open an issue first to say you are taking one.
+
+- **An example agent for another MCP client or framework.** A script in `examples/` with the same arguments and JSON report as `examples/stable_key_agent.py`, built on another client library or agent framework, with the result of `crashtest run refunds --agent` on it in the pull request.
+- **A "check status before retrying" example agent.** Before retrying after a timeout, the agent asks whether the refund already exists. The MCP server has no lookup tool today, so this includes adding one that reads the sink's `GET /refunds`.
+- **A clearer message when the agent script fails to start.** When every trial's agent exits with an import error, the report should say so once, at the top, instead of per trial.
+- **macOS.** Run the quickstart on macOS and report what happened; fix what breaks.
 
 ## Rules for results
 

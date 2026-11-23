@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "agent-crashtest"
-version = "0.1.0"
+version = "0.2.0"
 description = "Crash-consistency testbench for AI-agent tool calls"
 requires-python = ">=3.12"
 license = "MIT"
@@ -53,11 +53,24 @@ ignore_missing_imports = true
 source = ["crashtest"]
 branch = true
 
-[tool.setuptools.packages.find]
-where = ["src"]
+[tool.setuptools]
+# The example agents in examples/ are installed as crashtest/examples, so that
+# `crashtest run refunds --agent naive|stable_key` works from a pip install.
+# A test checks that this list names every package under src/crashtest.
+package-dir = { "" = "src", "crashtest.examples" = "examples" }
+packages = [
+    "crashtest",
+    "crashtest.examples",
+    "crashtest.experiment",
+    "crashtest.faults",
+    "crashtest.refund_mcp",
+    "crashtest.results",
+    "crashtest.sink",
+]
 
 [tool.setuptools.package-data]
 crashtest = ["sink/schema.sql", "results/schema.sql"]
+"crashtest.examples" = ["*.py"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
