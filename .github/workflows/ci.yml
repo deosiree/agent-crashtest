@@ -15,7 +15,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -32,7 +32,7 @@ jobs:
     # Tests start their own stack: pip-installed PostgreSQL plus the services as subprocesses.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -49,7 +49,7 @@ jobs:
     # Same tests against the Docker Compose stack.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -79,7 +79,7 @@ jobs:
     # agent must FAIL (exit 1), the safe one must PASS (exit 0).
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -109,7 +109,7 @@ jobs:
     # The GitHub Action in action.yml, run from this checkout.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: The Action passes the stable-key agent
         id: safe
         uses: ./
