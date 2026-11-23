@@ -155,13 +155,15 @@ The same checks run in CI on every push: see [CONTRIBUTING.md](CONTRIBUTING.md).
 ruff check src tests; ruff format --check src tests; mypy; pytest --cov
 ```
 
-**Known timing-sensitive tests.** Five connection-drop tests in `tests/test_client_matrix.py` depend on the client's 1.5-second timeout (`FAST` in that file) racing the proxy's cut. On 21 November 2026 they failed once together in a full local run on a loaded Windows machine (the client timed out before the proxy cut the connection), then passed in two reruns and in CI. If they fail, rerun them alone before suspecting a regression:
+**Known timing-sensitive tests.** Five connection-drop tests in `tests/test_client_matrix.py` depend on the client's 1.5-second timeout (`FAST` in that file) racing the proxy's cut. On 21 November 2026 they failed once together in a full local run on a loaded Windows machine: the client timed out before the proxy cut the connection. The proxy now keeps one client to the sink for its whole life instead of creating one per commit wait, expires that client's idle connections after 1 second (before the sink's server closes them, after 5 seconds), and retries a sink read once if its connection was dropped. Trials of experiments 002 and 007 record those retries as `sink_retries`; `tests/test_drop_proxy_sink.py` covers the retry and the expiry. If the five tests still fail, rerun them alone before suspecting a regression:
 
 - `test_connection_drop_with_naive_retry_refunds_twice[stateless_json]`
 - `test_connection_drop_with_naive_retry_refunds_twice[stateless_sse]`
 - `test_connection_drop_with_naive_retry_refunds_twice[stateful_json]`
 - `test_connection_drop_with_naive_retry_refunds_twice[stateful_sse]`
 - `test_connection_drop_with_a_stable_key_refunds_once[stateful_sse]`
+
+Changes since the first public snapshot are listed in [CHANGELOG.md](CHANGELOG.md).
 
 ## Layout
 

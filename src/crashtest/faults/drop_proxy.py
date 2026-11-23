@@ -110,6 +110,23 @@ class DropRecord:
     event_ids_forwarded: int = 0
 
 
+# The proxy's client to the sink drops idle connections after this long, well before
+# the sink's server does (uvicorn closes an idle keep-alive connection after 5 s). A
+# read that reused a connection the server had just closed would otherwise fail.
+SINK_KEEPALIVE_S = 1.0
+
+
+def _new_sink_client(sink_url: str) -> httpx.AsyncClient:
+    return httpx.AsyncClient(
+        base_url=sink_url,
+        timeout=5.0,
+        # httpx's default pool limits, kept; only the idle expiry is changed.
+        limits=httpx.Limits(
+            max_connections=100, max_keepalive_connections=20, keepalive_expiry=SINK_KEEPALIVE_S
+        ),
+    )
+
+
 @dataclass
 class DropProxy:
     upstream_url: str  # for example http://127.0.0.1:8102/mcp
@@ -130,11 +147,18 @@ class DropProxy:
         self.calls_seen: dict[str, int] = {}
         # Client requests carrying a Last-Event-ID header, over the proxy's life.
         self.resume_requests = 0
+        # Sink reads retried after a dropped connection, over the proxy's life.
+        self.sink_retries = 0
         self._server: asyncio.Server | None = None
+        # One client to the sink for the proxy's life. Creating a client loads the
+        # certificate bundle (about 150 ms, and several times that on a loaded
+        # machine), which raced a client's timeout when it was done per commit wait.
+        self._sink: httpx.AsyncClient | None = None
         self._tasks: set[asyncio.Task] = set()
         self.url = ""
 
     async def __aenter__(self) -> DropProxy:
+        self._sink = _new_sink_client(self.sink_url)
         self._server = await asyncio.start_server(self._handle, "127.0.0.1", 0)
         port = self._server.sockets[0].getsockname()[1]
         self.url = f"http://127.0.0.1:{port}{self._path}"
@@ -149,6 +173,9 @@ class DropProxy:
         if self._server is not None:
             with contextlib.suppress(Exception):
                 await self._server.wait_closed()
+        if self._sink is not None:
+            await self._sink.aclose()
+            self._sink = None
 
     def arm(self, order_id: str, drop_point: DropPoint = "no_bytes") -> None:
         """Drop the next connection that carries a request for this order."""
@@ -253,13 +280,39 @@ class DropProxy:
             writer.transport.abort()
             up_writer.transport.abort()
 
+    def _sink_client(self) -> httpx.AsyncClient:
+        if self._sink is None:  # used outside `async with`: open one and keep it
+            self._sink = _new_sink_client(self.sink_url)
+        return self._sink
+
+    async def _sink_get(self, order_id: str) -> httpx.Response:
+        """GET /refunds for the order, retried once if the connection was dropped.
+
+        Only connection-level failures are retried (a pooled connection the server
+        had closed raises RemoteProtocolError or a NetworkError); a timeout or an HTTP
+        error status is not, so a slow or failing sink still shows as one. If the
+        retry fails too, the error propagates as before: the cut then happens with no
+        DropRecord, and the trial's fault_confirmed reads false.
+        """
+        try:
+            return await self._sink_client().get("/refunds", params={"order_id": order_id})
+        except (httpx.NetworkError, httpx.RemoteProtocolError):
+            self.sink_retries += 1
+            return await self._sink_client().get("/refunds", params={"order_id": order_id})
+
+    async def _read_sink(self, order_id: str) -> tuple[int, int]:
+        """The sink's request-log entries and refunds for this order, right now."""
+        r = await self._sink_get(order_id)
+        r.raise_for_status()
+        body = r.json()
+        return len(body["requests"]), len(body["refunds"])
+
     async def _wait_for_commit(self, order_id: str) -> bool:
         """Poll the sink until the refund for this order exists."""
         deadline = asyncio.get_running_loop().time() + self.commit_wait_s
-        async with httpx.AsyncClient(base_url=self.sink_url, timeout=5.0) as sink:
-            while asyncio.get_running_loop().time() < deadline:
-                r = await sink.get("/refunds", params={"order_id": order_id})
-                if r.status_code == 200 and r.json()["refunds"]:
-                    return True
-                await asyncio.sleep(self.poll_interval_s)
+        while asyncio.get_running_loop().time() < deadline:
+            r = await self._sink_get(order_id)
+            if r.status_code == 200 and r.json()["refunds"]:
+                return True
+            await asyncio.sleep(self.poll_interval_s)
         return False

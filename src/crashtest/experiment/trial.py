@@ -90,6 +90,8 @@ class TrialResult:
     client_mode: str = "auto"
     drop_point: str | None = None
     resume_requests: int | None = None
+    # The proxy's sink reads retried after a dropped keep-alive connection, in this trial.
+    sink_retries: int | None = None
     # True if the sink's counts moved between the two ground-truth reads.
     changed_after_first_read: bool = False
     # Set by the runner after the last trial: the order's refund count when the
@@ -209,6 +211,7 @@ async def run_trial(
         mcp_url = drop_proxy.url
         drops_before = len(drop_proxy.drops)
         resumes_before = drop_proxy.resume_requests
+        sink_retries_before = drop_proxy.sink_retries
         if fault == "connection_drop":
             # The proxy lets the call through, waits for the refund to commit, then
             # cuts this client's connection. Only the first attempt is affected.
@@ -272,6 +275,8 @@ async def run_trial(
     resume_requests = (
         drop_proxy.resume_requests - resumes_before if drop_proxy is not None else None
     )
+    # The proxy's sink reads that were retried after a dropped connection.
+    sink_retries = drop_proxy.sink_retries - sink_retries_before if drop_proxy is not None else None
 
     fault_confirmed: bool | None = None
     if fault == "lost_response":
@@ -323,6 +328,7 @@ async def run_trial(
         client_mode=client_mode,
         drop_point=drop_point if fault == "connection_drop" else None,
         resume_requests=resume_requests,
+        sink_retries=sink_retries,
         changed_after_first_read=(
             len(first_read["refunds"]) != effects or len(first_read["requests"]) != requests
         ),

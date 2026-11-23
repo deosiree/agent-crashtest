@@ -1,6 +1,6 @@
 # Roadmap
 
-Updated 21 November 2026. Each milestone ends with something measured and written up.
+Updated 23 November 2026. Each milestone ends with something measured and written up.
 
 ## Done
 
@@ -14,6 +14,7 @@ Updated 21 November 2026. Each milestone ends with something measured and writte
 - [x] Harness fix: control cells no longer depend on machine load (wider timeout margins)
 - [x] Docker Compose stack built and run (PostgreSQL 16.16)
 - [x] M1: GitHub repository, licence, contributor and security docs, Ruff, mypy, coverage, CI green
+- [x] Harness fix: the fault proxy keeps one sink client and retries a read once after a dropped keep-alive connection (`sink_retries` per trial) — `CHANGELOG.md`
 
 ## Order of the open work
 

@@ -137,7 +137,10 @@ async def test_fault_commits_the_effect_before_the_response_arrives(sink, order_
 
     response = await pending
     assert response.status_code == 200
-    assert time.perf_counter() - started >= delay
+    # The sink held the response for the fault's delay. On Windows a timer can fire
+    # up to one clock tick (about 15.6 ms) early, so allow 50 ms of slack: a run of
+    # 21 November measured 2.993 s for a 3.0 s delay.
+    assert time.perf_counter() - started >= delay - 0.05
 
 
 async def test_fault_fires_only_the_armed_number_of_times(sink, order_id):
