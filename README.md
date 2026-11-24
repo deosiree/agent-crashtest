@@ -1,5 +1,7 @@
 # agent-crashtest
 
+[![CI](https://github.com/munendra07-tech/agent-crashtest/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/munendra07-tech/agent-crashtest/actions/workflows/ci.yml) [![Release](https://img.shields.io/github/v/release/munendra07-tech/agent-crashtest)](https://github.com/munendra07-tech/agent-crashtest/releases/latest) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-blue.svg)](pyproject.toml)
+
 **Crash-test your AI agent's tool calls.** Does your agent refund a customer twice when a tool's response is lost?
 
 Agents call tools that move money, send email and write records. When a response is lost or a process dies mid-call, something usually retries, and the effect can happen twice. `agent-crashtest` gives your agent a fake refund tool over MCP, makes the first response go missing, and counts how many refunds actually happened. You get a PASS/FAIL report that says what was observed, the likely cause and how to fix it.
